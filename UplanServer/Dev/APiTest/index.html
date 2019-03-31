@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>UplanServerApiTest</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div id="">
+
+        </div>
+        <div id="output">
+
+        </div>
+        <ul>
+            <li>请求func:</li>
+        </ul>
+    </div>
+    <script>
+        var app = new Vue({
+            el: "#main",
+            data: {
+                func: "未请求",
+                status: "",
+                responseTime: 0,
+                responseData: {}
+            },
+            create() {
+
+            }
+        });
+
+    </script>
+</body>
+</html>

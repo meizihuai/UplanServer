@@ -10,9 +10,10 @@ namespace UplanServer.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Home Page";
-
+          // return Redirect("/help");
+           // ViewBag.Title = "Home Page";
             return View();
         }
+        
     }
 }

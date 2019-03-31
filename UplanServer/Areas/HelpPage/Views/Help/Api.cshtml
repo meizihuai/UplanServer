@@ -6,9 +6,16 @@
     var description = Model.ApiDescription;
     ViewBag.Title = description.HttpMethod.Method + " " + description.RelativePath;
 }
+@section head{
+    <link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
+    <style>
+        .mainDiv {
+            margin: 50px 50px 50px 50px;
+        }
+    </style>
+}
 
-<link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
-<div id="body" class="help-page">
+<div id="body" class="help-page mainDiv">
     <section class="featured">
         <div class="content-wrapper">
             <p>

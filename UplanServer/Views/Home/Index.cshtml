@@ -1,24 +1,276 @@
-﻿<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS, and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-        a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-        is an ideal platform for building RESTful applications on the .NET Framework.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301870">Learn more &raquo;</a></p>
+﻿
+@section head{
+    <style>
+        #mainDiv {
+            margin: 20px 20px 20px 20px;
+        }
+
+        body {
+            background-color: #F2F2F2
+        }
+
+        .Ahelp {
+            margin-left: 20px;
+            color: blue;
+            cursor: pointer;
+        }
+        .Aapi {
+            color: blue;
+            cursor: pointer;
+        }
+        .scroll {
+            overflow: auto
+        }
+
+        [v-cloak] {
+            display: none
+        }
+    </style>
+
+}
+<body>
+    <div id="mainDiv">
+        <div class="layui-row layui-col-space5">
+            <div class="layui-col-md3">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        API列表
+                        <a href="/help" class="Ahelp">打开API列表文档</a>
+                    </div>
+                    <div class="layui-card-body scroll">
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="200">
+                                <col width="80">
+                                <col width="200">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th>描述</th>
+                                    <th>方法</th>
+                                    <th>接口名</th>
+                                </tr>
+                            </thead>
+                            <tbody id="apiList" v-cloak>
+                                <tr v-for="api in apilist">
+                                    <td>{{api.mark}}</td>
+                                    <td>{{api.method}}</td>
+                                    <td>
+                                        <a class="Aapi" href="javascript:;" @@click="testApi(api)">{{api.func}}</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="layui-col-md9">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        接口返回详情
+                    </div>
+                    <div class="layui-card-body scroll">
+                        <ul class="layui-timeline" id="outputUl" v-cloak>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">接口名</h3>
+                                    <p>
+                                        {{info.func}}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">url</h3>
+                                    <p>
+                                        {{info.url}}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">参数</h3>
+                                    <p>
+                                        {{info.params}}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">耗时</h3>
+                                    <p>
+                                        {{info.responseTime}}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">状态码</h3>
+                                    <p>
+                                        {{info.status}}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">返回消息</h3>
+                                    <p>
+                                        <textarea id="ta1" style="width:100%;height:300px;" :value="info.body"></textarea>                                      
+                                    </p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301871">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301872">Learn more &raquo;</a></p>
-    </div>
-</div>
+
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#apiList",
+            data: {
+                apilist: []
+            },
+            created() {
+                
+            },
+            methods: {
+                testApi(api) {
+                    eval("sendAjax" + "('" + JSON.stringify(api) + "');");
+                }
+            }
+        });
+        var outputApp = new Vue({
+            el: "#outputUl",
+            data: {
+                info: { func: "", url: "", params:"", responseTime: "",status:"", body: ""}
+            },
+            created() {
+
+            },
+            methods: {
+              
+            }
+        });
+        window.onload = init;
+        function init() {
+            var apilist = new Array();
+            apilist.push({
+                mark: "接口测试",
+                func: "test",
+                url: "/api/uplan/test",
+                method: "get",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                mark: "404接口示范",
+                func: "hhhhh",
+                url: "/api/uplan/hhhhh",
+                method: "get",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                func: "CreateQoEVideoDtGroup",
+                url: "/api/uplan/CreateQoEVideoDtGroup",
+                method: "post",
+                mark: "创建新的QOE监控组",
+                token: "928453310",
+                params: {
+                    groupId: 1,
+                    city: "天津市",
+                    manager: "高云晖",
+                    manager_tel: "15034571195",
+                    manager_email: "15034571195@139.com"
+                }               
+            });
+            apilist.push({
+                func: "GetAllQoEVideoDtGroup",
+                url: "/api/uplan/GetAllQoEVideoDtGroup",
+                method: "get",
+                mark: "获取所有QoE测试组",
+                token: "928453310",
+                params:""
+            });
+            apilist.push({
+                func: "UpdateQoEVideoDtGroup",
+                url: "/api/uplan/UpdateQoEVideoDtGroup",
+                method: "post",
+                mark: "更新QoE测试组",
+                token: "928453310",
+                params: {
+                    id:21,
+                    groupId: 1,
+                    city: "天津市1",
+                    manager: "高云晖1",
+                    manager_tel: "15034571195——1",
+                    manager_email: "15034571195@139.com"
+                }
+            });
+            apilist.push({
+                func: "DeleteQoEVideoDtGroup",
+                url: "/api/uplan/DeleteQoEVideoDtGroup",
+                method: "get",
+                mark: "删除QoE测试组",
+                token: "928453310",
+                params: {
+                    id:5
+                }
+            });
+            this.app.apilist = apilist;
+        }      
+        function sendAjax(txt) {
+            var api = JSON.parse(txt);
+            var ajaxUrl = api.url + "?token=" + api.token;
+            this.outputApp.info.func = api.func;
+            this.outputApp.info.url =ajaxUrl;
+            this.outputApp.info.params = api.params;
+            this.outputApp.info.status = "请求中..";
+            this.outputApp.info.responseTime = "请求中...";
+            this.outputApp.info.body = "请求中...";
+            var that = this;
+            var begin = new Date();
+            var ajaxParamsType = "application/json";
+            var params = JSON.stringify(api.params);
+            if (api.method.toLowerCase() == "get") {
+                ajaxParamsType = "application/x-www-form-urlencode";
+                params = api.params;
+            }
+            $.ajax({
+                url: ajaxUrl,
+                type: api.method,
+                timeout: 300000,
+                async: true,
+                cache: false,
+                data: params,
+                contentType: ajaxParamsType,  
+                dataType: 'json',
+                success: function (data, textStatus) {
+                    var end = new Date();
+                    var time = end - begin;
+                    that.outputApp.info.responseTime = time + " ms";
+                    that.outputApp.info.status = textStatus;
+                    that.outputApp.info.body = JSON.stringify(data);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    var end = new Date();
+                    var time = end - begin;
+                    that.outputApp.info.responseTime = time + " ms";
+                    that.outputApp.info.status = textStatus + ";  code=" + XMLHttpRequest.status;
+                    that.outputApp.info.body = errorThrown;
+                }
+            });
+        }
+       
+    </script>
+</body>

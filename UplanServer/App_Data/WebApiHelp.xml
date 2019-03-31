@@ -481,5 +481,138 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="T:UplanServer.Controllers.UplanController">
+            <summary>
+            UPLAN项目接口
+            接口版本:1.0.1
+            更改者：梅子怀
+            更改时间:2019-03-30 23:35:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.Test">
+            <summary>
+            接口测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.Login(System.String,System.String)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="usr">用户名</param>
+            <param name="pwd">密码</param>
+            <returns>带token的用户身份信息</returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.CreateQoEVideoDtGroup(UplanServer.QoEVideoDtGroup,System.String)">
+            <summary>
+            创建新QoE测试组
+            </summary>
+            <param name="data">QoEVideoDtGroup class</param>
+            <param name="token">token,要求管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetAllQoEVideoDtGroup(System.String)">
+            <summary>
+            获取所有QoE测试组
+            </summary>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.UpdateQoEVideoDtGroup(UplanServer.QoEVideoDtGroup,System.String)">
+            <summary>
+            更新QOE测试组
+            </summary>
+            <param name="data">QoEVideoDtGroup class</param>
+            <param name="token">token  需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.DeleteQoEVideoDtGroup(System.Int32,System.String)">
+            <summary>
+            删除QoE测试组
+            </summary>
+            <param name="id">主键id</param>
+            <param name="token">token 需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.NormalResponse">
+            <summary>
+            一般返回格式,JSON格式
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.result">
+            <summary>
+            处理结果，true:成功，false:失败
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.msg">
+            <summary>
+            处理消息或处理过程
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.errmsg">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.data">
+            <summary>
+            数据，可能是string或者json或者json数组
+            </summary>
+        </member>
+        <member name="T:UplanServer.QoEVideoDtGroup">
+            <summary>
+            QOE Video监控组
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.id">
+            <summary>
+            -主键，数据库自增
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.dateTime">
+            <summary>
+            -组创建时间 
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.groupId">
+            <summary>
+            *组ID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.city">
+            <summary>
+            *城市  以 '市' 结尾
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.manager">
+            <summary>
+            管理员/负责人/项目经理
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.manager_tel">
+            <summary>
+            管理者电话
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.manager_email">
+            <summary>
+            管理者邮箱
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.status">
+            <summary>
+            -组状态   正常   异常  
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.lastDateTime">
+            <summary>
+            -最后一次组员上传qoe视频数据时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEVideoDtGroup.lastDay">
+            <summary>
+            -最后一次组员上传qoe视频数据日期
+            </summary>
+        </member>
     </members>
 </doc>
