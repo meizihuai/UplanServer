@@ -8,7 +8,7 @@ using System.Web;
 namespace UplanServer
 {
     /// <summary>
-    /// QOE Video监控组
+    /// QOE Video测试组
     /// </summary>
     public class QoEVideoDtGroup
     {
@@ -59,7 +59,7 @@ namespace UplanServer
         public NormalResponse Create()
         {
             if (groupId == "") return new NormalResponse( "groupId不可为空");
-            if (IsExist())
+            if (IsExist(true))
             {
                 return new NormalResponse("该组id已存在");
             }
@@ -76,18 +76,18 @@ namespace UplanServer
             dik.Add("lastDay", now.ToString("yyyy-MM-dd"));
             return ora.InsertByDik(tableName, dik);
         }
-        public  bool IsExist(int Id = 0,string inputGroupId="" )
+        private  bool IsExist(bool useGroupId=false)
         {
-            if (inputGroupId == "")inputGroupId = groupId;
-            string sql = "select id from " + tableName + " where groupId='" + inputGroupId + "'";
-            if (id > 0)
+            string sql = sql = "select id from " + tableName + " where id=" + id + "";
+            if (useGroupId)
             {
-                sql= "select id from " + tableName + " where id=" + Id + "";
+                sql = "select id from " + tableName + " where groupId=" + groupId + "";
             }
             return ora.SqlIsIn(sql);
         }
         public static QoEVideoDtGroup Get(int id = 0, string where = "")
         {
+            if (id == 0 && where == "") return null;
             string sql = "select * from " + tableName + (where == "" ? "" : " where " + where);
             if (id > 0)
             {
@@ -151,7 +151,7 @@ namespace UplanServer
         public NormalResponse Update()
         {
             if (id == 0) return new NormalResponse("id不可为0");       
-            if (!IsExist(id))
+            if (!IsExist())
             {
                 return new NormalResponse("该组不存在");
             }
@@ -186,62 +186,227 @@ namespace UplanServer
             string result = ora.SqlCMD(sql);
             return new NormalResponse(result);
         }
+        public static NormalResponse GetMembers(string groupId)
+        {
+            if (groupId =="") return new NormalResponse("groupId不可为空");
+            if (Get(0, "groupId='" + groupId + "'") == null)
+            {
+                return new NormalResponse("该组id不存在");
+            }
+            List<QoEVideoDtGroupMember> list = QoEVideoDtGroupMember.SelectToList("groupId='"+ groupId+"'");
+            return new NormalResponse(true, "", "", list);
+        }
 
     }
     public class QoEVideoDtGroupMember
     {
         private static OracleHelper ora = Module.ora;
-        private string tableName = "QoE_Video_Dt_Group_Member";
-        public int id; //主键  自增了
-        public string dateTime; //注册时间
+        private static  string tableName = "QoE_Video_Dt_Group_Member";
+        /// <summary>
+        /// -主键
+        /// </summary>
+        public int id;
+        /// <summary>
+        /// -注册时间
+        /// </summary>
+        public string dateTime;
+        /// <summary>
+        /// *组id
+        /// </summary>
         public string groupId;
+        /// <summary>
+        /// *名字
+        /// </summary>
         public string name;
+        /// <summary>
+        /// 电话
+        /// </summary>
         public string tel;
+        /// <summary>
+        /// -imei
+        /// </summary>
         public string imei;
+        /// <summary>
+        /// *imsi
+        /// </summary>
         public string imsi;
+        /// <summary>
+        /// -运营商
+        /// </summary>
         public string carrier;
-        public string status; //状态   正常   异常
-        public string lastDateTime; //最后一次组员上传qoe视频数据
-        public string lastDay; //最后一次上传时间的 yyyy-MM-dd
-        public int qoe_total_time; //累计qoe数据量
-        public int qoe_total_E_time;//累计qoe打分量
-        public int qoe_today_time;//今日累计qoe数据量
-        public int qoe_today_E_time;//今日累计qoe打分量
+        /// <summary>
+        /// -状态   正常   异常
+        /// </summary>
+        public string status;
+        /// <summary>
+        /// -最后一次上传qoe视频数据时间 yyyy-MM-dd HH:mm:ss
+        /// </summary>
+        public string lastDateTime;
+        /// <summary>
+        /// -最后一次上传qoe视频数据日期 yyyy-MM-dd
+        /// </summary>
+        public string lastDay;
+        /// <summary>
+        /// -累计qoe数据量
+        /// </summary>
+        public int qoe_total_time;
+        /// <summary>
+        /// -累计qoe打分量
+        /// </summary>
+        public int qoe_total_E_time;
+        /// <summary>
+        /// -今日累计qoe数据量
+        /// </summary>
+        public int qoe_today_time;
+        /// <summary>
+        /// -今日累计qoe打分量
+        /// </summary>
+        public int qoe_today_E_time;
+        /// <summary>
+        /// -累计打分匹配度
+        /// </summary>
+        public int qoe_vmos_match_total;
+        /// <summary>
+        /// -今日打分匹配度
+        /// </summary>
+        public int qoe_vmos_match_today;
         public NormalResponse Create()
         {
             if (imsi == "") return new NormalResponse( "imsi不可为空");
-            if (imei == "") return new NormalResponse("imei不可为空");
             if (groupId == "") return new NormalResponse("groupId不可为空");
-            if (IsExist())
+            if (QoEVideoDtGroup.Get(0, "groupId='" + groupId + "'") == null)
             {
-                return new NormalResponse("该用户已存在");
+                return new NormalResponse("您选择的组id不存在");
+            }
+            if (IsExist(true))
+            {
+                return new NormalResponse("该imsi号已存在");
             }
             DateTime now = DateTime.Now;
             Dictionary<string, object> dik = new Dictionary<string, object>();
-            dik.Add("dateTime", dateTime);
+            dik.Add("dateTime", now.ToString("yyyy-MM-dd HH:mm:ss"));
             dik.Add("groupId", groupId);
             dik.Add("name", name);
             dik.Add("tel", tel);
-            dik.Add("imei", imei);
             dik.Add("imsi", imsi);
-            dik.Add("carrier", carrier);
-            dik.Add("status", status);
             dik.Add("lastDateTime", now.ToString("yyyy-MM-dd HH:mm:ss"));
             dik.Add("lastDay", now.ToString("yyyy-MM-dd"));
             return ora.InsertByDik(tableName, dik);
         }
-        public bool IsExist()
+        private bool IsExist(bool useImsi=false)
         {
-            string sql = "select id from "+tableName +" where imsi='"+imsi+"'";
+            string sql = "select id from "+tableName +" where id="+id+"";
+            if (useImsi)
+            {
+                sql = "select id from " + tableName + " where imsi='" + imsi + "'";
+            }
             return ora.SqlIsIn(sql);
         }
-        public string Update()
+        public static List<QoEVideoDtGroupMember> SelectToList(string where = "")
         {
-            return "success";
+            List<QoEVideoDtGroupMember> list = new List<QoEVideoDtGroupMember>();
+            string sql = "select * from " + tableName + (where == "" ? "" : " where " + where);
+            DataTable dt = ora.SqlGetDT(sql);
+            if (dt == null) return list;
+            if (dt.Rows.Count == 0) return list;
+            foreach (DataRow row in dt.Rows)
+            {
+                QoEVideoDtGroupMember qoe = new QoEVideoDtGroupMember();
+                qoe.id = int.Parse(row["ID"].ToString());
+                qoe.dateTime = row["dateTime"].ToString();
+                qoe.groupId = row["groupId"].ToString();
+                qoe.name = row["name"].ToString();
+                qoe.tel = row["tel"].ToString();
+                qoe.imei = row["imei"].ToString();
+                qoe.imsi = row["imsi"].ToString();
+                qoe.carrier = row["carrier"].ToString();
+                qoe.status = row["status"].ToString();
+                qoe.lastDateTime = row["lastDateTime"].ToString();
+                qoe.lastDay = row["lastDay"].ToString();
+                int.TryParse(row["qoe_total_time"].ToString(), out qoe.qoe_total_time);
+                int.TryParse(row["qoe_total_E_time"].ToString(), out qoe.qoe_total_E_time);
+                int.TryParse(row["qoe_today_time"].ToString(), out qoe.qoe_today_time);
+                int.TryParse(row["qoe_today_E_time"].ToString(), out qoe.qoe_today_E_time);
+                int.TryParse(row["qoe_vmos_match_total"].ToString(), out qoe.qoe_vmos_match_total);
+                int.TryParse(row["qoe_vmos_match_today"].ToString(), out qoe.qoe_vmos_match_today);
+                list.Add(qoe);
+            }
+            return list;
         }
-        public string Get()
+        public NormalResponse Update()
         {
-            return "success";
+            if (id == 0) return new NormalResponse("id不可为0");
+            if (imsi == "") return new NormalResponse("imsi不可为空");
+            if (groupId == "") return new NormalResponse("groupId不可为空");
+            if (QoEVideoDtGroup.Get(0, "groupId='" + groupId + "'") == null)
+            {
+                return new NormalResponse("您选择的组id不存在");
+            }
+            if (!IsExist())
+            {
+                return new NormalResponse("该成员不存在");
+            }
+            else
+            {
+                QoEVideoDtGroupMember qoe = Get(0, "imsi='" + imsi + "'");
+                if (qoe != null)
+                {
+                    if (qoe.id != this.id)
+                    {
+                        return new NormalResponse("该imsi已被使用");
+                    }
+                }
+            }
+            DateTime now = DateTime.Now;
+            Dictionary<string, object> dik = new Dictionary<string, object>();
+            dik.Add("groupId", groupId);
+            dik.Add("name", name);
+            dik.Add("tel", tel);
+            dik.Add("imsi", imsi);
+            return ora.UpdateByDik(tableName, dik, id);
+        }
+        public static QoEVideoDtGroupMember Get(int id = 0, string where = "")
+        {
+            if (id == 0 && where == "") return null;
+            string sql = "select * from " + tableName + (where == "" ? "" : " where " + where);
+            if (id > 0)
+            {
+                sql = "select * from " + tableName + " where id=" + id;
+            }
+            DataTable dt = ora.SqlGetDT(sql);
+            if (dt == null) return null;
+            if (dt.Rows.Count == 0) return null;
+            DataRow row = dt.Rows[0];
+            QoEVideoDtGroupMember qoe = new QoEVideoDtGroupMember();
+            qoe.id = int.Parse(row["ID"].ToString());
+            qoe.dateTime = row["dateTime"].ToString();
+            qoe.groupId = row["groupId"].ToString();
+            qoe.name = row["name"].ToString();
+            qoe.tel = row["tel"].ToString();
+            qoe.imei = row["imei"].ToString();
+            qoe.imsi = row["imsi"].ToString();
+            qoe.carrier = row["carrier"].ToString();
+            qoe.status = row["status"].ToString();
+            qoe.lastDateTime = row["lastDateTime"].ToString();
+            qoe.lastDay = row["lastDay"].ToString();
+            int.TryParse(row["qoe_total_time"].ToString(), out qoe.qoe_total_time);
+            int.TryParse(row["qoe_total_E_time"].ToString(), out qoe.qoe_total_E_time);
+            int.TryParse(row["qoe_today_time"].ToString(), out qoe.qoe_today_time);
+            int.TryParse(row["qoe_today_E_time"].ToString(), out qoe.qoe_today_E_time);
+            int.TryParse(row["qoe_vmos_match_total"].ToString(), out qoe.qoe_vmos_match_total);
+            int.TryParse(row["qoe_vmos_match_today"].ToString(), out qoe.qoe_vmos_match_today);
+            return qoe;
+        }
+        public static NormalResponse Delete(int id)
+        {
+            if (id == 0) return new NormalResponse("id不可为0");
+            if (Get(id) == null)
+            {
+                return new NormalResponse("该成员不存在");
+            }
+            string sql = "delete from " + tableName + " where id=" + id;
+            string result = ora.SqlCMD(sql);
+            return new NormalResponse(result);
         }
     }
 }

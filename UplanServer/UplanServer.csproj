@@ -168,6 +168,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="classes\Module.cs" />
     <Compile Include="classes\OracleHelper.cs" />
+    <Compile Include="classes\ZxDbContent.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UplanController.cs" />
     <Compile Include="Global.asax.cs">

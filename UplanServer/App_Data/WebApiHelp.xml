@@ -484,9 +484,9 @@
         <member name="T:UplanServer.Controllers.UplanController">
             <summary>
             UPLAN项目接口
-            接口版本:1.0.1
+            接口版本:1.0.1.1
             更改者：梅子怀
-            更改时间:2019-03-30 23:35:00
+            更改时间:2019-03-31 11:12:00
             </summary>
         </member>
         <member name="M:UplanServer.Controllers.UplanController.Test">
@@ -508,7 +508,7 @@
             创建新QoE测试组
             </summary>
             <param name="data">QoEVideoDtGroup class</param>
-            <param name="token">token,要求管理员权限</param>
+            <param name="token">token,需要管理员权限</param>
             <returns></returns>
         </member>
         <member name="M:UplanServer.Controllers.UplanController.GetAllQoEVideoDtGroup(System.String)">
@@ -523,7 +523,7 @@
             更新QOE测试组
             </summary>
             <param name="data">QoEVideoDtGroup class</param>
-            <param name="token">token  需要管理员权限</param>
+            <param name="token">token,需要管理员权限</param>
             <returns></returns>
         </member>
         <member name="M:UplanServer.Controllers.UplanController.DeleteQoEVideoDtGroup(System.Int32,System.String)">
@@ -531,7 +531,46 @@
             删除QoE测试组
             </summary>
             <param name="id">主键id</param>
-            <param name="token">token 需要管理员权限</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.CreateQoEVideoDtGroupMember(UplanServer.QoEVideoDtGroupMember,System.String)">
+            <summary>
+            创建新QoE测试组成员
+            </summary>
+            <param name="data">QoEVideoDtGroupMember</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetAllQoEVideoDtGroupMember(System.String)">
+            <summary>
+            获取所有QoE测试成员
+            </summary>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.UpdateQoEVideoDtGroupMember(UplanServer.QoEVideoDtGroupMember,System.String)">
+            <summary>
+            更新QoE测试组成员
+            </summary>
+            <param name="data">QoEVideoDtGroupMember</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.DeleteQoEVideoDtGroupMember(System.Int32,System.String)">
+            <summary>
+            删除QoE测试组成员
+            </summary>
+            <param name="id">主键id</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.QoEVideoDtGroupGetMembers(System.String,System.String)">
+            <summary>
+            QoE测试组获取组内成员
+            </summary>
+            <param name="groupId">测试组Id</param>
+            <param name="token">token</param>
             <returns></returns>
         </member>
         <member name="T:UplanServer.NormalResponse">
@@ -561,7 +600,7 @@
         </member>
         <member name="T:UplanServer.QoEVideoDtGroup">
             <summary>
-            QOE Video监控组
+            QOE Video测试组
             </summary>
         </member>
         <member name="P:UplanServer.QoEVideoDtGroup.id">
@@ -612,6 +651,91 @@
         <member name="P:UplanServer.QoEVideoDtGroup.lastDay">
             <summary>
             -最后一次组员上传qoe视频数据日期
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.id">
+            <summary>
+            -主键
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.dateTime">
+            <summary>
+            -注册时间
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.groupId">
+            <summary>
+            *组id
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.name">
+            <summary>
+            *名字
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.imei">
+            <summary>
+            -imei
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.imsi">
+            <summary>
+            *imsi
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.carrier">
+            <summary>
+            -运营商
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.status">
+            <summary>
+            -状态   正常   异常
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastDateTime">
+            <summary>
+            -最后一次上传qoe视频数据时间 yyyy-MM-dd HH:mm:ss
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastDay">
+            <summary>
+            -最后一次上传qoe视频数据日期 yyyy-MM-dd
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_total_time">
+            <summary>
+            -累计qoe数据量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_total_E_time">
+            <summary>
+            -累计qoe打分量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_today_time">
+            <summary>
+            -今日累计qoe数据量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_today_E_time">
+            <summary>
+            -今日累计qoe打分量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_vmos_match_total">
+            <summary>
+            -累计打分匹配度
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_vmos_match_today">
+            <summary>
+            -今日打分匹配度
             </summary>
         </member>
     </members>

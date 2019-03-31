@@ -81,7 +81,7 @@ namespace UplanServer.Controllers
         /// 创建新QoE测试组
         /// </summary>
         /// <param name="data">QoEVideoDtGroup class</param>
-        /// <param name="token">token,要求管理员权限</param>
+        /// <param name="token">token,需要管理员权限</param>
         /// <returns></returns>
         [HttpPost]
         public NormalResponse CreateQoEVideoDtGroup(QoEVideoDtGroup data, string token="")
@@ -112,7 +112,7 @@ namespace UplanServer.Controllers
         /// 更新QOE测试组
         /// </summary>
         /// <param name="data">QoEVideoDtGroup class</param>
-        /// <param name="token">token  需要管理员权限</param>
+        /// <param name="token">token,需要管理员权限</param>
         /// <returns></returns>
         [HttpPost]
         public NormalResponse UpdateQoEVideoDtGroup(QoEVideoDtGroup data,string token)
@@ -132,7 +132,7 @@ namespace UplanServer.Controllers
         /// 删除QoE测试组
         /// </summary>
         /// <param name="id">主键id</param>
-        /// <param name="token">token 需要管理员权限</param>
+        /// <param name="token">token,需要管理员权限</param>
         /// <returns></returns>
         [HttpGet]
         public NormalResponse DeleteQoEVideoDtGroup(int id,string token = "")
@@ -147,6 +147,89 @@ namespace UplanServer.Controllers
                 return new NormalResponse(false, "提交失败,您的权限不足", "", "usr=" + uInfo.usr);
             }
             return QoEVideoDtGroup.Delete(id);
+        }
+        /// <summary>
+        /// 创建新QoE测试组成员
+        /// </summary>
+        /// <param name="data">QoEVideoDtGroupMember</param>
+        /// <param name="token">token,需要管理员权限</param>
+        /// <returns></returns>
+        [HttpPost]
+        public NormalResponse CreateQoEVideoDtGroupMember(QoEVideoDtGroupMember data,string token)
+        {
+            LoginInfo uInfo = Module.GetUsrInfo(token);
+            if (uInfo.usr == "")
+            {
+                return new NormalResponse(false, "token无效");
+            }
+            if (uInfo.power < 9)
+            {
+                return new NormalResponse(false, "提交失败,您的权限不足", "", "usr=" + uInfo.usr);
+            }
+            return data.Create();
+        }
+        /// <summary>
+        /// 获取所有QoE测试成员
+        /// </summary>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetAllQoEVideoDtGroupMember(string token = "")
+        {
+            if (!Module.CheckToken(token)) return new NormalResponse("token无效");
+            return new NormalResponse(true, "", "", QoEVideoDtGroupMember.SelectToList());
+        }
+        /// <summary>
+        /// 更新QoE测试组成员
+        /// </summary>
+        /// <param name="data">QoEVideoDtGroupMember</param>
+        /// <param name="token">token,需要管理员权限</param>
+        /// <returns></returns>
+        [HttpPost]
+        public NormalResponse UpdateQoEVideoDtGroupMember(QoEVideoDtGroupMember data, string token)
+        {
+            LoginInfo uInfo = Module.GetUsrInfo(token);
+            if (uInfo.usr == "")
+            {
+                return new NormalResponse(false, "token无效");
+            }
+            if (uInfo.power < 9)
+            {
+                return new NormalResponse(false, "提交失败,您的权限不足", "", "usr=" + uInfo.usr);
+            }
+            return data.Update();
+        }
+        /// <summary>
+        /// 删除QoE测试组成员
+        /// </summary>
+        /// <param name="id">主键id</param>
+        /// <param name="token">token,需要管理员权限</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse DeleteQoEVideoDtGroupMember(int id, string token = "")
+        {
+            LoginInfo uInfo = Module.GetUsrInfo(token);
+            if (uInfo.usr == "")
+            {
+                return new NormalResponse(false, "token无效");
+            }
+            if (uInfo.power < 9)
+            {
+                return new NormalResponse(false, "提交失败,您的权限不足", "", "usr=" + uInfo.usr);
+            }
+            return QoEVideoDtGroupMember.Delete(id);
+        }
+        /// <summary>
+        /// QoE测试组获取组内成员
+        /// </summary>
+        /// <param name="groupId">测试组Id</param>
+        /// <param name="token">token</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse QoEVideoDtGroupGetMembers(string groupId,string token)
+        {
+            if (!Module.CheckToken(token)) return new NormalResponse("token无效");
+            return QoEVideoDtGroup.GetMembers(groupId);
         }
     }
 }

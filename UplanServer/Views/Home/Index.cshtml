@@ -184,7 +184,7 @@
                 func: "CreateQoEVideoDtGroup",
                 url: "/api/uplan/CreateQoEVideoDtGroup",
                 method: "post",
-                mark: "创建新的QOE监控组",
+                mark: "创建新的QOE测试组",
                 token: "928453310",
                 params: {
                     groupId: 1,
@@ -210,7 +210,7 @@
                 token: "928453310",
                 params: {
                     id:21,
-                    groupId: 1,
+                    groupId: 2,
                     city: "天津市1",
                     manager: "高云晖1",
                     manager_tel: "15034571195——1",
@@ -225,6 +225,61 @@
                 token: "928453310",
                 params: {
                     id:5
+                }
+            });
+            apilist.push({
+                func: "CreateQoEVideoDtGroupMember",
+                url: "/api/uplan/CreateQoEVideoDtGroupMember",
+                method: "post",
+                mark: "创建新QoE测试组成员",
+                token: "928453310",
+                params: {
+                    groupId: 2,
+                    name: "张三",
+                    tel: "13631485968",
+                    imsi: "460110431206658",
+                }
+            });
+            apilist.push({
+                func: "GetAllQoEVideoDtGroupMember",
+                url: "/api/uplan/GetAllQoEVideoDtGroupMember",
+                method: "get",
+                mark: "获取所有QoE测试成员",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                func: "UpdateQoEVideoDtGroupMember",
+                url: "/api/uplan/UpdateQoEVideoDtGroupMember",
+                method: "post",
+                mark: "修改QoE测试成员",
+                token: "928453310",
+                params: {
+                    id: 24,
+                    groupId: 2,
+                    name: "张三1",
+                    tel: "13631485968",
+                    imsi: "460110431206658",
+                }
+            });
+            apilist.push({
+                func: "DeleteQoEVideoDtGroupMember",
+                url: "/api/uplan/DeleteQoEVideoDtGroupMember",
+                method: "get",
+                mark: "删除QoE测试成员",
+                token: "928453310",
+                params: {
+                    id:23
+                }
+            });
+            apilist.push({
+                func: "QoEVideoDtGroupGetMembers",
+                url: "/api/uplan/QoEVideoDtGroupGetMembers",
+                method: "get",
+                mark: "QoE测试组获取组内成员",
+                token: "928453310",
+                params: {
+                    groupId: 2
                 }
             });
             this.app.apilist = apilist;
