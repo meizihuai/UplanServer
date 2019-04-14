@@ -275,6 +275,40 @@ namespace UplanServer
                 return null/* TODO Change to default(_) if this is not a reference type */;
             }
         }
+        public DataTable GetOraTableInfo(string tableName)
+        {
+            try
+            {
+                string sql = "select * from user_tab_columns where table_name ='" + tableName.ToUpper() + "'";
+                DataTable dt = SqlGetDT(sql);
+                if (dt == null)
+                    return null;
+                if (dt.Rows.Count == 0)
+                    return null;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+        public DataTable GetUserTables()
+        {
+            try
+            {
+                string sql = "select * from user_tab_comments";
+                DataTable dt = SqlGetDT(sql);
+                if (dt == null)
+                    return null;
+                if (dt.Rows.Count == 0)
+                    return null;
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
 
         public NormalResponse InsertByDik(string tableName,Dictionary<string,object> dik)
         {
@@ -343,6 +377,7 @@ namespace UplanServer
                     }
                     sets = sets + "," + itm.Key.ToString() + "='" + tmp + "'";
                 }
+                
                 sets = sets.Substring(1, sets.Length - 1);
                 sql = string.Format(sql, sets);
                 string result = SqlCMD(sql);

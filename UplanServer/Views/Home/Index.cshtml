@@ -18,6 +18,10 @@
             color: blue;
             cursor: pointer;
         }
+        .AapiDiv {
+            /*max-width: 250px;*/
+            overflow: auto
+        }
         .scroll {
             overflow: auto
         }
@@ -31,41 +35,43 @@
 <body>
     <div id="mainDiv">
         <div class="layui-row layui-col-space5">
-            <div class="layui-col-md3">
-                <div class="layui-card">
+            <div class="layui-col-md4">
+                <div class="layui-card" >
                     <div class="layui-card-header">
                         API列表
                         <a href="/help" class="Ahelp">打开API列表文档</a>
                     </div>
-                    <div class="layui-card-body scroll">
-                        <table class="layui-table">
-                            <colgroup>
-                                <col width="200">
-                                <col width="80">
-                                <col width="200">
-                            </colgroup>
-                            <thead>
-                                <tr>
-                                    <th>描述</th>
-                                    <th>方法</th>
-                                    <th>接口名</th>
-                                </tr>
-                            </thead>
-                            <tbody id="apiList" v-cloak>
-                                <tr v-for="api in apilist">
-                                    <td>{{api.mark}}</td>
-                                    <td>{{api.method}}</td>
-                                    <td>
-                                        <a class="Aapi" href="javascript:;" @@click="testApi(api)">{{api.func}}</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <div class="layui-card-body scroll"  id="tableApiList">                  
+                            <table class="layui-table">
+                                <colgroup>
+                                    <col width="200">
+                                    <col width="80">
+                                    <col width="200">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>描述</th>
+                                        <th>方法</th>
+                                        <th>接口名</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="apiList" v-cloak class="scroll">
+                                    <tr v-for="api in apilist">
+                                        <td>{{api.mark}}</td>
+                                        <td>{{api.method}}</td>
+                                        <td>
+                                            <div class="AapiDiv">
+                                                <a class="Aapi" href="javascript:;" @@click="testApi(api)">{{api.func}}</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>                      
                     </div>
                 </div>
             </div>
 
-            <div class="layui-col-md9">
+            <div class="layui-col-md8">
                 <div class="layui-card">
                     <div class="layui-card-header">
                         接口返回详情
@@ -163,6 +169,7 @@
         });
         window.onload = init;
         function init() {
+            $("#tableApiList").height($(window).height()-200);
             var apilist = new Array();
             apilist.push({
                 mark: "接口测试",
@@ -187,11 +194,11 @@
                 mark: "创建新的QOE测试组",
                 token: "928453310",
                 params: {
-                    groupId: 1,
+                    groupId: 2,
                     city: "天津市",
-                    manager: "高云晖",
-                    manager_tel: "15034571195",
-                    manager_email: "15034571195@139.com"
+                    manager: "梅子怀",
+                    manager_tel: "18319087172",
+                    manager_email: "18319087172@139.com"
                 }               
             });
             apilist.push({
@@ -237,7 +244,7 @@
                     groupId: 2,
                     name: "张三",
                     tel: "13631485968",
-                    imsi: "460110431206658",
+                    aid: "6ccc98"
                 }
             });
             apilist.push({
@@ -255,11 +262,12 @@
                 mark: "修改QoE测试成员",
                 token: "928453310",
                 params: {
-                    id: 24,
+                    id: 69,
                     groupId: 2,
                     name: "张三1",
                     tel: "13631485968",
                     imsi: "460110431206658",
+                    aid:"6ccc98"
                 }
             });
             apilist.push({
@@ -279,7 +287,51 @@
                 mark: "QoE测试组获取组内成员",
                 token: "928453310",
                 params: {
-                    groupId: 2
+                    groupId: "all"
+                }
+            });
+            apilist.push({
+                func: "GetQoEVideoDtCollectMembers",
+                url: "/api/uplan/GetQoEVideoDtCollectMembers",
+                method: "get",
+                mark: "根据时间和城市，查询有数据的QoE测试成员",
+                token: "928453310",
+                params: {
+                    startTime: "2019-04-01 00:00:00",
+                    endTime: "2019-04-02 00:00:00",
+                    city:"all"
+                }
+            });
+            apilist.push({
+                func: "GetQoEVideoDtCollectCitys",
+                url: "/api/uplan/GetQoEVideoDtCollectCitys",
+                method: "get",
+                mark: "查询QoE测试组汇总统计城市列表",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                func: "GetQoEVideoDtCollectData",
+                url: "/api/uplan/GetQoEVideoDtCollectData",
+                method: "get",
+                mark: "查询QoE测试组汇总统计数据",
+                token: "928453310",
+                params: {
+                    startTime: "2019-04-01 00:00:00",
+                    endTime: "2019-04-02 00:00:00",
+                    city: "all",
+                    memberName: "all",
+                    dataType:0
+                }
+            });
+            apilist.push({
+                func: "GetQoEVideoDtGroupMemberTodayGisData",
+                url: "/api/uplan/GetQoEVideoDtGroupMemberTodayGisData",
+                method: "get",
+                mark: "QoE测试组成员当天QoE Gis数据，用于实时监控界面地理化呈现",
+                token: "928453310",
+                params: {
+                    imsi: "460110448504423"
                 }
             });
             this.app.apilist = apilist;

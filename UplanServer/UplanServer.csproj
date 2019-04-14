@@ -166,8 +166,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="classes\LogHelper.cs" />
     <Compile Include="classes\Module.cs" />
     <Compile Include="classes\OracleHelper.cs" />
+    <Compile Include="classes\QoEMissionDog.cs" />
     <Compile Include="classes\ZxDbContent.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UplanController.cs" />
@@ -175,8 +177,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LoginInfo.cs" />
+    <Compile Include="Models\Neighbour.cs" />
     <Compile Include="Models\NormalResponse.cs" />
+    <Compile Include="Models\PhoneInfo.cs" />
     <Compile Include="Models\QoEVideoDtGroup.cs" />
+    <Compile Include="Models\QoEVideoInfo.cs" />
+    <Compile Include="Models\XYZaSpeedInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -326,13 +332,16 @@
     <Content Include="Content\layui\font\iconfont.woff" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\WebDeploySetting.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.js" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -17,7 +17,7 @@ namespace UplanServer.Controllers
     /// UPLAN项目接口
     /// 接口版本:1.0.1.1
     /// 更改者：梅子怀
-    /// 更改时间:2019-03-31 11:12:00
+    /// 更改时间:2019-04-01 15:50:00
     /// </summary>
     public class UplanController : ApiController
     {
@@ -50,6 +50,8 @@ namespace UplanServer.Controllers
                     return new NormalResponse(false, "密码为空");
                 string sql = "select password,token,userName,power,state from user_Account where userName='" + account + "' and state<>0";
                 DataTable dt = ora.SqlGetDT(sql);
+                List<string> list = new List<string>();
+                var itm = list.Select(a => a.ToString() == "123");
                 if (dt==null)
                     return new NormalResponse(false, "该用户不存在");
                 if (dt.Rows.Count == 0)
@@ -220,16 +222,122 @@ namespace UplanServer.Controllers
             return QoEVideoDtGroupMember.Delete(id);
         }
         /// <summary>
-        /// QoE测试组获取组内成员
+        /// QoE测试组获取组内成员，用于实时监控界面
         /// </summary>
         /// <param name="groupId">测试组Id</param>
         /// <param name="token">token</param>
         /// <returns></returns>
         [HttpGet]
-        public NormalResponse QoEVideoDtGroupGetMembers(string groupId,string token)
+        public NormalResponse QoEVideoDtGroupGetMembers(string token, string groupId = "")
         {
             if (!Module.CheckToken(token)) return new NormalResponse("token无效");
+            if(groupId=="" || groupId == "all")
+            {
+                return GetAllQoEVideoDtGroupMember(token);
+            }
             return QoEVideoDtGroup.GetMembers(groupId);
         }
+        /// <summary>
+        /// QoE测试组成员当天QoE Gis数据，用于实时监控界面地理化呈现
+        /// </summary>
+        /// <param name="imsi"></param>
+        /// <param name="token"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetQoEVideoDtGroupMemberTodayGisData(string imsi,string token)
+        {
+            string sql = "select imsi,gdlon,gdlat,vmos,evmos,ECLATIRY,ELOAD,ESTALL,ELIGHT,ESTATE,dateTime from qoe_video_table where imsi='{0}' and dateTime between '{1}' and '{2}' order by dateTime desc";
+            DateTime now = DateTime.Now;
+            sql = string.Format(sql, new string[] {imsi,now.ToString("yyyy-MM-dd 00:00:00"), now.AddDays(1).ToString("yyyy-MM-dd 00:00:00") });
+            DataTable dt = ora.SqlGetDT(sql);
+            return new NormalResponse(true, "", "", dt);
+        }
+        /// <summary>
+        /// 查询QoE测试组汇总统计城市列表
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetQoEVideoDtCollectCitys()
+        {
+            string sql = "select city from qoe_video_table  where city is not null group by city";
+            DataTable dt = ora.SqlGetDT(sql);
+            List<string> list = new List<string>();
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                foreach (DataRow row in dt.Rows)
+                {
+                    string name = row["city"].ToString();
+                    list.Add(name);
+                }
+            }
+            return new NormalResponse(true, "", "", list);
+        }
+        /// <summary>
+        /// 根据时间和城市，查询有数据的QoE测试成员
+        /// </summary>
+        /// <param name="startTime">起始时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+        /// <param name="endTime">终止时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+        /// <param name="city">城市，全部用'all'表示，默认all</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetQoEVideoDtCollectMembers(DateTime startTime,DateTime endTime,string city="all")
+        {
+            if (endTime <= startTime) return new NormalResponse("结束时间需大于起始时间");
+            string startTimestr = startTime.ToString("yyyy-MM-dd HH:mm:ss");
+            string endTimestr = endTime.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = "select name from qoe_video_dt_group_member where imsi in (" +
+                "select imsi from qoe_video_table where city='{0}' and dateTime between '{1}' and '{2}')";
+            sql = string.Format(sql, new string[] { city, startTimestr, endTimestr });
+            if (city=="all" || city == "")
+            {
+                sql = "select name from qoe_video_dt_group_member where imsi in (" +
+                "select imsi from qoe_video_table where   dateTime between '{0}' and '{1}')";
+                sql = string.Format(sql, new string[] { startTimestr, endTimestr });
+            }
+         
+            DataTable dt = ora.SqlGetDT(sql);            
+            List<string> list = new List<string>();
+            if(dt!=null && dt.Rows.Count > 0)
+            {
+                //取dataTable某列为list
+                list = (from d in dt.AsEnumerable() select d.Field<string>("name")).ToList();
+                //foreach(DataRow row in dt.Rows)
+                //{
+                //    string name = row["name"].ToString();
+                //    list.Add(name);
+                //}
+            }
+            return new NormalResponse(true, "", "", list);
+        }
+        /// <summary>
+        /// 查询QoE测试组汇总统计数据
+        /// </summary>
+        /// <param name="startTime">起始时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+        /// <param name="endTime">终止时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+        /// <param name="city">城市，全部用'all'表示，默认all</param>
+        /// <param name="memberName">测试人员，全部用'all'表示，默认all</param>
+        /// <param name="dataType">返回数据类型，0为统计数据，1为详细数据</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetQoEVideoDtCollectData(DateTime startTime, DateTime endTime, string city = "all",string memberName="all",int dataType=0)
+        {
+            if (endTime <= startTime) return new NormalResponse("结束时间需大于起始时间");
+            string startTimestr = startTime.ToString("yyyy-MM-dd HH:mm:ss");
+            string endTimestr = endTime.ToString("yyyy-MM-dd HH:mm:ss");
+            string sql = @"select A.*,QOE_VIDEO_DT_GROUP_MEMBER.name from(
+select 
+imsi,
+city,
+count(imsi) as 观看视频次数,
+count(CASE WHEN evmos>0 THEN 1 ELSE null END) as 有效打分次数,
+count(CASE WHEN ISSCREENRECORDUPLOADED>0 THEN 1 ELSE null END) as 上传视频个数,
+round(100-100*abs(sum(CASE WHEN evmos>0 THEN VMOS ELSE null END)-sum(evmos))/(count(CASE WHEN evmos>0 THEN 1 ELSE null END)*4),2) as 打分匹配度
+from QOE_VIDEO_TABLE where imsi in
+(select imsi from QOE_VIDEO_DT_GROUP_MEMBER)
+and dateTime between '2018-04-01 00:00:00' and '2019-04-02 00:00:00' and city is not null GROUP BY imsi,city)A, QOE_VIDEO_DT_GROUP_MEMBER where A.imsi=QOE_VIDEO_DT_GROUP_MEMBER.imsi";
+            DataTable dt = ora.SqlGetDT(sql);
+            return new NormalResponse(true, "接口还没做完，稍等","", dt);
+        }
+
     }
 }

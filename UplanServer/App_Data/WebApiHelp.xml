@@ -481,12 +481,15 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
+        <member name="M:UplanServer.Module.Str2Base64(System.String)">
+             public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
+        </member>
         <member name="T:UplanServer.Controllers.UplanController">
             <summary>
             UPLAN项目接口
             接口版本:1.0.1.1
             更改者：梅子怀
-            更改时间:2019-03-31 11:12:00
+            更改时间:2019-04-01 15:50:00
             </summary>
         </member>
         <member name="M:UplanServer.Controllers.UplanController.Test">
@@ -567,10 +570,44 @@
         </member>
         <member name="M:UplanServer.Controllers.UplanController.QoEVideoDtGroupGetMembers(System.String,System.String)">
             <summary>
-            QoE测试组获取组内成员
+            QoE测试组获取组内成员，用于实时监控界面
             </summary>
             <param name="groupId">测试组Id</param>
             <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtGroupMemberTodayGisData(System.String,System.String)">
+            <summary>
+            QoE测试组成员当天QoE Gis数据，用于实时监控界面地理化呈现
+            </summary>
+            <param name="imsi"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtCollectCitys">
+            <summary>
+            查询QoE测试组汇总统计城市列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtCollectMembers(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            根据时间和城市，查询有数据的QoE测试成员
+            </summary>
+            <param name="startTime">起始时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="endTime">终止时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="city">城市，全部用'all'表示，默认all</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtCollectData(System.DateTime,System.DateTime,System.String,System.String,System.Int32)">
+            <summary>
+            查询QoE测试组汇总统计数据
+            </summary>
+            <param name="startTime">起始时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="endTime">终止时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="city">城市，全部用'all'表示，默认all</param>
+            <param name="memberName">测试人员，全部用'all'表示，默认all</param>
+            <param name="dataType">返回数据类型，0为统计数据，1为详细数据</param>
             <returns></returns>
         </member>
         <member name="T:UplanServer.NormalResponse">
@@ -603,59 +640,69 @@
             QOE Video测试组
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.id">
+        <member name="F:UplanServer.QoEVideoDtGroup.id">
             <summary>
             -主键，数据库自增
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.dateTime">
+        <member name="F:UplanServer.QoEVideoDtGroup.dateTime">
             <summary>
             -组创建时间 
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.groupId">
+        <member name="F:UplanServer.QoEVideoDtGroup.groupId">
             <summary>
             *组ID
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.city">
+        <member name="F:UplanServer.QoEVideoDtGroup.city">
             <summary>
             *城市  以 '市' 结尾
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.manager">
+        <member name="F:UplanServer.QoEVideoDtGroup.manager">
             <summary>
             管理员/负责人/项目经理
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.manager_tel">
+        <member name="F:UplanServer.QoEVideoDtGroup.manager_tel">
             <summary>
             管理者电话
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.manager_email">
+        <member name="F:UplanServer.QoEVideoDtGroup.manager_email">
             <summary>
             管理者邮箱
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.status">
+        <member name="F:UplanServer.QoEVideoDtGroup.status">
             <summary>
             -组状态   正常   异常  
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.lastDateTime">
+        <member name="F:UplanServer.QoEVideoDtGroup.lastDateTime">
             <summary>
             -最后一次组员上传qoe视频数据时间
             </summary>
         </member>
-        <member name="P:UplanServer.QoEVideoDtGroup.lastDay">
+        <member name="F:UplanServer.QoEVideoDtGroup.lastDay">
             <summary>
             -最后一次组员上传qoe视频数据日期
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.isWatching">
+            <summary>
+            设置是否参与监控
             </summary>
         </member>
         <member name="F:UplanServer.QoEVideoDtGroupMember.id">
             <summary>
             -主键
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.AID">
+            <summary>
+            *用户ID
             </summary>
         </member>
         <member name="F:UplanServer.QoEVideoDtGroupMember.dateTime">
@@ -685,7 +732,7 @@
         </member>
         <member name="F:UplanServer.QoEVideoDtGroupMember.imsi">
             <summary>
-            *imsi
+            -imsi
             </summary>
         </member>
         <member name="F:UplanServer.QoEVideoDtGroupMember.carrier">
@@ -736,6 +783,16 @@
         <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_vmos_match_today">
             <summary>
             -今日打分匹配度
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastPlayVideoUrl">
+            <summary>
+            -最后一次播放的视频地址
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.unEvmosCount">
+            <summary>
+            -连续未打分次数
             </summary>
         </member>
     </members>
