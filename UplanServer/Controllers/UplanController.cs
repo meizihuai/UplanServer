@@ -22,6 +22,7 @@ namespace UplanServer.Controllers
     public class UplanController : ApiController
     {
         private readonly OracleHelper ora = Module.ora;
+        private readonly QoEContext db=new QoEContext();
         /// <summary>
         /// 接口测试
         /// </summary>
@@ -337,6 +338,22 @@ from QOE_VIDEO_TABLE where imsi in
 and dateTime between '2018-04-01 00:00:00' and '2019-04-02 00:00:00' and city is not null GROUP BY imsi,city)A, QOE_VIDEO_DT_GROUP_MEMBER where A.imsi=QOE_VIDEO_DT_GROUP_MEMBER.imsi";
             DataTable dt = ora.SqlGetDT(sql);
             return new NormalResponse(true, "接口还没做完，稍等","", dt);
+        }
+        /// <summary>
+        /// 获取在线设备，包含在线QoE和QoER在线人数
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetOnlineInfo()
+        {
+            var onlineQoER = db.DeviceTable.Where(a => a.IsOnline == 1).Select(a=>new { a.AID,a.LastDateTime}).ToList();
+            var onlineQoE = db.UserBPTable.Where(a => a.IsPlayingVideo == 1).Select(a => new { a.AID ,a.LastAskVideoTime}).ToList();
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            dic.Add("OnlineQoERCount", onlineQoER.Count);
+            dic.Add("OnlineQoECount", onlineQoE.Count);
+            dic.Add("OnlineQoERList", onlineQoER);
+            dic.Add("OnlineQoEList", onlineQoE);
+            return new NormalResponse(true,"", "", dic);
         }
 
     }

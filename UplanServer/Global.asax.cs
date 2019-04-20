@@ -23,7 +23,13 @@ namespace UplanServer
             GlobalConfiguration.Configuration.Formatters.XmlFormatter.SupportedMediaTypes.Clear();
             //为api返回格式添加json，实际不添加也可以，只要上面清楚了就行
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
-            QoEMissionDog.StartWatching();
+            
+            LoopWorker.Start();
+        }
+        protected void Application_End()
+        {
+           
+            LoopWorker.Stop();
         }
     }
 }

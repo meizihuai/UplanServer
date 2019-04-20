@@ -23,6 +23,21 @@ namespace UplanServer
             NKConnectString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVICE_NAME={2})));Persist Security Info=True;User ID={3};Password={4};";
             NKConnectString = string.Format(NKConnectString, new string[] { ip, port+"", seviceName, usr, pwd });
         }
+        public OracleHelper(string cfg)
+        {
+            string[] st = cfg.Split(';');
+            if (st.Length < 5)
+            {
+                throw new Exception("ora配置字段无效");
+            }
+            string ip = st[0];
+            string port = st[1];
+            string seviceName = st[2];
+            string usr = st[3];
+            string pwd = st[4];
+            NKConnectString = "Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={0})(PORT={1}))(CONNECT_DATA=(SERVICE_NAME={2})));Persist Security Info=True;User ID={3};Password={4};";
+            NKConnectString = string.Format(NKConnectString, new string[] { ip, port, seviceName, usr, pwd });
+        }
         struct OracleParaList
         {
             public List<string> dataList;

@@ -610,6 +610,12 @@
             <param name="dataType">返回数据类型，0为统计数据，1为详细数据</param>
             <returns></returns>
         </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetOnlineInfo">
+            <summary>
+            获取在线设备，包含在线QoE和QoER在线人数
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:UplanServer.NormalResponse">
             <summary>
             一般返回格式,JSON格式
@@ -793,6 +799,11 @@
         <member name="F:UplanServer.QoEVideoDtGroupMember.unEvmosCount">
             <summary>
             -连续未打分次数
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastAskVideoSource">
+            <summary>
+            最后一次请求视频资源的信息
             </summary>
         </member>
     </members>

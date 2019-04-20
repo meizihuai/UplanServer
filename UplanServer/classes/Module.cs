@@ -10,8 +10,9 @@ namespace UplanServer
 {
     public class Module
     {
-          public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oracleip"], 1521, "oss", "uplan", "Smart9080");
-      ///  public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
+          //public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oracleip"], 1521, "oss", "uplan", "Smart9080");
+        public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oraHelperCfg"]);
+        ///  public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
         public static string Str2Base64(string str)
         {
             if (str == "")

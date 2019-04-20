@@ -47,9 +47,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.18.6.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
+      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.18.3.0\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -167,21 +176,26 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="classes\LogHelper.cs" />
+    <Compile Include="classes\LoopWorker.cs" />
     <Compile Include="classes\Module.cs" />
     <Compile Include="classes\OracleHelper.cs" />
-    <Compile Include="classes\QoEMissionDog.cs" />
-    <Compile Include="classes\ZxDbContent.cs" />
+    <Compile Include="classes\QoEMission.cs" />
+    <Compile Include="classes\QoERMission.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UplanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DeviceInfo.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\Neighbour.cs" />
     <Compile Include="Models\NormalResponse.cs" />
     <Compile Include="Models\PhoneInfo.cs" />
+    <Compile Include="Models\QoEContext.cs" />
     <Compile Include="Models\QoEVideoDtGroup.cs" />
     <Compile Include="Models\QoEVideoInfo.cs" />
+    <Compile Include="Models\QoEVideoSource.cs" />
+    <Compile Include="Models\UserBPInfo.cs" />
     <Compile Include="Models\XYZaSpeedInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -330,9 +344,10 @@
     <Content Include="Content\layui\font\iconfont.eot" />
     <Content Include="Content\layui\font\iconfont.ttf" />
     <Content Include="Content\layui\font\iconfont.woff" />
+    <None Include="Properties\PublishProfiles\111ServerDeploySetting.pubxml" />
+    <None Include="Properties\PublishProfiles\123ServerDeploy.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\WebDeploySetting.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

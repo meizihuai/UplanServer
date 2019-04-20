@@ -287,7 +287,7 @@
                 mark: "QoE测试组获取组内成员",
                 token: "928453310",
                 params: {
-                    groupId: "all"
+                    groupId: "2"
                 }
             });
             apilist.push({
@@ -333,6 +333,14 @@
                 params: {
                     imsi: "460110448504423"
                 }
+            });
+            apilist.push({
+                func: "GetOnlineInfo",
+                url: "/api/uplan/GetOnlineInfo",
+                method: "get",
+                mark: "获取在线设备，包含在线QoE和QoER在线人数",
+                token: "928453310",
+                params:""
             });
             this.app.apilist = apilist;
         }      

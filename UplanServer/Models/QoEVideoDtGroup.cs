@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace UplanServer
 {
@@ -240,6 +241,7 @@ namespace UplanServer
     }
     public class QoEVideoDtGroupMember
     {
+
         private static OracleHelper ora = Module.ora;
         private static  string tableName = "QoE_Video_Dt_Group_Member";
         /// <summary>
@@ -322,6 +324,10 @@ namespace UplanServer
         /// -连续未打分次数
         /// </summary>
         public int unEvmosCount;
+        /// <summary>
+        /// 最后一次请求视频资源的信息
+        /// </summary>
+        public object lastAskVideoSource;
         private bool IsAIDExistInDeviceTable(string aid)
         {
             string sql = "select id from deviceTable where aid='" + aid + "'";
@@ -371,6 +377,7 @@ namespace UplanServer
         }
         public static List<QoEVideoDtGroupMember> SelectToList(string where = "")
         {
+            QoEContext db = new QoEContext();
             List<QoEVideoDtGroupMember> list = new List<QoEVideoDtGroupMember>();
             string sql = "select * from " + tableName + (where == "" ? "" : " where " + where);
             DataTable dt = ora.SqlGetDT(sql);
@@ -399,6 +406,19 @@ namespace UplanServer
                 int.TryParse(row["qoe_vmos_match_total"].ToString(), out qoe.qoe_vmos_match_total);
                 int.TryParse(row["qoe_vmos_match_today"].ToString(), out qoe.qoe_vmos_match_today);
                 int.TryParse(row["unEvmosCount"].ToString(), out qoe.unEvmosCount);
+                qoe.lastAskVideoSource = null;
+                var tmp = db.UserBPTable.Where(a=>a.IMSI==qoe.imsi).Join(db.QoEVideoSourceTable, a => a.LastAskVideo_ID, b => b.id, (a, b) => new
+                {
+                    b.Url,
+                    b.Type,
+                    b.VideoSecond,
+                    a.LastAskVideoTime,
+                    a.IsPlayingVideo
+                }).ToList();
+                if (tmp != null && tmp.Count>0)
+                {
+                    qoe.lastAskVideoSource = tmp[0];
+                }            
                 list.Add(qoe);
             }
             return list;
