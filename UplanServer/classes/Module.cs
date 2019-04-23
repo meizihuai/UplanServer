@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Configuration;
 using System.Text;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace UplanServer
 {
@@ -101,5 +102,19 @@ namespace UplanServer
             info.state = int.Parse(row["state".ToUpper()].ToString()); ;
             return info;
         }
+        public static string GetNewAid()
+        {
+            while (true)
+            {
+                string aid = System.Guid.NewGuid().ToString("N").Substring(0, 6);
+                if (Regex.IsMatch(aid, "[A-Za-z].*[0-9]|[0-9].*[A-Za-z]"))
+                {
+                    string sql = "select id from deviceTable where aid='" + aid + "'";
+                    if (ora.SqlIsIn(sql) == false)
+                        return aid;
+                }
+            }
+        }
+
     }
 }

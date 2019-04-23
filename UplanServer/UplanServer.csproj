@@ -47,6 +47,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ConvertGPS">
+      <HintPath>..\..\..\..\dll\ConvertGPS.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -175,6 +178,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="classes\CoordInfo.cs" />
+    <Compile Include="classes\HTTPHelper.cs" />
+    <Compile Include="classes\LocationAddressInfo.cs" />
     <Compile Include="classes\LogHelper.cs" />
     <Compile Include="classes\LoopWorker.cs" />
     <Compile Include="classes\Module.cs" />
@@ -182,6 +188,7 @@
     <Compile Include="classes\QoEMission.cs" />
     <Compile Include="classes\QoERMission.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UniQoEController.cs" />
     <Compile Include="Controllers\UplanController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -192,6 +199,7 @@
     <Compile Include="Models\NormalResponse.cs" />
     <Compile Include="Models\PhoneInfo.cs" />
     <Compile Include="Models\QoEContext.cs" />
+    <Compile Include="Models\QoEReportIOSInfo.cs" />
     <Compile Include="Models\QoEVideoDtGroup.cs" />
     <Compile Include="Models\QoEVideoInfo.cs" />
     <Compile Include="Models\QoEVideoSource.cs" />

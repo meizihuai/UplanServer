@@ -1,0 +1,84 @@
+[10:08:14] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:08:14] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:08:14] <QoEMission> ==QoEMission 监控==
+[10:08:14] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:08:14] <QoERMission> ==QoERMission 监控==
+[10:08:38] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:08:43] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:08:43] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:08:43] <QoEMission> ==QoEMission 监控==
+[10:08:43] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:08:43] <QoERMission> ==QoERMission 监控==
+[10:09:45] <QoERMission> ==QoERMission 监控==
+[10:09:59] <QoEMission> ==QoEMission 监控==
+[10:10:47] <QoERMission> ==QoERMission 监控==
+[10:11:15] <QoEMission> ==QoEMission 监控==
+[10:11:49] <QoERMission> ==QoERMission 监控==
+[10:12:32] <QoEMission> ==QoEMission 监控==
+[10:12:51] <QoERMission> ==QoERMission 监控==
+[10:13:48] <QoEMission> ==QoEMission 监控==
+[10:13:53] <QoERMission> ==QoERMission 监控==
+[10:14:30] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:14:33] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:14:33] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:14:33] <QoEMission> ==QoEMission 监控==
+[10:14:33] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:14:33] <QoERMission> ==QoERMission 监控==
+[10:15:35] <QoERMission> ==QoERMission 监控==
+[10:15:49] <QoEMission> ==QoEMission 监控==
+[10:16:37] <QoERMission> ==QoERMission 监控==
+[10:17:05] <QoEMission> ==QoEMission 监控==
+[10:17:39] <QoERMission> ==QoERMission 监控==
+[10:18:21] <QoEMission> ==QoEMission 监控==
+[10:18:41] <QoERMission> ==QoERMission 监控==
+[10:18:53] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:19:30] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:19:30] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:19:30] <QoEMission> ==QoEMission 监控==
+[10:19:30] <QoERMission> ==QoERMission 监控==
+[10:19:30] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:20:33] <QoERMission> ==QoERMission 监控==
+[10:20:47] <QoEMission> ==QoEMission 监控==
+[10:21:35] <QoERMission> ==QoERMission 监控==
+[10:22:03] <QoEMission> ==QoEMission 监控==
+[10:22:37] <QoERMission> ==QoERMission 监控==
+[10:23:19] <QoEMission> ==QoEMission 监控==
+[10:23:39] <QoERMission> ==QoERMission 监控==
+[10:24:35] <QoEMission> ==QoEMission 监控==
+[10:24:41] <QoERMission> ==QoERMission 监控==
+[10:25:43] <QoERMission> ==QoERMission 监控==
+[10:25:51] <QoEMission> ==QoEMission 监控==
+[10:26:45] <QoERMission> ==QoERMission 监控==
+[10:27:07] <QoEMission> ==QoEMission 监控==
+[10:27:47] <QoERMission> ==QoERMission 监控==
+[10:28:23] <QoEMission> ==QoEMission 监控==
+[10:28:49] <QoERMission> ==QoERMission 监控==
+[10:29:39] <QoEMission> ==QoEMission 监控==
+[10:29:51] <QoERMission> ==QoERMission 监控==
+[10:30:53] <QoERMission> ==QoERMission 监控==
+[10:30:56] <QoEMission> ==QoEMission 监控==
+[10:31:55] <QoERMission> ==QoERMission 监控==
+[10:32:12] <QoEMission> ==QoEMission 监控==
+[10:32:18] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:32:22] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:32:22] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:32:22] <QoEMission> ==QoEMission 监控==
+[10:32:22] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:32:22] <QoERMission> ==QoERMission 监控==
+[10:33:24] <QoERMission> ==QoERMission 监控==
+[10:33:38] <QoEMission> ==QoEMission 监控==
+[10:33:47] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:33:50] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:33:50] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:33:50] <QoEMission> ==QoEMission 监控==
+[10:33:50] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:33:50] <QoERMission> ==QoERMission 监控==
+[10:34:52] <QoERMission> ==QoERMission 监控==
+[10:35:06] <QoEMission> ==QoEMission 监控==
+[10:35:08] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[11:39:14] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[11:39:14] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[11:39:14] <QoEMission> ==QoEMission 监控==
+[11:39:14] <QoERMission> ==QoERMission 监控==
+[11:39:14] <LoopWorker>    =>线程[QoER数据监控]已启动
+[11:39:26] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========

@@ -484,12 +484,35 @@
         <member name="M:UplanServer.Module.Str2Base64(System.String)">
              public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
         </member>
+        <member name="T:UplanServer.Controllers.UniQoEController">
+            <summary>
+            UniQoE接口
+            接口版本:1.0.0.0
+            更改者：梅子怀
+            更改时间:2019-04-22 10:00:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.Login(System.String,System.String)">
+            <summary>
+            手机登录，获取AID
+            </summary>
+            <param name="phoneId">* 手机唯一识别号，android用imsi,iPhone用uuid</param>
+            <param name="system">操作系统，Android 或 iOS</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadQoERDataForiOS(UplanServer.QoEReportIOSInfo)">
+            <summary>
+            iOS终端上传QoER数据
+            </summary>
+            <param name="qoer">QoER 结构体</param>
+            <returns></returns>
+        </member>
         <member name="T:UplanServer.Controllers.UplanController">
             <summary>
             UPLAN项目接口
             接口版本:1.0.1.1
             更改者：梅子怀
-            更改时间:2019-04-01 15:50:00
+            更改时间:2019-04-22 10:00:00
             </summary>
         </member>
         <member name="M:UplanServer.Controllers.UplanController.Test">
@@ -639,6 +662,136 @@
         <member name="P:UplanServer.NormalResponse.data">
             <summary>
             数据，可能是string或者json或者json数组
+            </summary>
+        </member>
+        <member name="T:UplanServer.QoEReportIOSInfo">
+            <summary>
+            iOS版本 QoER数据结构
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.id">
+            <summary>
+            - 主键ID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.DateTime">
+            <summary>
+            - 入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.AID">
+            <summary>
+            * 系统 AID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.UUID">
+            <summary>
+            - UUID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.PhoneModel">
+            <summary>
+            - 手机型号
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.NetType">
+            <summary>
+            网络类型
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Carrier">
+            <summary>
+            * 运营商
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Lon">
+            <summary>
+            * 经度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Lat">
+            <summary>
+            * 纬度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.BDLon">
+            <summary>
+            - 百度经度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.BDLat">
+            <summary>
+            - 百度纬度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.GDLon">
+            <summary>
+            - 高德经度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.GDLat">
+            <summary>
+            - 高德纬度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Province">
+            <summary>
+            - 省
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.City">
+            <summary>
+            - 市
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.District">
+            <summary>
+            - 区
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Address">
+            <summary>
+            - 详细地址
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.GPSSpeed">
+            <summary>
+            * 移动速度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.XZYSpeed">
+            <summary>
+            * 三轴加速度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.SignalStrength">
+            <summary>
+            * 信号强度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.BusinessType">
+            <summary>
+            * 业务类型
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.IOSVersion">
+            <summary>
+            * 系统版本
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.APPVersion">
+            <summary>
+            * APP版本号
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.SDKVersion">
+            <summary>
+            * SDK环境版本号
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.APPName">
+            <summary>
+            * APP名称， 例如：UniQoE 或者 10086
             </summary>
         </member>
         <member name="T:UplanServer.QoEVideoDtGroup">

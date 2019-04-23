@@ -19,5 +19,6 @@ namespace UplanServer
         public DbSet<QoEVideoSource> QoEVideoSourceTable { get; set; }
         public DbSet<UserBPInfo> UserBPTable { get; set; }
         public DbSet<DeviceInfo> DeviceTable { get; set; }
+        public DbSet<QoEReportIOSInfo> QoERIOSTable { get; set; }
     }
 }

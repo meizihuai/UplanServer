@@ -53,6 +53,12 @@ namespace UplanServer
         public string IMSI { get; set; }      
         [Column("ISONLINE")]
         public int IsOnline { get; set; }
+        [Column("SYSTEM")]
+        public string System { get; set; }
+        [Column("SYSVERSION")]
+        public string SysVersion { get; set; }
+        [Column("UUID")]
+        public string UUID { get; set; }
     }
 
 }
