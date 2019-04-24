@@ -59,32 +59,43 @@ namespace UplanServer.Controllers
         /// <returns></returns>
         public NormalResponse UploadQoERDataForiOS(QoEReportIOSInfo qoer)
         {
-            if (qoer.AID == "") return new NormalResponse(false, "AID不可为空");
-            if (qoer.BusinessType == "") qoer.BusinessType = "QOER";
-            if(qoer.Lon>0 && qoer.Lat > 0)
+            try
             {
-                CoordInfo gds = CoordInfo.GetGDCoord(qoer.Lon, qoer.Lat);
-                if (gds != null)
+                if (qoer.AID == "") return new NormalResponse(false, "AID不可为空");
+                if (qoer.BusinessType==null || qoer.BusinessType == "") qoer.BusinessType = "QOER";
+                 qoer.DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+               // qoer.DateTime = DateTime.Now;
+                if (qoer.Lon > 0 && qoer.Lat > 0)
                 {
-                    qoer.GDLon = gds.x;
-                    qoer.GDLat = gds.y;
+                    CoordInfo gds = CoordInfo.GetGDCoord(qoer.Lon, qoer.Lat);
+                    if (gds != null)
+                    {
+                        qoer.GDLon = gds.x;
+                        qoer.GDLat = gds.y;
+                    }
+                    LocationAddressInfo la = LocationAddressInfo.GetAddressByLngLat(qoer.Lon, qoer.Lat);
+                    if (la != null)
+                    {
+                        qoer.Province = la.Province;
+                        qoer.City = la.City;
+                        qoer.District = la.District;
+                        qoer.Address = la.DetailAddress;
+                    }
                 }
-                LocationAddressInfo la = LocationAddressInfo.GetAddressByLngLat(qoer.Lon, qoer.Lat);
-                if (la != null)
-                {
-                    qoer.Province = la.Province;
-                    qoer.City = la.City;
-                    qoer.District = la.District;
-                    qoer.Address = la.DetailAddress;
-                }
-            }         
-            if (qoer.NetType.ToLower() == "2g") qoer.NetType = "2G";
-            if (qoer.NetType.ToLower() == "3g") qoer.NetType = "3G";
-            if (qoer.NetType.ToLower() == "4g") qoer.NetType = "4G";
-            if (qoer.NetType.ToLower() == "wifi") qoer.NetType = "WiFi";
-            db.QoERIOSTable.Add(qoer);
-            db.SaveChanges();
-            return new NormalResponse(true, "success");
+                DeviceInfo device = db.DeviceTable.Where(a => a.AID == qoer.AID).FirstOrDefault();
+                if (device != null) qoer.UUID = device.UUID;
+                if (qoer.NetType.ToLower() == "2g") qoer.NetType = "2G";
+                if (qoer.NetType.ToLower() == "3g") qoer.NetType = "3G";
+                if (qoer.NetType.ToLower() == "4g") qoer.NetType = "4G";
+                if (qoer.NetType.ToLower() == "wifi") qoer.NetType = "WiFi";
+                db.QoERIOSTable.Add(qoer);
+                db.SaveChanges();
+                return new NormalResponse(true, "success");
+            }
+            catch(Exception e)
+            {
+                return new NormalResponse(false, e.ToString());
+            }          
         }
 
     }

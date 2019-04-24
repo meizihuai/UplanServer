@@ -139,8 +139,9 @@
         </div>
 
     </div>
-
+   
     <script type="text/javascript">
+
         var app = new Vue({
             el: "#apiList",
             data: {
@@ -342,9 +343,39 @@
                 token: "928453310",
                 params:""
             });
+            apilist.push({
+                func: "UploadQoERDataForiOS",
+                url: "/api/UniQoE/UploadQoERDataForiOS",
+                method: "post",
+                mark: "上传QoER iOS数据",
+                token: "928453310",
+                params: {
+                    "GPSSpeed": 0,
+                    "Lon": 116.33036804199219,
+                    "SignalStrength": 3,
+                    "netType": "4G",
+                    "XZYSpeed": "(x=-0.000354,y=0.000836,z=0.009144)",
+                    "Lat": 40.001995086669922,
+                    "Carrier": "中国电信",
+                    "PhoneModel": "iPhone 7 Plus",
+                    "AID": "1fe6e7",
+                    "IOSVersion": "12.2"
+                }
+            });
+            apilist.push({
+                func: "GetProjectFiles",
+                url: "/api/WorkLog/GetProjectFiles",
+                method: "get",
+                mark: "获取项目文件列表",
+                token: "928453310",
+                params: ""
+            });
             this.app.apilist = apilist;
-        }      
-        function sendAjax(txt) {
+        }
+        
+      
+       
+        function sendAjax(txt) {          
             var api = JSON.parse(txt);
             var ajaxUrl = api.url + "?token=" + api.token;
             this.outputApp.info.func = api.func;

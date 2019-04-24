@@ -21,7 +21,7 @@ namespace UplanServer
         /// - 入库时间
         /// </summary>
         [Column("DATETIME")]
-        public DateTime DateTime { get; set; }
+        public string DateTime { get; set; }
         /// <summary>
         /// * 系统 AID
         /// </summary>

@@ -10,6 +10,8 @@ using System.Data;
 using Newtonsoft;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace UplanServer.Controllers
 {
@@ -346,15 +348,16 @@ and dateTime between '2018-04-01 00:00:00' and '2019-04-02 00:00:00' and city is
         [HttpGet]
         public NormalResponse GetOnlineInfo()
         {
+            
             var onlineQoER = db.DeviceTable.Where(a => a.IsOnline == 1).Select(a=>new { a.AID,a.LastDateTime}).ToList();
             var onlineQoE = db.UserBPTable.Where(a => a.IsPlayingVideo == 1).Select(a => new { a.AID ,a.LastAskVideoTime}).ToList();
+          
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("OnlineQoERCount", onlineQoER.Count);
             dic.Add("OnlineQoECount", onlineQoE.Count);
             dic.Add("OnlineQoERList", onlineQoER);
-            dic.Add("OnlineQoEList", onlineQoE);
+            dic.Add("OnlineQoEList", onlineQoE);                
             return new NormalResponse(true,"", "", dic);
-        }
-
+        }      
     }
 }

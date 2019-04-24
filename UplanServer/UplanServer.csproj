@@ -190,6 +190,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UniQoEController.cs" />
     <Compile Include="Controllers\UplanController.cs" />
+    <Compile Include="Controllers\WorkLogController.cs" />
+    <Compile Include="DbContent\WorkLogContent.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -198,7 +200,8 @@
     <Compile Include="Models\Neighbour.cs" />
     <Compile Include="Models\NormalResponse.cs" />
     <Compile Include="Models\PhoneInfo.cs" />
-    <Compile Include="Models\QoEContext.cs" />
+    <Compile Include="Models\ProjectFileInfo.cs" />
+    <Compile Include="DbContent\QoEContext.cs" />
     <Compile Include="Models\QoEReportIOSInfo.cs" />
     <Compile Include="Models\QoEVideoDtGroup.cs" />
     <Compile Include="Models\QoEVideoInfo.cs" />

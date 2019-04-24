@@ -639,6 +639,23 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:UplanServer.Controllers.WorkLogController">
+            <summary>
+            工作日志WorkLog接口
+            接口版本:1.0.0.0
+            更改者：梅子怀
+            更改时间:2019-04-24 10:00:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.WorkLogController.GetProjectFiles(System.String,System.String,System.String)">
+            <summary>
+            获取项目文件列表
+            </summary>
+            <param name="account">用户名</param>
+            <param name="startTime">入库开始时间</param>
+            <param name="endTime">入库结束时间</param>
+            <returns></returns>
+        </member>
         <member name="T:UplanServer.NormalResponse">
             <summary>
             一般返回格式,JSON格式
@@ -662,6 +679,61 @@
         <member name="P:UplanServer.NormalResponse.data">
             <summary>
             数据，可能是string或者json或者json数组
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.id">
+            <summary>
+            - 主键
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.DateTime">
+            <summary>
+            - 入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Day">
+            <summary>
+            入库日期
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Account">
+            <summary>
+            * 用户账号
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.FileName">
+            <summary>
+            * 文件名
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.FileExt">
+            <summary>
+            - 文件扩展名(后台自动识别)
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Type">
+            <summary>
+            * 文件分类
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Mark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.IsPublic">
+            <summary>
+            * 是否公开 0否 / 1是
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Url">
+            <summary>
+            - 文件URL(上传后后台生成)
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.FileBase64">
+            <summary>
+            * 文件二进制数据，base64传输
             </summary>
         </member>
         <member name="T:UplanServer.QoEReportIOSInfo">
