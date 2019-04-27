@@ -368,7 +368,25 @@
                 method: "get",
                 mark: "获取项目文件列表",
                 token: "928453310",
-                params: ""
+                params: {
+                    account: "mzh",
+                    startTime: "2019-04-25 12:04:04",
+                    endTime:"2019-04-25 12:07:04"
+                }
+            });
+            apilist.push({
+                func: "UploadProjectFile",
+                url: "/api/WorkLog/UploadProjectFile",
+                method: "post",
+                mark: "上传项目文件",
+                token: "928453310",
+                params: {
+                    account: "mzh",
+                    fileName: "fileTest.txt",
+                    type: "文本文档",
+                    mark: "测试文件",
+                    fileBase64:"5L2g5aW95rWL6K+V5paH5Lu277yMaGVsbG8gdGVzdGZpbGU="
+                }
             });
             this.app.apilist = apilist;
         }

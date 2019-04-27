@@ -18,6 +18,12 @@ namespace UplanServer
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            //The route for access the static image file
+            //routes.MapRoute(
+            //    name: "WorkLogFiles",
+            //    url: "WorkLogFiles/{*filename}",
+            //    defaults: new { }
+            //);
         }
     }
 }

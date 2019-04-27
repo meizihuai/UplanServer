@@ -18,9 +18,9 @@ namespace UplanServer
         /// - 入库时间
         /// </summary>
         [Column("DATETIME")]
-        public DateTime DateTime { get; set; }
+        public string DateTime { get; set; }
         /// <summary>
-        /// 入库日期
+        /// - 入库日期
         /// </summary>
         [Column("DAY")]
        public string Day { get; set; }

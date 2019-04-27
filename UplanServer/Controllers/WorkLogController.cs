@@ -4,6 +4,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.IO;
+using System.Text;
+using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 
 namespace UplanServer.Controllers
 {
@@ -25,46 +29,99 @@ namespace UplanServer.Controllers
         /// <returns></returns>
         public NormalResponse GetProjectFiles(string account = "", string startTime = "", string endTime = "")
         {
-            if (account == "")
+            try
             {
-                if (startTime == "" || endTime == "")
+                if (account == "")
                 {
-                    return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.IsPublic == 1).ToArray());
+                    if (startTime == "" || endTime == "")
+                    {
+                        return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.IsPublic == 1).ToArray());
+                    }
+                    else
+                    {
+                        try
+                        {
+                            DateTime startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
+                            DateTime endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
+                            var list = db.ProjectFileTable.Where(a => a.IsPublic == 1 &&
+                                                       DbFunctions.DiffSeconds(DateTime.Parse(a.DateTime), startDate) >= 0 &&
+                                                       DbFunctions.DiffSeconds(DateTime.Parse(a.DateTime), endDate) <= 0).ToArray();
+                            return new NormalResponse(true, "", "", list);
+                        }
+                        catch (Exception e)
+                        {
+                            return new NormalResponse(false, "日期格式有误");
+                        }
+                    }
                 }
                 else
                 {
-                    try
+                    if (startTime == "" || endTime == "")
                     {
-                        DateTime startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        DateTime endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.IsPublic == 1 && a.DateTime >=startDate && a.DateTime<= endDate).ToArray());
+                        return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.Account == account).ToArray());
                     }
-                    catch (Exception e)
+                    else
                     {
-                        return new NormalResponse(false, "日期格式有误");
+                        try
+                        {
+                            DateTime startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
+                            DateTime endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
+                            var list = db.ProjectFileTable.Where(a => a.Account == account &&
+                                                       a.DateTime.CompareTo(startTime)>=0 &&
+                                                       a.DateTime.CompareTo(endTime) <= 0).ToArray();
+                            return new NormalResponse(true,"", "", list);
+                        }
+                        catch (Exception e)
+                        {
+                            return new NormalResponse(false, "日期格式有误",e.ToString(),"");
+                        }
                     }
                 }
             }
-            else
+            catch(Exception e)
             {
-                if (startTime == "" || endTime == "")
-                {
-                    return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.Account==account).ToArray());
-                }
-                else
-                {
-                    try
-                    {
-                        DateTime startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        DateTime endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
-                        return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.Account == account && a.DateTime >= startDate && a.DateTime <= endDate).ToArray());
-                    }
-                    catch (Exception e)
-                    {
-                        return new NormalResponse(false, "日期格式有误");
-                    }
-                }
+                return new NormalResponse(false, e.ToString());
+            }         
+        }
+        /// <summary>
+        /// 上传项目文件
+        /// </summary>
+        /// <param name="pinfo">项目文件</param>
+        /// <returns></returns>
+        [HttpPost]
+        public NormalResponse UploadProjectFile(ProjectFileInfo pinfo)
+        {
+            try
+            {
+                string rootPath = System.Web.HttpContext.Current.Server.MapPath("~/WorkLogFiles/");
+                if (!Directory.Exists(rootPath)) Directory.CreateDirectory(rootPath);
+                string account = pinfo.Account;
+                if (account == null || account == "") return new NormalResponse(false, "account不可为空");
+                
+                string fileName = pinfo.FileName;
+                string fileExt = Module.GetFileExt(fileName);
+                string base64 = pinfo.FileBase64;
+                string url = "http://111.53.74.132:7063/WorkLogFiles/" + account + "/" + fileName;
+                byte[] buffer = Convert.FromBase64String(base64);
+                if (buffer == null) return new NormalResponse(false, "文件内容不可为空");
+                string accountPath = rootPath + account + "/";
+                if (!Directory.Exists(accountPath)) Directory.CreateDirectory(accountPath);
+                string filePath = Module.GetFilePath(fileName, accountPath);
+                File.WriteAllBytes(filePath, buffer);
+                pinfo.FileBase64 = "";
+                pinfo.Url = url;
+                pinfo.FileExt = fileExt;
+                DateTime now= DateTime.Now; 
+                pinfo.DateTime = now.ToString("yyyy-MM-dd HH:mm:ss");
+                pinfo.Day = now.ToString("yyyy-MM-dd");
+                db.ProjectFileTable.Add(pinfo);
+                db.SaveChanges();
+                return new NormalResponse(true, "文件上传成功");
             }
+            catch(Exception e)
+            {
+                return new NormalResponse(false,e.ToString());
+            }       
         }
     }
 }

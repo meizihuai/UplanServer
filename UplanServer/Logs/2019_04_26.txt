@@ -1,0 +1,132 @@
+[09:20:40] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[09:20:40] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[09:20:40] <LoopWorker>    =>线程[QoER数据监控]已启动
+[09:20:40] <QoEMission> ==QoEMission 监控==
+[09:20:40] <QoERMission> ==QoERMission 监控==
+[09:21:42] <QoERMission> ==QoERMission 监控==
+[09:21:56] <QoEMission> ==QoEMission 监控==
+[09:22:33] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[09:22:41] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[09:22:41] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[09:22:41] <LoopWorker>    =>线程[QoER数据监控]已启动
+[09:22:41] <QoEMission> ==QoEMission 监控==
+[09:22:41] <QoERMission> ==QoERMission 监控==
+[09:23:44] <QoERMission> ==QoERMission 监控==
+[09:23:58] <QoEMission> ==QoEMission 监控==
+[09:24:06] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[09:24:10] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[09:24:10] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[09:24:10] <LoopWorker>    =>线程[QoER数据监控]已启动
+[09:24:10] <QoERMission> ==QoERMission 监控==
+[09:24:10] <QoEMission> ==QoEMission 监控==
+[09:25:13] <QoERMission> ==QoERMission 监控==
+[09:25:27] <QoEMission> ==QoEMission 监控==
+[09:26:15] <QoERMission> ==QoERMission 监控==
+[09:26:43] <QoEMission> ==QoEMission 监控==
+[09:27:17] <QoERMission> ==QoERMission 监控==
+[09:27:59] <QoEMission> ==QoEMission 监控==
+[09:28:19] <QoERMission> ==QoERMission 监控==
+[09:29:15] <QoEMission> ==QoEMission 监控==
+[09:29:21] <QoERMission> ==QoERMission 监控==
+[09:30:23] <QoERMission> ==QoERMission 监控==
+[09:30:31] <QoEMission> ==QoEMission 监控==
+[09:31:25] <QoERMission> ==QoERMission 监控==
+[09:31:47] <QoEMission> ==QoEMission 监控==
+[09:32:27] <QoERMission> ==QoERMission 监控==
+[09:33:03] <QoEMission> ==QoEMission 监控==
+[09:33:29] <QoERMission> ==QoERMission 监控==
+[09:34:19] <QoEMission> ==QoEMission 监控==
+[09:34:31] <QoERMission> ==QoERMission 监控==
+[09:35:33] <QoERMission> ==QoERMission 监控==
+[09:35:35] <QoEMission> ==QoEMission 监控==
+[09:36:35] <QoERMission> ==QoERMission 监控==
+[09:36:51] <QoEMission> ==QoEMission 监控==
+[09:37:37] <QoERMission> ==QoERMission 监控==
+[09:38:08] <QoEMission> ==QoEMission 监控==
+[09:38:39] <QoERMission> ==QoERMission 监控==
+[09:39:24] <QoEMission> ==QoEMission 监控==
+[09:39:41] <QoERMission> ==QoERMission 监控==
+[09:40:40] <QoEMission> ==QoEMission 监控==
+[09:40:43] <QoERMission> ==QoERMission 监控==
+[09:41:45] <QoERMission> ==QoERMission 监控==
+[09:41:56] <QoEMission> ==QoEMission 监控==
+[09:42:47] <QoERMission> ==QoERMission 监控==
+[09:43:12] <QoEMission> ==QoEMission 监控==
+[09:43:49] <QoERMission> ==QoERMission 监控==
+[09:44:28] <QoEMission> ==QoEMission 监控==
+[09:44:51] <QoERMission> ==QoERMission 监控==
+[09:45:44] <QoEMission> ==QoEMission 监控==
+[09:45:53] <QoERMission> ==QoERMission 监控==
+[09:46:55] <QoERMission> ==QoERMission 监控==
+[09:47:00] <QoEMission> ==QoEMission 监控==
+[09:47:57] <QoERMission> ==QoERMission 监控==
+[09:48:16] <QoEMission> ==QoEMission 监控==
+[09:48:59] <QoERMission> ==QoERMission 监控==
+[09:49:32] <QoEMission> ==QoEMission 监控==
+[09:50:01] <QoERMission> ==QoERMission 监控==
+[09:50:49] <QoEMission> ==QoEMission 监控==
+[09:51:03] <QoERMission> ==QoERMission 监控==
+[09:52:05] <QoEMission> ==QoEMission 监控==
+[09:52:05] <QoERMission> ==QoERMission 监控==
+[09:52:36] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[09:52:44] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[09:52:44] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[09:52:44] <QoEMission> ==QoEMission 监控==
+[09:52:44] <QoERMission> ==QoERMission 监控==
+[09:52:44] <LoopWorker>    =>线程[QoER数据监控]已启动
+[09:53:47] <QoERMission> ==QoERMission 监控==
+[09:54:01] <QoEMission> ==QoEMission 监控==
+[09:54:49] <QoERMission> ==QoERMission 监控==
+[09:55:17] <QoEMission> ==QoEMission 监控==
+[09:55:51] <QoERMission> ==QoERMission 监控==
+[09:56:33] <QoEMission> ==QoEMission 监控==
+[09:56:53] <QoERMission> ==QoERMission 监控==
+[09:57:49] <QoEMission> ==QoEMission 监控==
+[09:57:55] <QoERMission> ==QoERMission 监控==
+[09:58:57] <QoERMission> ==QoERMission 监控==
+[09:59:06] <QoEMission> ==QoEMission 监控==
+[09:59:59] <QoERMission> ==QoERMission 监控==
+[10:00:22] <QoEMission> ==QoEMission 监控==
+[10:01:01] <QoERMission> ==QoERMission 监控==
+[10:01:38] <QoEMission> ==QoEMission 监控==
+[10:02:03] <QoERMission> ==QoERMission 监控==
+[10:02:46] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:02:50] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:02:50] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:02:50] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:02:50] <QoEMission> ==QoEMission 监控==
+[10:02:50] <QoERMission> ==QoERMission 监控==
+[10:03:52] <QoERMission> ==QoERMission 监控==
+[10:04:07] <QoEMission> ==QoEMission 监控==
+[10:04:08] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:04:12] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:04:12] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:04:12] <QoEMission> ==QoEMission 监控==
+[10:04:12] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:04:12] <QoERMission> ==QoERMission 监控==
+[10:05:14] <QoERMission> ==QoERMission 监控==
+[10:05:28] <QoEMission> ==QoEMission 监控==
+[10:06:16] <QoERMission> ==QoERMission 监控==
+[10:06:44] <QoEMission> ==QoEMission 监控==
+[10:07:18] <QoERMission> ==QoERMission 监控==
+[10:08:00] <QoEMission> ==QoEMission 监控==
+[10:08:20] <QoERMission> ==QoERMission 监控==
+[10:09:17] <QoEMission> ==QoEMission 监控==
+[10:09:22] <QoERMission> ==QoERMission 监控==
+[10:10:10] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:24:15] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:24:15] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:24:15] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:24:15] <QoERMission> ==QoERMission 监控==
+[10:24:15] <QoEMission> ==QoEMission 监控==
+[10:25:18] <QoERMission> ==QoERMission 监控==
+[10:25:32] <QoEMission> ==QoEMission 监控==
+[10:26:20] <QoERMission> ==QoERMission 监控==
+[10:26:31] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[10:29:10] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[10:29:10] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[10:29:10] <LoopWorker>    =>线程[QoER数据监控]已启动
+[10:29:10] <QoEMission> ==QoEMission 监控==
+[10:29:10] <QoERMission> ==QoERMission 监控==
+[10:30:12] <QoERMission> ==QoERMission 监控==
+[10:30:22] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========

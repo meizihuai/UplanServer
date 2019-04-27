@@ -6,6 +6,7 @@ using System.Web.Configuration;
 using System.Text;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace UplanServer
 {
@@ -14,6 +15,7 @@ namespace UplanServer
           //public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oracleip"], 1521, "oss", "uplan", "Smart9080");
         public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oraHelperCfg"]);
         ///  public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
+        public static object getFileNameLock = new object();
         public static string Str2Base64(string str)
         {
             if (str == "")
@@ -115,6 +117,31 @@ namespace UplanServer
                 }
             }
         }
-
+        public static string GetFileExt(string fileName)
+        {
+            if (!fileName.Contains(".")) return "";
+            string[] st = fileName.Split('.');
+            return st[st.Length - 1];
+        }
+        public static string GetFilePath(string fileName,string path)
+        {
+            if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+            if (!path.EndsWith("/")) path = path + "/";
+            string filePath = path+ fileName;
+            if (!File.Exists(filePath)) return filePath;
+            FileInfo finfo = new FileInfo(filePath);
+            string ext = finfo.Extension;
+            int i = 0;
+            lock (getFileNameLock)
+            {
+                while (true)
+                {
+                    i++;
+                    filePath = path + fileName.Replace(ext, $"({i}){ext}");
+                    if (!File.Exists(filePath))
+                        return filePath;
+                }
+            }          
+        }
     }
 }

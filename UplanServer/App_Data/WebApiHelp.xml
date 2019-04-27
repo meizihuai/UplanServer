@@ -693,7 +693,7 @@
         </member>
         <member name="P:UplanServer.ProjectFileInfo.Day">
             <summary>
-            入库日期
+            - 入库日期
             </summary>
         </member>
         <member name="P:UplanServer.ProjectFileInfo.Account">
