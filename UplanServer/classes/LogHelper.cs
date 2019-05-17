@@ -8,7 +8,7 @@ namespace UplanServer
 {
     public class LogHelper
     {
-        public static string rootPath = HttpContext.Current.Server.MapPath("/Logs/");
+        public static string rootPath = HttpContext.Current.Server.MapPath("~/Logs/");
         private static object lc = new object();
         public static void CheckDir()
         {

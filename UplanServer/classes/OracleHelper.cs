@@ -10,6 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Data;
 using System.IO;
+using System.Text;
 
 namespace UplanServer
 {
@@ -324,6 +325,18 @@ namespace UplanServer
                 return null;
             }
         }
+        public static string OracleSelectPage(string sql, long startIndex, long count)
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("select * from ( ");
+            sb.Append("select A.*, Rownum RN from ( ");
+            sb.Append(sql);
+            sb.Append(") A ");
+            sb.Append(" where Rownum<=" + startIndex + count + " )");
+            sb.Append("where RN>=" + startIndex);
+            return sb.ToString();
+        }
+
 
         public NormalResponse InsertByDik(string tableName,Dictionary<string,object> dik)
         {
@@ -411,6 +424,8 @@ namespace UplanServer
             }
            
         }
+
+
     }
 
 }

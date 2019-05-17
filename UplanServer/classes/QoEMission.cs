@@ -35,7 +35,7 @@ namespace UplanServer
         {
             try
             {
-                LogHelper.Log("==QoEMission 监控==", TAG);
+              //  LogHelper.Log("==QoEMission 监控==", TAG);
                 int minMinute = 1;
                 string minlastTime = DateTime.Now.AddMinutes(-1* minMinute).ToString("yyyy-MM-dd HH:mm:ss");
                 string minlastAskVideoTime = DateTime.Now.AddMinutes(-5 * minMinute).ToString("yyyy-MM-dd HH:mm:ss");

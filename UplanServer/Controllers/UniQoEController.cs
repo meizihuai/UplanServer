@@ -16,7 +16,7 @@ namespace UplanServer.Controllers
     public class UniQoEController : ApiController
     {
         private readonly OracleHelper ora = Module.ora;
-        private readonly QoEContext db = new QoEContext();
+        private readonly QoEDbContext db = new QoEDbContext();
         /// <summary>
         /// 手机登录，获取AID
         /// </summary>

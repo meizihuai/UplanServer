@@ -481,8 +481,115 @@
             </summary>
             <param name="documentPath">The physical path to XML document.</param>
         </member>
-        <member name="M:UplanServer.Module.Str2Base64(System.String)">
+        <member name="F:UplanServer.Module.getFileNameLock">
              public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
+        </member>
+        <member name="F:UplanServer.RedisHelper.ConnectionString">
+            <summary>
+            连接字符串，一般写在配置文件里面
+            </summary>
+        </member>
+        <member name="F:UplanServer.RedisHelper.locker">
+            <summary>
+            上锁，单例模式
+            </summary>
+        </member>
+        <member name="F:UplanServer.RedisHelper._connection">
+            <summary>
+            连接对象
+            </summary>
+        </member>
+        <member name="F:UplanServer.RedisHelper._db">
+            <summary>
+            数据库
+            </summary>
+        </member>
+        <member name="M:UplanServer.RedisHelper.GetConnection">
+            <summary>
+            获取连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.GetDatabase(System.Nullable{System.Int32})">
+            <summary>
+            获取数据库
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Set(System.String,System.Object,System.Nullable{System.Int32})">
+            <summary>
+            设置
+            </summary>
+            <param name="key">键</param>
+            <param name="data">值</param>
+            <param name="cacheTime">过期时间</param>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Get``1(System.String)">
+            <summary>
+            根据键获取值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Get(System.String)">
+            <summary>
+            根据键获取值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.IsExit(System.String)">
+            <summary>
+            判断键是否已存在
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.IsSet(System.String)">
+            <summary>
+            判断是否已经设置
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Serialize(System.Object)">
+            <summary>
+            序列化
+            </summary>
+            <param name="data"></param>
+            <returns>byte[]</returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Deserialize``1(System.Byte[])">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="serializedObject"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.Controllers.DisplayPlatformController">
+            <summary>
+            展示平台接口
+            接口版本:1.0.0.0
+            更改者：梅子怀
+            更改时间:2019-05-09 10:00:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetDPIndexData(System.String)">
+            <summary>
+            获取首页数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.DoRefreshDPIndexData(System.String)">
+            <summary>
+            让后台立即刷新首页数据
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
         </member>
         <member name="T:UplanServer.Controllers.UniQoEController">
             <summary>
@@ -639,6 +746,17 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoERBlackPoints(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            获取QoER网络黑点
+            </summary>
+            <param name="city">城市</param>
+            <param name="carrier">运营商</param>
+            <param name="startTime">起始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="getCount">查询数据量</param>
+            <returns></returns>
+        </member>
         <member name="T:UplanServer.Controllers.WorkLogController">
             <summary>
             工作日志WorkLog接口
@@ -654,6 +772,13 @@
             <param name="account">用户名</param>
             <param name="startTime">入库开始时间</param>
             <param name="endTime">入库结束时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.WorkLogController.UploadProjectFile(UplanServer.ProjectFileInfo)">
+            <summary>
+            上传项目文件
+            </summary>
+            <param name="pinfo">项目文件</param>
             <returns></returns>
         </member>
         <member name="T:UplanServer.NormalResponse">

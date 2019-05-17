@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -55,6 +56,14 @@ namespace UplanServer
             this.msg = msg;
             this.errmsg = "";
             this.data = "";
+        }
+        public T Parse<T>()
+        {
+            if (data == null) return default(T);
+            string json = JsonConvert.SerializeObject(data);
+           // string json = data.ToString();
+            T t = JsonConvert.DeserializeObject<T>(json);
+            return t;
         }
     }
 }

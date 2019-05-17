@@ -8,6 +8,7 @@ using System.IO;
 using System.Text;
 using System.Data.Entity;
 using System.Data.Entity.SqlServer;
+using System.Linq.Expressions;
 
 namespace UplanServer.Controllers
 {
@@ -19,7 +20,7 @@ namespace UplanServer.Controllers
     /// </summary>
     public class WorkLogController : ApiController
     {
-        public WorkLogContent db = new WorkLogContent();
+        public WorkLogDbContext db = new WorkLogDbContext();
         /// <summary>
         /// 获取项目文件列表
         /// </summary>
@@ -31,52 +32,34 @@ namespace UplanServer.Controllers
         {
             try
             {
+                if (account == null) account = "";
+                if (startTime == null) startTime = "";
+                if (endTime == null) endTime = "";
+                bool isHaveTime = (startTime != "" && endTime != "");
+                DateTime now = DateTime.Now;
+                DateTime startDate = now, endDate = now;
+                if (isHaveTime)
+                {
+                    try
+                    {
+                        startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
+                        endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    catch (Exception)
+                    {
+                        return new NormalResponse(false, "起始时间或结束时间格式非法");
+                    }
+                }
+                var exp = PredicateBuilder.True<ProjectFileInfo>();
+                //Expression<Func<ProjectFileInfo, bool>> exp;
                 if (account == "")
-                {
-                    if (startTime == "" || endTime == "")
-                    {
-                        return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.IsPublic == 1).ToArray());
-                    }
-                    else
-                    {
-                        try
-                        {
-                            DateTime startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
-                            DateTime endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
-                            var list = db.ProjectFileTable.Where(a => a.IsPublic == 1 &&
-                                                       DbFunctions.DiffSeconds(DateTime.Parse(a.DateTime), startDate) >= 0 &&
-                                                       DbFunctions.DiffSeconds(DateTime.Parse(a.DateTime), endDate) <= 0).ToArray();
-                            return new NormalResponse(true, "", "", list);
-                        }
-                        catch (Exception e)
-                        {
-                            return new NormalResponse(false, "日期格式有误");
-                        }
-                    }
-                }
+                    exp = (a => a.IsPublic == 1);
                 else
-                {
-                    if (startTime == "" || endTime == "")
-                    {
-                        return new NormalResponse(true, "", "", db.ProjectFileTable.Where(a => a.Account == account).ToArray());
-                    }
-                    else
-                    {
-                        try
-                        {
-                            DateTime startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
-                            DateTime endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
-                            var list = db.ProjectFileTable.Where(a => a.Account == account &&
-                                                       a.DateTime.CompareTo(startTime)>=0 &&
-                                                       a.DateTime.CompareTo(endTime) <= 0).ToArray();
-                            return new NormalResponse(true,"", "", list);
-                        }
-                        catch (Exception e)
-                        {
-                            return new NormalResponse(false, "日期格式有误",e.ToString(),"");
-                        }
-                    }
-                }
+                    exp = (a => a.Account == account);
+                if (isHaveTime)
+                    exp = exp.And(a => a.DateTime.CompareTo(startTime) >= 0 && a.DateTime.CompareTo(endTime) <= 0);
+                var list = db.ProjectFileTable.Where(exp).ToArray();
+                return new NormalResponse(true,"", "", list);               
             }
             catch(Exception e)
             {

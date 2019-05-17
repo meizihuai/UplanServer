@@ -41,6 +41,8 @@ namespace UplanServer
         public string CodeType { get; set; }
         [Column("CLARITYSIZE")]
         public string ClaritySize { get; set; }
+        [Column("FRAMERATE")]
+        public double? FrameRate { get; set; }
     }
 
 }

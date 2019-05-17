@@ -34,7 +34,7 @@ namespace UplanServer
         {
             try
             {
-                LogHelper.Log("==QoERMission 监控==", TAG);
+               // LogHelper.Log("==QoERMission 监控==", TAG);
                 string minlastTime = DateTime.Now.AddSeconds(-30).ToString("yyyy-MM-dd HH:mm:ss");
                 DateTime nowTmp = DateTime.Now;
                 string sql = "";

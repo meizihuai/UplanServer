@@ -377,7 +377,7 @@ namespace UplanServer
         }
         public static List<QoEVideoDtGroupMember> SelectToList(string where = "")
         {
-            QoEContext db = new QoEContext();
+            QoEDbContext db = new QoEDbContext();
             List<QoEVideoDtGroupMember> list = new List<QoEVideoDtGroupMember>();
             string sql = "select * from " + tableName + (where == "" ? "" : " where " + where);
             DataTable dt = ora.SqlGetDT(sql);

@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Data.Entity;
+using System.Linq.Expressions;
 
 namespace UplanServer.Controllers
 {
@@ -24,7 +26,7 @@ namespace UplanServer.Controllers
     public class UplanController : ApiController
     {
         private readonly OracleHelper ora = Module.ora;
-        private readonly QoEContext db=new QoEContext();
+        private readonly QoEDbContext db =new QoEDbContext();
         /// <summary>
         /// 接口测试
         /// </summary>
@@ -358,6 +360,127 @@ and dateTime between '2018-04-01 00:00:00' and '2019-04-02 00:00:00' and city is
             dic.Add("OnlineQoERList", onlineQoER);
             dic.Add("OnlineQoEList", onlineQoE);                
             return new NormalResponse(true,"", "", dic);
-        }      
+        }
+        /// <summary>
+        /// 获取QoER网络黑点
+        /// </summary>
+        /// <param name="city">城市</param>
+        /// <param name="carrier">运营商</param>
+        /// <param name="startTime">起始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="getCount">查询数据量</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetQoERBlackPoints(string city = "all", string carrier = "", string startTime = "", string endTime = "", int getCount = 0)
+        {
+          
+            try
+            {
+                if (city == null) city = "";                
+                if (carrier == null) carrier = "";
+                if (startTime == null) startTime = "";
+                if (endTime == null) endTime = "";
+                if (city == "all") city = "";
+                bool isHaveTime = (startTime!="" && endTime!="");
+                DateTime now = DateTime.Now;
+                DateTime startDate= now, endDate= now;              
+                if (isHaveTime)
+                {
+                    try
+                    {
+                         startDate = DateTime.Parse(startTime); startTime = startDate.ToString("yyyy-MM-dd HH:mm:ss");
+                         endDate = DateTime.Parse(endTime); endTime = endDate.ToString("yyyy-MM-dd HH:mm:ss");
+                    }
+                    catch (Exception)
+                    {
+                        return new NormalResponse(false,"起始时间或结束时间格式非法");
+                    }
+                }
+                var query = db.QoERTable.Where(a => a.IsUploadDataTimely == 0 && a.GDlon > 0 && a.GDlat > 0 && a.NetType != null && a.NetType != "WiFi");
+                query = query.Where(a => a.CI != int.MaxValue && a.RSRP!=int.MaxValue);
+                if (city != "")
+                    query = query.Where(a => a.City == city);
+                if (carrier != "")
+                    query = query.Where(a => a.Carrier == carrier);
+                if (isHaveTime)
+                    query = query.Where(a => a.DateTime.CompareTo(startTime) >= 0 && a.DateTime.CompareTo(endTime) <= 0);
+                query = query.OrderByDescending(a => a.DateTime);
+                if (getCount > 0) query = query.Take(getCount);
+                var list = query.Select(a => new
+                {
+                    a.id,
+                    a.DateTime,
+                    a.City,
+                    a.Carrier,
+                    a.GDlon,
+                    a.GDlat,
+                    a.RSRP,
+                    a.SINR,
+                    a.CI,
+                    a.ENodeBId,
+                    a.CellId
+                });
+                return new NormalResponse(true, "", "", list.ToArray());
+                #region Expression组合动态查询
+                //Expression<Func<PhoneInfo, bool>> exp = (a => a.IsUploadDataTimely == 0 && a.GDlon > 0 && a.GDlat > 0 && a.NetType != null && a.NetType != "WiFi");
+                //if (city != "")
+                //    exp = exp.And(a => a.City == city);
+                //if (carrier != "")
+                //    exp = exp.And(a => a.Carrier == carrier);
+                //if (isHaveTime)
+                //    exp = exp.And(a => a.DateTime.CompareTo(startTime) >= 0 && a.DateTime.CompareTo(endTime) <= 0);
+                //var query = db.QoERTable.Where(exp).OrderByDescending(a => a.DateTime).AsQueryable();
+                //if (getCount > 0) query = query.Take(getCount);
+                //var list = query.Select(a =>new
+                //{
+                //    a.id,
+                //    a.DateTime,
+                //    a.City,
+                //    a.Carrier,
+                //    a.GDlon,
+                //    a.GDlat,
+                //    a.RSRP,
+                //    a.SINR,
+                //    a.CI,
+                //    a.ENodeBId,
+                //    a.CellId
+                //});
+                return new NormalResponse(true, "", "", list);
+                #endregion
+                #region 传统SQL
+                //id,dateTime,city,carrier,gdlon,gdlat,rsrp,sinr,ci,enodebId,cellid
+                //string sql = "select id,dateTime,city,carrier,gdlon,gdlat,rsrp,sinr,ci,enodebId,cellid from qoe_report_table where " +
+                //             "IsUploadDataTimely=0 and gdlon>0 and gdlat>0 and netType is not null and netType<>'WiFi' " +
+                //             (city == "" ? "" : $" and city='{city}'") +
+                //             (carrier == "" ? "" : $" and carrier='{carrier}'") +
+                //             (!isHaveTime ? "" : $" and dateTime>='{startTime}' and dateTime<='{endTime}'") +
+                //             " order by dateTime desc";
+                //if (getCount > 0)
+                //{
+                //    sql = OracleHelper.OracleSelectPage(sql, 0, getCount);
+                //}
+                //DataTable dt = ora.SqlGetDT(sql);
+                //if (dt == null) return new NormalResponse(true, "", "", "[]");
+                //dt.Columns[0].ColumnName = "id";
+                //dt.Columns[1].ColumnName = "DateTime";
+                //dt.Columns[2].ColumnName = "City";
+                //dt.Columns[3].ColumnName = "Carrier";
+                //dt.Columns[4].ColumnName = "GDlon";
+                //dt.Columns[5].ColumnName = "GDlat";
+                //dt.Columns[6].ColumnName = "RSRP";
+                //dt.Columns[7].ColumnName = "SINR";
+                //dt.Columns[8].ColumnName = "CI";
+                //dt.Columns[9].ColumnName = "ENodeBId";
+                //dt.Columns[10].ColumnName = "CellId";
+                //dt.Columns.Remove("RN");
+                //return new NormalResponse(true, "", "", dt);
+                #endregion
+
+            }
+            catch (Exception e)
+            {
+                return new NormalResponse(false,e.ToString());
+            }        
+        }
     }
 }

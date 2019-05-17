@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -63,17 +64,21 @@
     <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.18.3.0\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="StackExchange.Redis.StrongName, Version=1.2.6.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
+      <HintPath>..\packages\StackExchange.Redis.StrongName.1.2.6\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
@@ -125,6 +130,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -178,35 +184,41 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="classes\CoordInfo.cs" />
-    <Compile Include="classes\HTTPHelper.cs" />
-    <Compile Include="classes\LocationAddressInfo.cs" />
-    <Compile Include="classes\LogHelper.cs" />
-    <Compile Include="classes\LoopWorker.cs" />
-    <Compile Include="classes\Module.cs" />
-    <Compile Include="classes\OracleHelper.cs" />
-    <Compile Include="classes\QoEMission.cs" />
-    <Compile Include="classes\QoERMission.cs" />
+    <Compile Include="Classes\CoordInfo.cs" />
+    <Compile Include="Classes\DisplayPlatformWorker.cs" />
+    <Compile Include="Classes\ExpressionExt.cs" />
+    <Compile Include="Classes\HTTPHelper.cs" />
+    <Compile Include="Classes\LocationAddressInfo.cs" />
+    <Compile Include="Classes\LogHelper.cs" />
+    <Compile Include="Classes\LoopWorker.cs" />
+    <Compile Include="Classes\Module.cs" />
+    <Compile Include="Classes\OracleHelper.cs" />
+    <Compile Include="Classes\QoEMission.cs" />
+    <Compile Include="Classes\QoERMission.cs" />
+    <Compile Include="Classes\RedisHelper.cs" />
+    <Compile Include="Controllers\DisplayPlatformController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UniQoEController.cs" />
     <Compile Include="Controllers\UplanController.cs" />
     <Compile Include="Controllers\WorkLogController.cs" />
-    <Compile Include="DbContent\WorkLogContent.cs" />
+    <Compile Include="DbContent\WorkLogDbContext.cs" />
+    <Compile Include="Classes\DPIndexInfo.cs" />
+    <Compile Include="EnitityClass\QoE\QoEVideoTable.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DeviceInfo.cs" />
+    <Compile Include="EnitityClass\QoE\DeviceInfo.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\Neighbour.cs" />
     <Compile Include="Models\NormalResponse.cs" />
     <Compile Include="Models\PhoneInfo.cs" />
-    <Compile Include="Models\ProjectFileInfo.cs" />
-    <Compile Include="DbContent\QoEContext.cs" />
-    <Compile Include="Models\QoEReportIOSInfo.cs" />
+    <Compile Include="EnitityClass\WorkLog\ProjectFileInfo.cs" />
+    <Compile Include="DbContent\QoEDbContext.cs" />
+    <Compile Include="EnitityClass\QoE\QoEReportIOSInfo.cs" />
     <Compile Include="Models\QoEVideoDtGroup.cs" />
     <Compile Include="Models\QoEVideoInfo.cs" />
-    <Compile Include="Models\QoEVideoSource.cs" />
-    <Compile Include="Models\UserBPInfo.cs" />
+    <Compile Include="EnitityClass\QoE\QoEVideoSource.cs" />
+    <Compile Include="EnitityClass\QoE\UserBPInfo.cs" />
     <Compile Include="Models\XYZaSpeedInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -367,12 +379,15 @@
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />

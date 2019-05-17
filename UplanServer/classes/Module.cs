@@ -14,8 +14,18 @@ namespace UplanServer
     {
           //public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oracleip"], 1521, "oss", "uplan", "Smart9080");
         public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oraHelperCfg"]);
+        public static string redisConnstring = WebConfigurationManager.AppSettings["redisConnstring"];
+        public static RedisHelper redisHelper = RedisHelper.GetRedisHelper();
         ///  public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
         public static object getFileNameLock = new object();
+        public static Dictionary<string, string> phoneModelDik = new Dictionary<string, string>();
+        public static readonly string DisplayPlatform_DPIndexInfo = "DisplayPlatform-DPIndexInfo";
+        public static readonly string DisplayPlatform_DetailQuota = "DisplayPlatform-DetailQuota-{0}-{1}";
+        public static void Init()
+        {
+            phoneModelDik.Add("xiaomi", "小米");
+            phoneModelDik.Add("HONOR", "华为");
+        }
         public static string Str2Base64(string str)
         {
             if (str == "")

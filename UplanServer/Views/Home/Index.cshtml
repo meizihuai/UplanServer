@@ -117,6 +117,15 @@
                             <li class="layui-timeline-item">
                                 <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
                                 <div class="layui-timeline-content layui-text">
+                                    <h3 class="layui-timeline-title">数据量</h3>
+                                    <p>
+                                        {{(info.body.length/1024).toFixed(2)+" KB"}}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="layui-timeline-item">
+                                <i class="layui-icon layui-timeline-axis">&#xe63f;</i>
+                                <div class="layui-timeline-content layui-text">
                                     <h3 class="layui-timeline-title">状态码</h3>
                                     <p>
                                         {{info.status}}
@@ -128,7 +137,7 @@
                                 <div class="layui-timeline-content layui-text">
                                     <h3 class="layui-timeline-title">返回消息</h3>
                                     <p>
-                                        <textarea id="ta1" style="width:100%;height:300px;" :value="info.body"></textarea>                                      
+                                        <textarea id="ta1" style="width:100%;height:300px;" :value="info.body"></textarea>
                                     </p>
                                 </div>
                             </li>
@@ -370,8 +379,8 @@
                 token: "928453310",
                 params: {
                     account: "mzh",
-                    startTime: "2019-04-25 12:04:04",
-                    endTime:"2019-04-25 12:07:04"
+                    startTime: "2019-04-25 12:04:04", //2019-04-25 12:04:04
+                    endTime: "2019-04-25 12:07:04" //2019-04-25 12:07:04
                 }
             });
             apilist.push({
@@ -388,9 +397,66 @@
                     fileBase64:"5L2g5aW95rWL6K+V5paH5Lu277yMaGVsbG8gdGVzdGZpbGU="
                 }
             });
+            apilist.push({
+                func: "GetQoERBlackPoints",
+                url: "/api/Uplan/GetQoERBlackPoints",
+                method: "get",
+                mark: "获取QoER网络黑点",
+                token: "928453310",
+                params: {
+                    city: "",
+                    carrier:"",
+                    startTime: "2019-04-10 12:04:04", //2019-04-25 12:04:04
+                    endTime: "2019-04-25 12:04:04", //2019-04-25 12:07:04
+                    getCount:2
+                }
+            });
+            apilist.push({
+                func: "GetDPIndexData",
+                url: "/api/DisplayPlatform/GetDPIndexData",
+                method: "get",
+                mark: "获取展示平台首页数据",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                func: "DoRefreshDPIndexData",
+                url: "/api/DisplayPlatform/DoRefreshDPIndexData",
+                method: "get",
+                mark: "让后台立即刷新首页数据",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                func: "GetQoEProvince",
+                url: "/api/DisplayPlatform/GetQoEProvince",
+                method: "get",
+                mark: "获取QoE有数据的省份",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                func: "GetDetailQuota",
+                url: "/api/DisplayPlatform/GetDetailQuota",
+                method: "get",
+                mark: "获取分析平台详细指标数据",
+                token: "928453310",
+                params: {
+                    level: 1,
+                    day:1
+                }
+            });
+
+            apilist.push({
+                func: "GetPerformanceData",
+                url: "/api/DisplayPlatform/GetPerformanceData",
+                method: "get",
+                mark: "获取分析平台性能模块数据",
+                token: "928453310",
+                params:""
+            });
             this.app.apilist = apilist;
-        }
-        
+        }        
       
        
         function sendAjax(txt) {          
