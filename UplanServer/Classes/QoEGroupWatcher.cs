@@ -12,7 +12,7 @@ using System.IO;
 
 namespace UplanServer
 {
-    public class QoEMission
+    public class QoEGroupWatcher
     {
         private static OracleHelper ora = Module.ora;
         private static string TAG= "QoEMission";

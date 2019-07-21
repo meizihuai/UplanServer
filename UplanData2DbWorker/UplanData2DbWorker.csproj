@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.16" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="NodaTime" Version="2.4.6" />
+    <PackageReference Include="RabbitMQ.Client" Version="5.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\UplanServer\UplanServer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ConvertGPS">
+      <HintPath>..\..\..\..\..\dll\ConvertGPS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

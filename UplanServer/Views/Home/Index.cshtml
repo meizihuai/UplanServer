@@ -455,6 +455,52 @@
                 token: "928453310",
                 params:""
             });
+            apilist.push({
+                func: "GetQoEMission",
+                url: "/api/uplan/GetQoEMission",
+                method: "get",
+                mark: "获取QoE自动任务列表",
+                token: "928453310",
+                params: ""
+            });
+            apilist.push({
+                func: "AddQoEMission",
+                url: "/api/uplan/AddQoEMission",
+                method: "post",
+                mark: "新增QoE自动监测任务",
+                token: "928453310",
+                params: {
+                    AID: "6ccc98",
+                    STARTTIME: "2019-05-21 09:10:00",
+                    ENDTIME: "2019-05-21 09:13:00",                  
+                    INTERVAL: 0,
+                    TYPE: "QoEVideo",
+                    MissionBody: {
+                        VideoType:"超小视频"
+                    }
+                }
+            });
+            apilist.push({
+                func: "DeleteQoEMission",
+                url: "/api/uplan/DeleteQoEMission",
+                method: "get",
+                mark: "删除QoE自动任务",
+                token: "928453310",
+                params: {
+                    id: 123
+                }
+            });
+            apilist.push({
+                func: "SetQoEMissionStatus",
+                url: "/api/uplan/SetQoEMissionStatus",
+                method: "get",
+                mark: "修改QoE自动任务状态",
+                token: "928453310",
+                params: {
+                    id: 123,
+                    code:-2
+                }
+            });
             this.app.apilist = apilist;
         }        
       

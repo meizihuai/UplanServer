@@ -1,0 +1,1524 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>UplanServer</name>
+    </assembly>
+    <members>
+        <member name="M:UplanServer.Areas.HelpPage.ApiDescriptionExtensions.GetFriendlyId(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Generates an URI-friendly ID for the <see cref="T:System.Web.Http.Description.ApiDescription"/>. E.g. "Get-Values-id_name" instead of "GetValues/{id}?name={name}"
+            </summary>
+            <param name="description">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The ID as a string.</returns>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.HelpPageConfig">
+            <summary>
+            Use this class to customize the Help Page.
+            For example you can set a custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> to supply the documentation
+            or you can provide the samples for the requests/responses.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.Controllers.HelpController">
+            <summary>
+            The controller that will handle requests for the help page.
+            </summary>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetDocumentationProvider(System.Web.Http.HttpConfiguration,System.Web.Http.Description.IDocumentationProvider)">
+            <summary>
+            Sets the documentation provider for help page.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="documentationProvider">The documentation provider.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleObjects(System.Web.Http.HttpConfiguration,System.Collections.Generic.IDictionary{System.Type,System.Object})">
+            <summary>
+            Sets the objects that will be used by the formatters to produce sample requests/responses.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleObjects">The sample objects.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type and action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleRequest(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample request directly for the specified media type and action with parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample request.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String)">
+            <summary>
+            Sets the sample request directly for the specified media type of the action.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleResponse(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.String,System.String,System.String[])">
+            <summary>
+            Sets the sample response directly for the specified media type of the action with specific parameters.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample response.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForMediaType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Sets the sample directly for all actions with the specified media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetSampleForType(System.Web.Http.HttpConfiguration,System.Object,System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Sets the sample directly for all actions with the specified type and media type.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sample">The sample.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The parameter type or return type of an action.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualRequestType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate request samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String)">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetActualResponseType(System.Web.Http.HttpConfiguration,System.Type,System.String,System.String,System.String[])">
+            <summary>
+            Specifies the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> returned as part of the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            The help page will use this information to produce more accurate response samples.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="type">The type.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <returns>The help page sample generator.</returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.SetHelpPageSampleGenerator(System.Web.Http.HttpConfiguration,UplanServer.Areas.HelpPage.HelpPageSampleGenerator)">
+            <summary>
+            Sets the help page sample generator.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="sampleGenerator">The help page sample generator.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.GetModelDescriptionGenerator(System.Web.Http.HttpConfiguration)">
+            <summary>
+            Gets the model description generator.
+            </summary>
+            <param name="config">The configuration.</param>
+            <returns>The <see cref="T:UplanServer.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator"/></returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageConfigurationExtensions.GetHelpPageApiModel(System.Web.Http.HttpConfiguration,System.String)">
+            <summary>
+            Gets the model that represents an API displayed on the help page. The model is initialized on the first call and cached for subsequent calls.
+            </summary>
+            <param name="config">The <see cref="T:System.Web.Http.HttpConfiguration"/>.</param>
+            <param name="apiDescriptionId">The <see cref="T:System.Web.Http.Description.ApiDescription"/> ID.</param>
+            <returns>
+            An <see cref="T:UplanServer.Areas.HelpPage.Models.HelpPageApiModel"/>
+            </returns>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.ModelDescriptions.ModelDescription">
+            <summary>
+            Describes a type model.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.ModelDescriptions.ModelDescriptionGenerator">
+            <summary>
+            Generates model descriptions for given types.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.ModelDescriptions.ModelNameAttribute">
+            <summary>
+            Use this attribute to change the name of the <see cref="T:UplanServer.Areas.HelpPage.ModelDescriptions.ModelDescription"/> generated for a type.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.Models.HelpPageApiModel">
+            <summary>
+            The model that represents an API displayed on the help page.
+            </summary>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:UplanServer.Areas.HelpPage.Models.HelpPageApiModel"/> class.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription">
+            <summary>
+            Gets or sets the <see cref="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.ApiDescription"/> that describes the API.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.UriParameters">
+            <summary>
+            Gets or sets the <see cref="T:UplanServer.Areas.HelpPage.ModelDescriptions.ParameterDescription"/> collection that describes the URI parameters for the API.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.RequestDocumentation">
+            <summary>
+            Gets or sets the documentation for the request.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.RequestModelDescription">
+            <summary>
+            Gets or sets the <see cref="T:UplanServer.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the request body.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.RequestBodyParameters">
+            <summary>
+            Gets the request body parameter descriptions.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.ResourceDescription">
+            <summary>
+            Gets or sets the <see cref="T:UplanServer.Areas.HelpPage.ModelDescriptions.ModelDescription"/> that describes the resource.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.ResourceProperties">
+            <summary>
+            Gets the resource property descriptions.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.SampleRequests">
+            <summary>
+            Gets the sample requests associated with the API.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.SampleResponses">
+            <summary>
+            Gets the sample responses associated with the API.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.Models.HelpPageApiModel.ErrorMessages">
+            <summary>
+            Gets the error messages associated with this model.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.HelpPageSampleGenerator">
+            <summary>
+            This class will generate the samples for the help page.
+            </summary>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:UplanServer.Areas.HelpPage.HelpPageSampleGenerator"/> class.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.ActualHttpMessageTypes">
+            <summary>
+            Gets CLR types that are used as the content of <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/>.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples">
+            <summary>
+            Gets the objects that are used directly as samples for certain actions.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects">
+            <summary>
+            Gets the objects that are serialized as samples by the supported formatters.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories">
+            <summary>
+            Gets factories for the objects that the supported formatters will serialize as samples. Processed in order,
+            stopping when the factory successfully returns a non-<see langref="null"/> object.
+            </summary>
+            <remarks>
+            Collection includes just <see cref="M:UplanServer.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)"/> initially. Use
+            <code>SampleObjectFactories.Insert(0, func)</code> to provide an override and
+            <code>SampleObjectFactories.Add(func)</code> to provide a fallback.</remarks>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.GetSampleRequests(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the request body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.GetSampleResponses(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Gets the response body samples for a given <see cref="T:System.Web.Http.Description.ApiDescription"/>.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.GetSample(System.Web.Http.Description.ApiDescription,UplanServer.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Gets the request or response body samples.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The samples keyed by media type.</returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.GetActionSample(System.String,System.String,System.Collections.Generic.IEnumerable{System.String},System.Type,System.Net.Http.Formatting.MediaTypeFormatter,System.Net.Http.Headers.MediaTypeHeaderValue,UplanServer.Areas.HelpPage.SampleDirection)">
+            <summary>
+            Search for samples that are provided directly through <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.ActionSamples"/>.
+            </summary>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="type">The CLR type.</param>
+            <param name="formatter">The formatter.</param>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or for a response.</param>
+            <returns>The sample that matches the parameters.</returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.GetSampleObject(System.Type)">
+            <summary>
+            Gets the sample object that will be serialized by the formatters. 
+            First, it will look at the <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.SampleObjects"/>. If no sample object is found, it will try to create
+            one using <see cref="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.DefaultSampleObjectFactory(UplanServer.Areas.HelpPage.HelpPageSampleGenerator,System.Type)"/> (which wraps an <see cref="T:UplanServer.Areas.HelpPage.ObjectGenerator"/>) and other
+            factories in <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.SampleObjectFactories"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>The sample object.</returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.ResolveHttpRequestMessageType(System.Web.Http.Description.ApiDescription)">
+            <summary>
+            Resolves the actual type of <see cref="T:System.Net.Http.ObjectContent`1"/> passed to the <see cref="T:System.Net.Http.HttpRequestMessage"/> in an action.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <returns>The type.</returns>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.ResolveType(System.Web.Http.Description.ApiDescription,System.String,System.String,System.Collections.Generic.IEnumerable{System.String},UplanServer.Areas.HelpPage.SampleDirection,System.Collections.ObjectModel.Collection{System.Net.Http.Formatting.MediaTypeFormatter}@)">
+            <summary>
+            Resolves the type of the action parameter or return value when <see cref="T:System.Net.Http.HttpRequestMessage"/> or <see cref="T:System.Net.Http.HttpResponseMessage"/> is used.
+            </summary>
+            <param name="api">The <see cref="T:System.Web.Http.Description.ApiDescription"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+            <param name="sampleDirection">The value indicating whether the sample is for a request or a response.</param>
+            <param name="formatters">The formatters.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleGenerator.WriteSampleObjectUsingFormatter(System.Net.Http.Formatting.MediaTypeFormatter,System.Object,System.Type,System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Writes the sample object using formatter.
+            </summary>
+            <param name="formatter">The formatter.</param>
+            <param name="value">The value.</param>
+            <param name="type">The type.</param>
+            <param name="mediaType">Type of the media.</param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.HelpPageSampleKey">
+            <summary>
+            This is used to identify the place where the sample should be applied.
+            </summary>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue)">
+            <summary>
+            Creates a new <see cref="T:UplanServer.Areas.HelpPage.HelpPageSampleKey"/> based on media type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,System.Type)">
+            <summary>
+            Creates a new <see cref="T:UplanServer.Areas.HelpPage.HelpPageSampleKey"/> based on media type and CLR type.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="type">The CLR type.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleKey.#ctor(UplanServer.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:UplanServer.Areas.HelpPage.HelpPageSampleKey"/> based on <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="sampleDirection">The <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.HelpPageSampleKey.#ctor(System.Net.Http.Headers.MediaTypeHeaderValue,UplanServer.Areas.HelpPage.SampleDirection,System.String,System.String,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Creates a new <see cref="T:UplanServer.Areas.HelpPage.HelpPageSampleKey"/> based on media type, <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>, controller name, action name and parameter names.
+            </summary>
+            <param name="mediaType">The media type.</param>
+            <param name="sampleDirection">The <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.</param>
+            <param name="controllerName">Name of the controller.</param>
+            <param name="actionName">Name of the action.</param>
+            <param name="parameterNames">The parameter names.</param>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.ControllerName">
+            <summary>
+            Gets the name of the controller.
+            </summary>
+            <value>
+            The name of the controller.
+            </value>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.ActionName">
+            <summary>
+            Gets the name of the action.
+            </summary>
+            <value>
+            The name of the action.
+            </value>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.MediaType">
+            <summary>
+            Gets the media type.
+            </summary>
+            <value>
+            The media type.
+            </value>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.ParameterNames">
+            <summary>
+            Gets the parameter names.
+            </summary>
+        </member>
+        <member name="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.SampleDirection">
+            <summary>
+            Gets the <see cref="P:UplanServer.Areas.HelpPage.HelpPageSampleKey.SampleDirection"/>.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.ImageSample">
+            <summary>
+            This represents an image sample on the help page. There's a display template named ImageSample associated with this class.
+            </summary>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.ImageSample.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UplanServer.Areas.HelpPage.ImageSample"/> class.
+            </summary>
+            <param name="src">The URL of an image.</param>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.InvalidSample">
+            <summary>
+            This represents an invalid sample on the help page. There's a display template named InvalidSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.ObjectGenerator">
+            <summary>
+            This class will create an object of a given type and populate it with sample data.
+            </summary>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.ObjectGenerator.GenerateObject(System.Type)">
+            <summary>
+            Generates an object for a given type. The type needs to be public, have a public default constructor and settable public properties/fields. Currently it supports the following types:
+            Simple types: <see cref="T:System.Int32"/>, <see cref="T:System.String"/>, <see cref="T:System.Enum"/>, <see cref="T:System.DateTime"/>, <see cref="T:System.Uri"/>, etc.
+            Complex types: POCO types.
+            Nullables: <see cref="T:System.Nullable`1"/>.
+            Arrays: arrays of simple types or complex types.
+            Key value pairs: <see cref="T:System.Collections.Generic.KeyValuePair`2"/>
+            Tuples: <see cref="T:System.Tuple`1"/>, <see cref="T:System.Tuple`2"/>, etc
+            Dictionaries: <see cref="T:System.Collections.Generic.IDictionary`2"/> or anything deriving from <see cref="T:System.Collections.Generic.IDictionary`2"/>.
+            Collections: <see cref="T:System.Collections.Generic.IList`1"/>, <see cref="T:System.Collections.Generic.IEnumerable`1"/>, <see cref="T:System.Collections.Generic.ICollection`1"/>, <see cref="T:System.Collections.IList"/>, <see cref="T:System.Collections.IEnumerable"/>, <see cref="T:System.Collections.ICollection"/> or anything deriving from <see cref="T:System.Collections.Generic.ICollection`1"/> or <see cref="T:System.Collections.IList"/>.
+            Queryables: <see cref="T:System.Linq.IQueryable"/>, <see cref="T:System.Linq.IQueryable`1"/>.
+            </summary>
+            <param name="type">The type.</param>
+            <returns>An object of the given type.</returns>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.SampleDirection">
+            <summary>
+            Indicates whether the sample is used for request or response
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.TextSample">
+            <summary>
+            This represents a preformatted text sample on the help page. There's a display template named TextSample associated with this class.
+            </summary>
+        </member>
+        <member name="T:UplanServer.Areas.HelpPage.XmlDocumentationProvider">
+            <summary>
+            A custom <see cref="T:System.Web.Http.Description.IDocumentationProvider"/> that reads the API documentation from an XML documentation file.
+            </summary>
+        </member>
+        <member name="M:UplanServer.Areas.HelpPage.XmlDocumentationProvider.#ctor(System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:UplanServer.Areas.HelpPage.XmlDocumentationProvider"/> class.
+            </summary>
+            <param name="documentPath">The physical path to XML document.</param>
+        </member>
+        <member name="M:UplanServer.HttpHelper.GetResponse(System.String)">
+            <summary>
+            get请求
+            </summary>
+            <param name="url"></param>
+            <returns></returns>       
+        </member>
+        <member name="M:UplanServer.HttpHelper.PostResponse(System.String,System.String)">
+            <summary>
+            post请求
+            </summary>
+            <param name="url"></param>
+            <param name="postData">post数据</param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.IPHelper">
+            <summary>
+            IP帮助类
+            </summary>
+        </member>
+        <member name="M:UplanServer.IPHelper.GetIP(System.Web.HttpRequest)">
+            <summary>
+            获取客户端IP
+            </summary>
+            <param name="req"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.ScoreHelper.GetVideo_LOAD_Score(System.Nullable{System.Int32},System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            加载速度评分
+            </summary>
+            <param name="iniTime"></param>
+            <param name="bufferTotalTime"></param>
+            <param name="totalTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.ScoreHelper.GetQoEHttpResponseScore(System.Int64)">
+            <summary>
+            HTTP响应时间评分
+            </summary>
+            <param name="responseRime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.Data2DbController.UploadQoER(PhoneInfo)">
+            <summary>
+            QoER数据入库
+            </summary>
+            <param name="pi"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.Data2DbController.UploadQoERForiOS(UplanServer.QoEReportIOSInfo)">
+            <summary>
+            QoER For iOS数据入库
+            </summary>
+            <param name="qoer"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.Data2DbController.UploadQoEVideo(UplanServer.QoEVideoTable)">
+            <summary>
+            QoE数据入库
+            </summary>
+            <param name="qoe"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.Controllers.DisplayPlatformController">
+            <summary>
+            展示平台接口
+            接口版本:1.0.0.0
+            更改者：梅子怀
+            更改时间:2019-05-09 10:00:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetDPIndexData(System.String)">
+            <summary>
+            获取首页数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.DoRefreshDPIndexData(System.String)">
+            <summary>
+            让后台立即刷新首页数据
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetQoEMoniterBaseData(System.String)">
+            <summary>
+            获取QoE模拟数据基础数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetQoEProvince">
+            <summary>
+            获取QoE有数据的省份
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetDetailQuota(System.Int32,System.Int32)">
+            <summary>
+            获取分析平台详细指标数据
+            </summary>
+            <param name="level">数据级别，1为国，2为省</param>
+            <param name="day">数据天数，如 1  7  30  180</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetPerformanceData">
+            <summary>
+            获取分析平台性能相关指标
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAQoEDetailQuotaTable(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            获取分析平台(AQoE)网络相关指标TOP列表
+            </summary>
+            <param name="level">级别，1国，2省，3市，4区</param>
+            <param name="day">时间粒度(天) 7 30 180</param>
+            <param name="levelName">级别地区名称，如 level=3 (市级别)，levelName=广州市</param>
+            <param name="quotaName">指标名称，rsrp,sinr,rtt,bufferInit,unStall</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAutoBusQoERData(System.String,System.String,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]获取QoER基数
+            </summary>
+            <param name="imei"></param>
+            <param name="startTime"></param>
+            <param name="endTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.AddAutoBus(UplanServer.SysAutoBusInfo,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]添加自动驾驶汽车模拟器
+            </summary>
+            <param name="auto"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAutoBus(System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]查询自动驾驶模拟器列表
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAutoBusQoERBaseData(System.Int32,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]查询自动驾驶模拟器对应QoER数据列表
+            </summary>
+            <param name="busId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.UpdateAutoBusInfo(UplanServer.SysAutoBusInfo,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]更新汽车信息
+            </summary>
+            <param name="auto"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.Get5GQuotaData">
+            <summary>
+            获取5G指标数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.Get5GAutoBusDetail(System.Int32)">
+            <summary>
+            获取5G自动驾驶汽车详细历史信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.Controllers.UniQoEController">
+            <summary>
+            UniQoE接口
+            接口版本:1.0.0.0
+            更改者：梅子怀
+            更改时间:2019-04-22 10:00:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.Login(System.String,System.String)">
+            <summary>
+            [APP]手机登录，获取AID
+            </summary>
+            <param name="phoneId">* 手机唯一识别号，android用imsi,iPhone用uuid</param>
+            <param name="system">操作系统，Android 或 iOS</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadQoERDataForiOS(UplanServer.QoEReportIOSInfo)">
+            <summary>
+            [APP]iOS终端上传QoER数据
+            </summary>
+            <param name="qoer">QoER 结构体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.GetQoEMission(System.String)">
+            <summary>
+            [APP]终端获取QoE自动监测任务
+            </summary>
+            <param name="aid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadQoEBlackPoint(UplanServer.QoEBlackPoint)">
+            <summary>
+            [APP]终端上传QoE黑点数据
+            </summary>
+            <param name="qoe"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadQoER(PhoneInfo)">
+            <summary>
+            [APP]终端上传QoER数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadException(UplanServer.AppExceptionInfo)">
+            <summary>
+            [APP]上传APP运行过程中生成的日志，多为重要错误日志
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.Controllers.UplanController">
+            <summary>
+            UPLAN项目接口
+            接口版本:1.0.1.1
+            更改者：梅子怀
+            更改时间:2019-04-22 10:00:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.Test">
+            <summary>
+            接口测试
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.Login(System.String,System.String)">
+            <summary>
+            用户登录
+            </summary>
+            <param name="usr">用户名</param>
+            <param name="pwd">密码</param>
+            <returns>带token的用户身份信息</returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.CreateQoEVideoDtGroup(UplanServer.QoEVideoDtGroup,System.String)">
+            <summary>
+            创建新QoE测试组
+            </summary>
+            <param name="data">QoEVideoDtGroup class</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetAllQoEVideoDtGroup(System.String)">
+            <summary>
+            获取所有QoE测试组
+            </summary>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.UpdateQoEVideoDtGroup(UplanServer.QoEVideoDtGroup,System.String)">
+            <summary>
+            更新QOE测试组
+            </summary>
+            <param name="data">QoEVideoDtGroup class</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.DeleteQoEVideoDtGroup(System.Int32,System.String)">
+            <summary>
+            删除QoE测试组
+            </summary>
+            <param name="id">主键id</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.CreateQoEVideoDtGroupMember(UplanServer.QoEVideoDtGroupMember,System.String)">
+            <summary>
+            创建新QoE测试组成员
+            </summary>
+            <param name="data">QoEVideoDtGroupMember</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetAllQoEVideoDtGroupMember(System.String)">
+            <summary>
+            获取所有QoE测试成员
+            </summary>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.UpdateQoEVideoDtGroupMember(UplanServer.QoEVideoDtGroupMember,System.String)">
+            <summary>
+            更新QoE测试组成员
+            </summary>
+            <param name="data">QoEVideoDtGroupMember</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.DeleteQoEVideoDtGroupMember(System.Int32,System.String)">
+            <summary>
+            删除QoE测试组成员
+            </summary>
+            <param name="id">主键id</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.QoEVideoDtGroupGetMembers(System.String,System.String)">
+            <summary>
+            QoE测试组获取组内成员，用于实时监控界面
+            </summary>
+            <param name="groupId">测试组Id</param>
+            <param name="token">token</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtGroupMemberTodayGisData(System.String,System.String)">
+            <summary>
+            QoE测试组成员当天QoE Gis数据，用于实时监控界面地理化呈现
+            </summary>
+            <param name="imsi"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtCollectCitys">
+            <summary>
+            查询QoE测试组汇总统计城市列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtCollectMembers(System.DateTime,System.DateTime,System.String)">
+            <summary>
+            根据时间和城市，查询有数据的QoE测试成员
+            </summary>
+            <param name="startTime">起始时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="endTime">终止时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="city">城市，全部用'all'表示，默认all</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEVideoDtCollectData(System.DateTime,System.DateTime,System.String,System.String,System.Int32)">
+            <summary>
+            查询QoE测试组汇总统计数据
+            </summary>
+            <param name="startTime">起始时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="endTime">终止时间，精确到秒，格式yyyy-MM-dd HH:mm:ss</param>
+            <param name="city">城市，全部用'all'表示，默认all</param>
+            <param name="memberName">测试人员，全部用'all'表示，默认all</param>
+            <param name="dataType">返回数据类型，0为统计数据，1为详细数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetOnlineInfo">
+            <summary>
+            获取在线设备，包含在线QoE和QoER在线人数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoERBlackPoints(System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            获取QoER网络黑点
+            </summary>
+            <param name="city">城市</param>
+            <param name="carrier">运营商</param>
+            <param name="startTime">起始时间</param>
+            <param name="endTime">结束时间</param>
+            <param name="getCount">查询数据量</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.AddQoEMission(UplanServer.QoEMissionInfo,System.String)">
+            <summary>
+            新增QoE自动任务
+            </summary>
+            <param name="qoemission">"QoE任务参数</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEMission(System.String)">
+            <summary>
+            获取QoE自动任务列表
+            </summary>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.SetQoEMissionStatus(System.Int32,System.Int32,System.String)">
+            <summary>
+            修改QoE自动任务状态
+            </summary>
+            <param name="id">QoE任务主键</param>
+            <param name="code">-1为允许执行，-2为暂停执行</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.DeleteQoEMission(System.Int32,System.String)">
+            <summary>
+            删除QoE自动任务
+            </summary>
+            <param name="id">QoE任务主键</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetUrlContentLength(System.String)">
+            <summary>
+            获取URL资源文件大小
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+        <member name="T:UplanServer.Controllers.WorkLogController">
+            <summary>
+            工作日志WorkLog接口
+            接口版本:1.0.0.0
+            更改者：梅子怀
+            更改时间:2019-04-24 10:00:00
+            </summary>
+        </member>
+        <member name="M:UplanServer.Controllers.WorkLogController.GetProjectFiles(System.String,System.String,System.String)">
+            <summary>
+            获取项目文件列表
+            </summary>
+            <param name="account">用户名</param>
+            <param name="startTime">入库开始时间</param>
+            <param name="endTime">入库结束时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.WorkLogController.UploadProjectFile(UplanServer.ProjectFileInfo)">
+            <summary>
+            上传项目文件
+            </summary>
+            <param name="pinfo">项目文件</param>
+            <returns></returns>
+        </member>
+        <member name="F:UplanServer.Module.getFileNameLock">
+             public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
+        </member>
+        <member name="F:UplanServer.RedisHelper.ConnectionString">
+            <summary>
+            连接字符串，一般写在配置文件里面
+            </summary>
+        </member>
+        <member name="F:UplanServer.RedisHelper.locker">
+            <summary>
+            上锁，单例模式
+            </summary>
+        </member>
+        <member name="F:UplanServer.RedisHelper._connection">
+            <summary>
+            连接对象
+            </summary>
+        </member>
+        <member name="F:UplanServer.RedisHelper._db">
+            <summary>
+            数据库
+            </summary>
+        </member>
+        <member name="M:UplanServer.RedisHelper.GetConnection">
+            <summary>
+            获取连接
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.GetDatabase(System.Nullable{System.Int32})">
+            <summary>
+            获取数据库
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Set(System.String,System.Object,System.Nullable{System.Int32})">
+            <summary>
+            设置
+            </summary>
+            <param name="key">键</param>
+            <param name="data">值</param>
+            <param name="cacheTime">过期时间</param>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Get``1(System.String)">
+            <summary>
+            根据键获取值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Get(System.String)">
+            <summary>
+            根据键获取值
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.IsExit(System.String)">
+            <summary>
+            判断键是否已存在
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.IsSet(System.String)">
+            <summary>
+            判断是否已经设置
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Serialize(System.Object)">
+            <summary>
+            序列化
+            </summary>
+            <param name="data"></param>
+            <returns>byte[]</returns>
+        </member>
+        <member name="M:UplanServer.RedisHelper.Deserialize``1(System.Byte[])">
+            <summary>
+            反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="serializedObject"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.QoEVideoTable.Decode">
+            <summary>
+            数据解密，AES算法，目前主要是经纬度解密
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.ID">
+            <summary>
+            - 主键ID
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.DateTime">
+            <summary>
+            - 入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.AID">
+            <summary>
+            * AID
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.OSType">
+            <summary>
+            * 操作系统类型，ios/android
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.AppName">
+            <summary>
+            * App名称，可为包名
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.SDKName">
+            <summary>
+            SDK名称(如无SDK，可忽略)
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.OSVersion">
+            <summary>
+            * 操作系统版本号
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.AppVersion">
+            <summary>
+            * APP版本号，VersionName
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.SDKVersion">
+            <summary>
+            SDK版本号(如无SDK，可忽略)
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.TAG">
+            <summary>
+            * 错误日志的TAG，用于过滤
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.ExpLevel">
+            <summary>
+            错误日志的等级 0-9 默认 0
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.Body">
+            <summary>
+            * 错误日志的主体内容
+            </summary>
+        </member>
+        <member name="T:UplanServer.NormalResponse">
+            <summary>
+            一般返回格式,JSON格式
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.result">
+            <summary>
+            处理结果，true:成功，false:失败
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.msg">
+            <summary>
+            处理消息或处理过程
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.errmsg">
+            <summary>
+            错误信息
+            </summary>
+        </member>
+        <member name="P:UplanServer.NormalResponse.data">
+            <summary>
+            数据，可能是string或者json或者json数组
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.id">
+            <summary>
+            - 主键
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.DateTime">
+            <summary>
+            - 入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Day">
+            <summary>
+            - 入库日期
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Account">
+            <summary>
+            * 用户账号
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.FileName">
+            <summary>
+            * 文件名
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.FileExt">
+            <summary>
+            - 文件扩展名(后台自动识别)
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Type">
+            <summary>
+            * 文件分类
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Mark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.IsPublic">
+            <summary>
+            * 是否公开 0否 / 1是
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.Url">
+            <summary>
+            - 文件URL(上传后后台生成)
+            </summary>
+        </member>
+        <member name="P:UplanServer.ProjectFileInfo.FileBase64">
+            <summary>
+            * 文件二进制数据，base64传输
+            </summary>
+        </member>
+        <member name="T:UplanServer.QoEReportIOSInfo">
+            <summary>
+            iOS版本 QoER数据结构
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.ID">
+            <summary>
+            [-]主键ID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.DateTime">
+            <summary>
+            [-]入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.AID">
+            <summary>
+            [*]系统 AID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.UUID">
+            <summary>
+            [-]UUID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.PhoneModel">
+            <summary>
+            [-]手机型号
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.NetType">
+            <summary>
+            网络类型
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Carrier">
+            <summary>
+            [*]运营商
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Lon">
+            <summary>
+            [*]经度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Lat">
+            <summary>
+            [*]纬度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.BDLon">
+            <summary>
+            [-]百度经度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.BDLat">
+            <summary>
+            [-]百度纬度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.GDLon">
+            <summary>
+            [-]高德经度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.GDLat">
+            <summary>
+            [-]高德纬度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Province">
+            <summary>
+            [-]省
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.City">
+            <summary>
+            [-]市
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.District">
+            <summary>
+            [-]区
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Address">
+            <summary>
+            [-]详细地址
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.GPSSpeed">
+            <summary>
+            [*]移动速度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.XZYSpeed">
+            <summary>
+            [*]三轴加速度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.SignalStrength">
+            <summary>
+            [*]信号强度
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.BusinessType">
+            <summary>
+            [*]业务类型
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.PhoneOS">
+            <summary>
+            [*]系统版本
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.APKVersion">
+            <summary>
+            [*]APP版本号
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.SDKVersion">
+            <summary>
+            [*]SDK环境版本号
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.APKName">
+            <summary>
+            [*]APP名称， 例如：UniQoE 或者 10086
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Ping_Avg_Rtt">
+            <summary>
+            [*]Ping时延
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Http_Response_Time">
+            <summary>
+            [*]HTTP响应时延
+            </summary>
+        </member>
+        <member name="M:UplanServer.QoEReportIOSInfo.Decode">
+            <summary>
+            数据解密，AES算法，目前主要是经纬度解密
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.ID">
+            <summary>
+            - 数据库主键ID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.DATETIME">
+            <summary>
+            - 入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.AID">
+            <summary>
+            * 终端AID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.STARTTIME">
+            <summary>
+            * 任务开始时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.ENDTIME">
+            <summary>
+            * 任务结束时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.INTERVAL">
+            <summary>
+            * 任务执行时间间隔，单位秒，建议设置默认0
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.STATUS">
+            <summary>
+            - 任务状态
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.ISCLOSED">
+            <summary>
+            - 任务是否关闭 -1 未执行  0  正在执行   1 执行完毕
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.TYPE">
+            <summary>
+            * 任务类型 请设置为"QoEVideo"
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.MissionBody">
+            <summary>
+            * 任务详细字段
+            </summary>
+        </member>
+        <member name="T:UplanServer.QoEMissionBody">
+            <summary>
+            QoE自动任务详细字段
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionBody.VideoType">
+            <summary>
+            * 请求视频类型 全部/电影/小视频/小品...
+            </summary>
+        </member>
+        <member name="T:UplanServer.QoEVideoDtGroup">
+            <summary>
+            QOE Video测试组
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.id">
+            <summary>
+            -主键，数据库自增
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.dateTime">
+            <summary>
+            -组创建时间 
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.groupId">
+            <summary>
+            *组ID
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.city">
+            <summary>
+            *城市  以 '市' 结尾
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.manager">
+            <summary>
+            管理员/负责人/项目经理
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.manager_tel">
+            <summary>
+            管理者电话
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.manager_email">
+            <summary>
+            管理者邮箱
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.status">
+            <summary>
+            -组状态   正常   异常  
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.lastDateTime">
+            <summary>
+            -最后一次组员上传qoe视频数据时间
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.lastDay">
+            <summary>
+            -最后一次组员上传qoe视频数据日期
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroup.isWatching">
+            <summary>
+            设置是否参与监控
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.id">
+            <summary>
+            -主键
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.AID">
+            <summary>
+            *用户ID
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.dateTime">
+            <summary>
+            -注册时间
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.groupId">
+            <summary>
+            *组id
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.name">
+            <summary>
+            *名字
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.tel">
+            <summary>
+            电话
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.imei">
+            <summary>
+            -imei
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.imsi">
+            <summary>
+            -imsi
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.carrier">
+            <summary>
+            -运营商
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.status">
+            <summary>
+            -状态   正常   异常
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastDateTime">
+            <summary>
+            -最后一次上传qoe视频数据时间 yyyy-MM-dd HH:mm:ss
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastDay">
+            <summary>
+            -最后一次上传qoe视频数据日期 yyyy-MM-dd
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_total_time">
+            <summary>
+            -累计qoe数据量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_total_E_time">
+            <summary>
+            -累计qoe打分量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_today_time">
+            <summary>
+            -今日累计qoe数据量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_today_E_time">
+            <summary>
+            -今日累计qoe打分量
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_vmos_match_total">
+            <summary>
+            -累计打分匹配度
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.qoe_vmos_match_today">
+            <summary>
+            -今日打分匹配度
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastPlayVideoUrl">
+            <summary>
+            -最后一次播放的视频地址
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.unEvmosCount">
+            <summary>
+            -连续未打分次数
+            </summary>
+        </member>
+        <member name="F:UplanServer.QoEVideoDtGroupMember.lastAskVideoSource">
+            <summary>
+            最后一次请求视频资源的信息
+            </summary>
+        </member>
+        <member name="M:PhoneInfo.Decode">
+            <summary>
+            数据解密，AES算法，目前主要是经纬度解密
+            </summary>
+        </member>
+    </members>
+</doc>

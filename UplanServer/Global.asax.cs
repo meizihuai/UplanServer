@@ -25,10 +25,10 @@ namespace UplanServer
             //GlobalConfiguration.Configuration.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("json", "true", "application/json"));
             Module.Init();
             LoopWorker.Start();
+            //core 
         }
         protected void Application_End()
-        {
-           
+        {           
             LoopWorker.Stop();
         }
     }

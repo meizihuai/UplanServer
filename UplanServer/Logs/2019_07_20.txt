@@ -1,0 +1,34 @@
+[07:17:16] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[07:17:16] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[07:17:16] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[07:17:16] <LoopWorker>    =>线程[QoER数据监控]已启动
+[07:20:20] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[07:22:53] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[07:22:53] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[07:22:53] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[07:22:53] <LoopWorker>    =>线程[QoER数据监控]已启动
+[07:22:58] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[07:25:28] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[07:25:28] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[07:25:28] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[07:25:28] <LoopWorker>    =>线程[QoER数据监控]已启动
+[07:28:12] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[07:28:16] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[07:28:16] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[07:28:16] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[07:28:16] <LoopWorker>    =>线程[QoER数据监控]已启动
+[07:28:23] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[07:28:26] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[07:28:26] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[07:28:26] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[07:28:26] <LoopWorker>    =>线程[QoER数据监控]已启动
+[07:29:06] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[07:29:09] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[07:29:09] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[07:29:09] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[07:29:09] <LoopWorker>    =>线程[QoER数据监控]已启动
+[07:29:55] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[19:27:01] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[19:27:01] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[19:27:01] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[19:27:01] <LoopWorker>    =>线程[QoER数据监控]已启动

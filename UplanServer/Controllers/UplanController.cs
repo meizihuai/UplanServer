@@ -42,7 +42,7 @@ namespace UplanServer.Controllers
         /// <param name="usr">用户名</param>
         /// <param name="pwd">密码</param>
         /// <returns>带token的用户身份信息</returns>
-       [HttpGet]
+       [HttpGet] 
        public NormalResponse Login(string usr,string pwd)
         {
             try
@@ -53,6 +53,11 @@ namespace UplanServer.Controllers
                     return new NormalResponse(false, "用户名为空");
                 if (passWord == "")
                     return new NormalResponse(false, "密码为空");
+
+                //SQL注入
+                // usr= ' or 1=1 --  
+                // select password,token,userName,power,state from user_Account where userName='' or 1=1 -- and pwd=
+   
                 string sql = "select password,token,userName,power,state from user_Account where userName='" + account + "' and state<>0";
                 DataTable dt = ora.SqlGetDT(sql);
                 List<string> list = new List<string>();
@@ -352,8 +357,7 @@ and dateTime between '2018-04-01 00:00:00' and '2019-04-02 00:00:00' and city is
         {
             
             var onlineQoER = db.DeviceTable.Where(a => a.IsOnline == 1).Select(a=>new { a.AID,a.LastDateTime}).ToList();
-            var onlineQoE = db.UserBPTable.Where(a => a.IsPlayingVideo == 1).Select(a => new { a.AID ,a.LastAskVideoTime}).ToList();
-          
+            var onlineQoE = db.UserBPTable.Where(a => a.IsPlayingVideo == 1).Select(a => new { a.AID ,a.LastAskVideoTime}).ToList();       
             Dictionary<string, object> dic = new Dictionary<string, object>();
             dic.Add("OnlineQoERCount", onlineQoER.Count);
             dic.Add("OnlineQoECount", onlineQoE.Count);
@@ -408,7 +412,7 @@ and dateTime between '2018-04-01 00:00:00' and '2019-04-02 00:00:00' and city is
                 if (getCount > 0) query = query.Take(getCount);
                 var list = query.Select(a => new
                 {
-                    a.id,
+                    a.ID,
                     a.DateTime,
                     a.City,
                     a.Carrier,
@@ -481,6 +485,150 @@ and dateTime between '2018-04-01 00:00:00' and '2019-04-02 00:00:00' and city is
             {
                 return new NormalResponse(false,e.ToString());
             }        
+        }
+        /// <summary>
+        /// 新增QoE自动任务
+        /// </summary>
+        /// <param name="qoemission">"QoE任务参数</param>
+        /// <param name="token">token,需要管理员权限</param>
+        /// <returns></returns>
+        [HttpPost]
+        public NormalResponse AddQoEMission(QoEMissionInfo qoemission,string token)
+        {
+            try
+            {
+                if (qoemission == null) return new NormalResponse(false, "QoE任务参数不可为空");
+                if (qoemission.MissionBody == null) return new NormalResponse(false, "QoE任务详细字段不可为空");
+                if (string.IsNullOrEmpty(qoemission.MissionBody.VideoType)) return new NormalResponse(false, "QoE任务详细字段中，VideoType不可为空");
+                if (!Module.CheckAdminPower(token)) return new NormalResponse(false, "提交失败,您的权限不足");
+                string aid = qoemission.AID;
+                var aidDevice = db.DeviceTable.Where(a => a.AID == aid).FirstOrDefault();
+                if (aidDevice == null) return new NormalResponse(false, "该AID未注册");
+                DateTime now = DateTime.Now;
+                DateTime startTime = now;
+                DateTime endTime = now;
+                try
+                {
+                    startTime = DateTime.Parse(qoemission.STARTTIME);
+                    endTime = DateTime.Parse(qoemission.ENDTIME);
+                    if (endTime <= now.AddMinutes(1)) return new NormalResponse(false, $"结束时间不允许小于服务器时间后1分钟，服务器时间:{now.ToString("yyyy-MM-dd HH:mm:ss")}");
+                    if (startTime >= endTime) return new NormalResponse(false, "起始时间不可等于结束时间");
+                    qoemission.STARTTIME = startTime.ToString("yyyy-MM-dd HH:mm:ss");
+                    qoemission.ENDTIME = endTime.ToString("yyyy-MM-dd HH:mm:ss");
+                }
+                catch (Exception e)
+                {
+                    return new NormalResponse(false, "起始时间或结束时间格式非法");
+                }
+                var rt = db.QoEMissionTable.Where(a => a.AID == aid).FirstOrDefault();
+                if (rt != null)
+                {
+                    db.Entry(rt).State = EntityState.Deleted;
+                }
+                qoemission.DATETIME = now.ToString("yyyy-MM-dd HH:mm:ss");
+                qoemission.STATUS = "未开启";
+                qoemission.ISCLOSED = -1;
+                qoemission.MISSIONBODY = JsonConvert.SerializeObject(qoemission.MissionBody);
+                db.QoEMissionTable.Add(qoemission);
+                db.SaveChanges();
+                return new NormalResponse(true, "添加成功");
+            }
+            catch (Exception e)
+            {
+                return new NormalResponse(false, e.ToString());
+            }
+        }
+        /// <summary>
+        /// 获取QoE自动任务列表
+        /// </summary>
+        /// <param name="token">token,需要管理员权限</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetQoEMission(string token)
+        {
+            try
+            {
+                if (!Module.CheckAdminPower(token)) return new NormalResponse(false, "提交失败,您的权限不足");
+                var list = db.QoEMissionTable.ToList();
+                return new NormalResponse(true, "", "", list);
+            }
+            catch (Exception e)
+            {
+                return new NormalResponse(false, e.ToString());
+            }
+        }
+        /// <summary>
+        /// 修改QoE自动任务状态
+        /// </summary>
+        /// <param name="id">QoE任务主键</param>
+        /// <param name="code">-1为允许执行，-2为暂停执行</param>
+        /// <param name="token">token,需要管理员权限</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse SetQoEMissionStatus(int id,int code,string token="")
+        {
+            try
+            {
+                if (!Module.CheckAdminPower(token)) return new NormalResponse(false, "提交失败,您的权限不足");
+                var rt = db.QoEMissionTable.Find(id);
+                if (rt == null) return new NormalResponse(false, "没有该任务");
+                if(rt.ISCLOSED==1)return new NormalResponse(false, "该任务已执行完毕");
+                rt.ISCLOSED = code;  //-1为允许执行，-2为暂停执行
+                db.Update(rt, a => a.ISCLOSED);
+                return new NormalResponse(true, "修改成功", "", "");
+            }
+            catch (Exception e)
+            {
+                return new NormalResponse(false, e.ToString());
+            }
+        }
+        /// <summary>
+        /// 删除QoE自动任务
+        /// </summary>
+        /// <param name="id">QoE任务主键</param>
+        /// <param name="token">token,需要管理员权限</param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse DeleteQoEMission(int id,string token = "")
+        {
+            try
+            {
+                if (!Module.CheckAdminPower(token)) return new NormalResponse(false, "提交失败,您的权限不足");
+                var rt = db.QoEMissionTable.Find(id);
+                if (rt == null) return new NormalResponse(false, "没有该任务");
+                db.Entry(rt).State = EntityState.Deleted;
+                db.SaveChanges();
+                return new NormalResponse(true, "删除成功", "", "");
+            }
+            catch (Exception e)
+            {
+                return new NormalResponse(false, e.ToString());
+            }
+        }
+
+        /// <summary>
+        /// 获取URL资源文件大小
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public NormalResponse GetUrlContentLength(string url)
+        {
+            try
+            {
+                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+                req.Method = "HEAD";
+                req.Timeout = 3000;
+                req.ReadWriteTimeout = 3000;
+                HttpWebResponse res = (HttpWebResponse)req.GetResponse();
+                long length = res.ContentLength;
+                return new NormalResponse(true, "","", length);
+            }
+            catch (Exception e)
+            {
+                return new NormalResponse(true, "",e.Message , 0);
+            }
+           
         }
     }
 }

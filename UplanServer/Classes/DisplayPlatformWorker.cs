@@ -142,8 +142,9 @@ namespace UplanServer
                     isWorking = false;
                     sp.Stop();
                     string time = sp.Elapsed.ToString();
-                    LogHelper.Log("DisplayPlatformWorker本次任务结束,耗时:" + time, TAG);
-                    rd.Set(Module.DisplayPlatform_DPIndexInfo, dp);
+                    bool isSaveSuccess=   rd.Set(Module.DisplayPlatform_DPIndexInfo, dp);
+                    LogHelper.Log($"DisplayPlatformWorker本次任务结束,保存结果={isSaveSuccess},耗时:" + time, TAG);
+                  
                 }
                 catch (Exception e)
                 {
@@ -588,12 +589,12 @@ namespace UplanServer
 
         }
 
-        private static int IntNull2Double(int? d)
+        public static int IntNull2Double(int? d)
         {
             if (d == null) return 0;
             return (int)d;
         }
-        private static double DoubleNull2Double(double? d, int deci = 0)
+        public static double DoubleNull2Double(double? d, int deci = 0)
         {
             if (d == null) return 0;
             double rt = (double)d;
@@ -742,9 +743,9 @@ namespace UplanServer
         {
             if (LoopWorker.isNeedStop) return;
             NormalResponse np = null;
-            np=GetDetailQuota(1, 0);
+            np=GetDetailQuota(1, 5);
             if (np.result) Module.redisHelper.Set(string.Format(Module.DisplayPlatform_DetailQuota, 1, 0), np);
-            np= GetDetailQuota(1, 6);
+            np= GetDetailQuota(1, 10);
             if (np.result) Module.redisHelper.Set(string.Format(Module.DisplayPlatform_DetailQuota, 1, 6), np);
             np =GetDetailQuota(1, 29);
             if (np.result) Module.redisHelper.Set(string.Format(Module.DisplayPlatform_DetailQuota, 1, 29), np);
@@ -833,8 +834,17 @@ namespace UplanServer
                 {
                     globalExp = globalExp.And(a => a.PROVINCE == provinceName);
                 }
-                var rt = db.QoEVideoTable.Where(globalExp.And(a => a.PROVINCE != "上海市" && a.PROVINCE != "山东省" && a.PROVINCE != "宁夏回族自治区" 
-                && a.PROVINCE != "甘肃省" && a.PROVINCE != "黑龙江省"));   
+                List<string> unUseList = new List<string>();
+                unUseList.Add("上海市");
+                unUseList.Add("山东省");
+                unUseList.Add("宁夏回族自治区");
+                unUseList.Add("甘肃省");
+                unUseList.Add("黑龙江省");
+                unUseList.Add("四川省");
+                unUseList.Add("青海省");
+                //var rt = db.QoEVideoTable.Where(globalExp.And(a => a.PROVINCE != "上海市" && a.PROVINCE != "山东省" && a.PROVINCE != "宁夏回族自治区" 
+                //&& a.PROVINCE != "甘肃省" && a.PROVINCE != "黑龙江省" && a.PROVINCE != "四川省"));
+                var rt = db.QoEVideoTable.Where(globalExp.And(a => !unUseList.Contains(a.PROVINCE)));
                 DetailQuota detailQuota = new DetailQuota();
                 if(rt==null) return new NormalResponse(false, "");
                 int sumCount = rt.Count();
@@ -1029,13 +1039,13 @@ namespace UplanServer
                 DateTime now = DateTime.Now;
                 PerformanceData pdata = new PerformanceData();
                 List<PerformanceInfo> performancelist = new List<PerformanceInfo>();
-                performancelist.Add(new PerformanceInfo(now.AddDays(-6).ToString("yyyy-MM-dd"), 99.86, 0.08, 12862.63, -105));
-                performancelist.Add(new PerformanceInfo(now.AddDays(-5).ToString("yyyy-MM-dd"), 99.92, 0.06, 14953.45, -102));
-                performancelist.Add(new PerformanceInfo(now.AddDays(-4).ToString("yyyy-MM-dd"), 99.88, 0.02, 11363.32, -116));
-                performancelist.Add(new PerformanceInfo(now.AddDays(-3).ToString("yyyy-MM-dd"), 99.95, 0.05, 12131.01, -110));
-                performancelist.Add(new PerformanceInfo(now.AddDays(-2).ToString("yyyy-MM-dd"), 99.98, 0.01, 10156.56, -105));
-                performancelist.Add(new PerformanceInfo(now.AddDays(-1).ToString("yyyy-MM-dd"), 99.93, 0.02, 10293.41, -112));
-                performancelist.Add(new PerformanceInfo(now.AddDays(0).ToString("yyyy-MM-dd"),
+                performancelist.Add(new PerformanceInfo(now.AddDays(-7).ToString("yyyy-MM-dd"), 99.86, 0.08, 12862.63, -105));
+                performancelist.Add(new PerformanceInfo(now.AddDays(-6).ToString("yyyy-MM-dd"), 99.92, 0.06, 14953.45, -102));
+                performancelist.Add(new PerformanceInfo(now.AddDays(-5).ToString("yyyy-MM-dd"), 99.88, 0.02, 11363.32, -116));
+                performancelist.Add(new PerformanceInfo(now.AddDays(-4).ToString("yyyy-MM-dd"), 99.95, 0.05, 12131.01, -110));
+                performancelist.Add(new PerformanceInfo(now.AddDays(-3).ToString("yyyy-MM-dd"), 99.98, 0.01, 10156.56, -105));
+                performancelist.Add(new PerformanceInfo(now.AddDays(-2).ToString("yyyy-MM-dd"), 99.93, 0.02, 10293.41, -112));
+                performancelist.Add(new PerformanceInfo(now.AddDays(-1).ToString("yyyy-MM-dd"),
                     GetRandDouble(99.86, 99.98),
                     GetRandDouble(0.02, 0.08),
                     todayFlow,
@@ -1048,29 +1058,30 @@ namespace UplanServer
                 stationSourcelist.Add(new StationSource("梅州市", 10693, 32076, 31456, 36, 18, 953.86, 45, 18, 1596, 45));
                 stationSourcelist.Add(new StationSource("潮州市", 10856, 44396, 40153, 59, 55, 965.63, 39,25, 1359,36));
                 pdata.stationSourcelist = stationSourcelist;
-                pdata.connectTopList.Add(new TopInfo("2019-05-16 15:00:00", "34372_11",80.23));
-                pdata.connectTopList.Add(new TopInfo("2019-05-16 15:00:00", "675794_154",81.36));
-                pdata.connectTopList.Add(new TopInfo("2019-05-16 15:00:00", "316761_25", 82.38));
-                pdata.connectTopList.Add(new TopInfo("2019-05-16 15:00:00", "8388607_255",82.41));
-                pdata.connectTopList.Add(new TopInfo("2019-05-16 15:00:00", "317986_71", 83.51));
+                string nowDay = now.AddDays(-1).ToString("yyyy-MM-dd");
+                pdata.connectTopList.Add(new TopInfo(nowDay, "34372_11",80.23));
+                pdata.connectTopList.Add(new TopInfo(nowDay, "675794_154",81.36));
+                pdata.connectTopList.Add(new TopInfo(nowDay, "316761_25", 82.38));
+                pdata.connectTopList.Add(new TopInfo(nowDay, "8388607_255",82.41));
+                pdata.connectTopList.Add(new TopInfo(nowDay, "317986_71", 83.51));
 
-                pdata.disturbToplist.Add(new TopInfo("2019-05-16 15:00:00", "8388607_255", -78));
-                pdata.disturbToplist.Add(new TopInfo("2019-05-16 15:00:00", "525064_6", -79));
-                pdata.disturbToplist.Add(new TopInfo("2019-05-16 15:00:00", "533448_7", -81));
-                pdata.disturbToplist.Add(new TopInfo("2019-05-16 15:00:00", "524599_5",-83));
-                pdata.disturbToplist.Add(new TopInfo("2019-05-16 15:00:00", "545519_115", -85));
+                pdata.disturbToplist.Add(new TopInfo(nowDay, "8388607_255", -78));
+                pdata.disturbToplist.Add(new TopInfo(nowDay, "525064_6", -79));
+                pdata.disturbToplist.Add(new TopInfo(nowDay, "533448_7", -81));
+                pdata.disturbToplist.Add(new TopInfo(nowDay, "524599_5",-83));
+                pdata.disturbToplist.Add(new TopInfo(nowDay, "545519_115", -85));
 
-                pdata.dropToplist.Add(new TopInfo("2019-05-16 15:00:00", "120598_2", 12.23));
-                pdata.dropToplist.Add(new TopInfo("2019-05-16 15:00:00", "620946_11", 11.25));
-                pdata.dropToplist.Add(new TopInfo("2019-05-16 15:00:00", "194053_141",10.75));
-                pdata.dropToplist.Add(new TopInfo("2019-05-16 15:00:00", "353014_13", 9.56));
-                pdata.dropToplist.Add(new TopInfo("2019-05-16 15:00:00", "913076_12",9.43));
+                pdata.dropToplist.Add(new TopInfo(nowDay, "120598_2", 12.23));
+                pdata.dropToplist.Add(new TopInfo(nowDay, "620946_11", 11.25));
+                pdata.dropToplist.Add(new TopInfo(nowDay, "194053_141",10.75));
+                pdata.dropToplist.Add(new TopInfo(nowDay, "353014_13", 9.56));
+                pdata.dropToplist.Add(new TopInfo(nowDay, "913076_12",9.43));
 
-                pdata.jamToplist.Add(new TopInfo("2019-05-16 15:00:00", "120598_2", 12));
-                pdata.jamToplist.Add(new TopInfo("2019-05-16 15:00:00", "620946_11", 10));
-                pdata.jamToplist.Add(new TopInfo("2019-05-16 15:00:00", "194053_141", 9));
-                pdata.jamToplist.Add(new TopInfo("2019-05-16 15:00:00", "353014_13", 8));
-                pdata.jamToplist.Add(new TopInfo("2019-05-16 15:00:00", "913076_12", 6));
+                pdata.jamToplist.Add(new TopInfo(nowDay, "120598_2", 12));
+                pdata.jamToplist.Add(new TopInfo(nowDay, "620946_11", 10));
+                pdata.jamToplist.Add(new TopInfo(nowDay, "194053_141", 9));
+                pdata.jamToplist.Add(new TopInfo(nowDay, "353014_13", 8));
+                pdata.jamToplist.Add(new TopInfo(nowDay, "913076_12", 6));
 
 
                 return new NormalResponse(true, "","", pdata);
@@ -1080,14 +1091,14 @@ namespace UplanServer
                 return new NormalResponse(false, e.ToString());
             }
         }
-        private static double GetRandDouble(double min,double max)
+        public static double GetRandDouble(double min,double max)
         {
             Guid temp = Guid.NewGuid();
             int guidseed = BitConverter.ToInt32(temp.ToByteArray(), 0);
             Random r = new Random(guidseed);
             return Math.Round((r.NextDouble() * (max - min) + min), 2);
         }
-        private static double GetRandInt(int min, int max)
+        public static double GetRandInt(int min, int max)
         {
             Guid temp = Guid.NewGuid();
             int guidseed = BitConverter.ToInt32(temp.ToByteArray(), 0);

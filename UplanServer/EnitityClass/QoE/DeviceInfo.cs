@@ -10,7 +10,7 @@ namespace UplanServer
     public class DeviceInfo
     {
         [Column("ID")]
-        public int id { get; set; }
+        public int ID { get; set; }
         [Column("DATETIME")]
         public string DateTime { get; set; }
         [Column("AID")]
@@ -59,6 +59,8 @@ namespace UplanServer
         public string SysVersion { get; set; }
         [Column("UUID")]
         public string UUID { get; set; }
+        [Column("RUNSCORE")]
+        public double? RunScore { get; set; }
     }
 
 }

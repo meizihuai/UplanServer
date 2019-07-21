@@ -16,15 +16,29 @@ namespace UplanServer
         public static OracleHelper ora = new OracleHelper(WebConfigurationManager.AppSettings["oraHelperCfg"]);
         public static string redisConnstring = WebConfigurationManager.AppSettings["redisConnstring"];
         public static RedisHelper redisHelper = RedisHelper.GetRedisHelper();
+        public static IRedisHelper oracleCacheHelper = new OracleCacheHelper();
         ///  public static OracleHelper ora = new OracleHelper("111.53.74.132", 1521, "oss", "uplan", "Smart9080");
         public static object getFileNameLock = new object();
         public static Dictionary<string, string> phoneModelDik = new Dictionary<string, string>();
         public static readonly string DisplayPlatform_DPIndexInfo = "DisplayPlatform-DPIndexInfo";
         public static readonly string DisplayPlatform_DetailQuota = "DisplayPlatform-DetailQuota-{0}-{1}";
+        public static ILocationService LocationService = new LocationService();
+        public static AppSettingInfo AppSetting;
         public static void Init()
         {
             phoneModelDik.Add("xiaomi", "小米");
             phoneModelDik.Add("HONOR", "华为");
+
+            AppSetting = new AppSettingInfo()
+            {
+                MQ_HostName = WebConfigurationManager.AppSettings["MQ_HostName"],
+                MQ_UserName = WebConfigurationManager.AppSettings["MQ_UserName"],
+                MQ_Password = WebConfigurationManager.AppSettings["MQ_Password"],
+                MQ_Queue_QoER2DB= WebConfigurationManager.AppSettings["MQ_Queue_QoER2DB"],
+                MQ_Queue_QoERForiOS2DB = WebConfigurationManager.AppSettings["MQ_Queue_QoERForiOS2DB"],
+                MQ_Queue_QoE2DB = WebConfigurationManager.AppSettings["MQ_Queue_QoE2DB"]
+            };
+
         }
         public static string Str2Base64(string str)
         {
@@ -68,6 +82,19 @@ namespace UplanServer
             string str = GetUsrByToken(token);
             if (str == "")
                 return false;
+            return true;
+        }
+        public static bool CheckAdminPower(string token)
+        {
+            LoginInfo uInfo = GetUsrInfo(token);
+            if (uInfo.usr == "")
+            {
+                return false;
+            }
+            if (uInfo.power < 9)
+            {
+                return false;
+            }
             return true;
         }
         public static string GetUsrByToken(string token)

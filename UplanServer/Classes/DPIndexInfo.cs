@@ -261,7 +261,19 @@ namespace UplanServer
             this.flow = flow;
             this.disturb = disturb;
         }
-
-
+    }
+    public class AutoBusQutoaInfo
+    {
+        public List<SysAutoBusInfo> autoBusList;
+        public double rtt;
+        public double rsrp;
+        public double sinr;
+        public List<PieInfo> networkList;
+        public AutoBusQutoaInfo()
+        {
+            autoBusList = new List<SysAutoBusInfo>();
+            networkList = new List<PieInfo>();
+            rtt = 0;
+        }
     }
 }

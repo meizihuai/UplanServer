@@ -1,0 +1,309 @@
+[14:14:26] <LoopWorker> ===========UPLAN Server启动，开启循环工作线程===========
+[14:14:26] <LoopWorker>    =>线程[QoE视频测试组监控]已启动
+[14:14:26] <LoopWorker>    =>线程[QoE自动任务监控]已启动
+[14:14:26] <LoopWorker>    =>线程[QoER数据监控]已启动
+[14:14:26] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:14:26] <LoopWorker>    =>线程[展示平台数据统计器]已启动
+[14:14:26] <LoopWorker>    =>线程[分析页面国级别数据]已启动
+[14:14:26] <default> GetDetailQuota(2,0) start...
+[14:14:26] <LoopWorker>    =>线程[分析页面省级别数据]已启动
+[14:14:26] <default>   ->GetDetailQuota(2,0)  result=False;2019-05-21 14:14:26
+[14:14:26] <default> GetDetailQuota(2,6) start...
+[14:14:26] <default>   ->GetDetailQuota(2,6)  result=False;2019-05-21 14:14:26
+[14:14:26] <default> GetDetailQuota(2,29) start...
+[14:14:26] <default>   ->GetDetailQuota(2,29)  result=False;2019-05-21 14:14:26
+[14:14:41] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.5678365
+[14:14:47] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:14:59] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.1034072
+[14:15:05] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:15:17] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.3497544
+[14:15:23] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:15:26] <default> GetDetailQuota(2,0) start...
+[14:15:40] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:17.2458300
+[14:15:46] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:16:03] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:17.5650566
+[14:16:09] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:16:27] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:17.4435660
+[14:16:33] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:16:53] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:19.6596665
+[14:16:59] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:17:14] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.0245096
+[14:17:20] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:17:38] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:18.0418330
+[14:17:44] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:18:01] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:17.2584090
+[14:18:07] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:18:26] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:19.2836987
+[14:18:32] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:18:48] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.7947448
+[14:18:54] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:19:12] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:18.4430266
+[14:19:18] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:19:37] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:18.2681213
+[14:19:43] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:20:02] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:18.8476941
+[14:20:08] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:20:24] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:16.4780541
+[14:20:30] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:20:42] <default>   ->GetDetailQuota(2,0)  result=True;00:05:15.2530031
+[14:20:42] <default> GetDetailQuota(2,6) start...
+[14:20:49] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:18.8954378
+[14:20:55] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:21:11] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:16.4479727
+[14:21:17] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:21:37] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:19.9333276
+[14:21:43] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:22:03] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:19.2668257
+[14:22:09] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:22:38] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:29.0884133
+[14:22:44] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:23:00] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:16.7436349
+[14:23:06] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:23:28] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:22.0488030
+[14:23:34] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:23:52] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:17.2450354
+[14:23:58] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:24:17] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:19.0898943
+[14:24:23] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:24:23] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,但出现错误，耗时:00:00:00.6387106
+[14:24:23] <DisplayPlatformWorker> System.NullReferenceException: 未将对象引用设置到对象的实例。
+   在 Oracle.ManagedDataAccess.Client.OracleDataReader.Read()
+   在 System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.StoreRead()
+   在 System.Data.Entity.Core.Common.Internal.Materialization.Shaper`1.SimpleEnumerator.MoveNext()
+   在 System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 UplanServer.DisplayPlatformWorker.GetQoERankinglist(Int32 day, RankData& rankData) 位置 D:\WorkDir\老秦项目\UPLAN后台工程\UplanServer\UplanServer\Classes\DisplayPlatformWorker.cs:行号 180
+   在 UplanServer.DisplayPlatformWorker.WatchingWork() 位置 D:\WorkDir\老秦项目\UPLAN后台工程\UplanServer\UplanServer\Classes\DisplayPlatformWorker.cs:行号 125
+[14:24:29] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:24:46] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:16.2003710
+[14:24:52] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:25:08] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:16.0982799
+[14:25:14] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:25:30] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:16.4501458
+[14:25:36] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:25:52] <default>   ->GetDetailQuota(2,6)  result=True;00:05:09.7727988
+[14:25:52] <default> GetDetailQuota(2,29) start...
+[14:25:53] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:17.2564639
+[14:25:59] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:26:14] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.1914975
+[14:26:20] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:26:33] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.7472604
+[14:26:39] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:27:01] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:21.2796971
+[14:27:07] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:27:39] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:32.1279850
+[14:27:45] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:28:02] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:17.3351237
+[14:28:08] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:28:25] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:16.6387405
+[14:28:31] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:28:50] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:18.7020451
+[14:28:56] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:29:06] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:10.5007149
+[14:29:12] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:29:24] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.1327655
+[14:29:30] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:29:42] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.2647623
+[14:29:48] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:30:04] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.2001825
+[14:30:10] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:30:24] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.1734925
+[14:30:30] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:30:33] <default>   ->GetDetailQuota(2,29)  result=True;00:04:41.8640789
+[14:30:40] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:10.3887382
+[14:30:46] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:30:56] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:09.4874029
+[14:31:02] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:31:06] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:04.7104519
+[14:31:12] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:31:21] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:08.2971412
+[14:31:27] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:31:33] <default> GetDetailQuota(2,0) start...
+[14:31:35] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:08.5237753
+[14:31:41] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:31:55] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.9206421
+[14:32:01] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:32:15] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.0174047
+[14:32:21] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:32:33] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.2580509
+[14:32:39] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:32:55] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.1255465
+[14:33:01] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:33:14] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.3255186
+[14:33:20] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:33:35] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.3376640
+[14:33:41] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:33:53] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.7028481
+[14:33:59] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:34:11] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.4543428
+[14:34:17] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:34:28] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:10.8273341
+[14:34:34] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:34:47] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.1698206
+[14:34:53] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:35:05] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.9507101
+[14:35:11] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:35:14] <default>   ->GetDetailQuota(2,0)  result=True;00:03:41.1090990
+[14:35:14] <default> GetDetailQuota(2,6) start...
+[14:35:25] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.4692517
+[14:35:31] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:35:44] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.6765862
+[14:35:50] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:36:14] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:24.8287352
+[14:36:20] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:36:42] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:21.1229099
+[14:36:48] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:37:01] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.3515609
+[14:37:07] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:37:20] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.0681926
+[14:37:26] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:37:40] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.1032580
+[14:37:46] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:37:59] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.6929410
+[14:38:05] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:38:17] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.8270774
+[14:38:23] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:38:36] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.4194338
+[14:38:42] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:38:54] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.2117415
+[14:39:00] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:39:15] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.4644249
+[14:39:21] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:39:31] <default>   ->GetDetailQuota(2,6)  result=True;00:04:16.4744074
+[14:39:31] <default> GetDetailQuota(2,29) start...
+[14:39:31] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:10.4324949
+[14:39:37] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:39:51] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.5190422
+[14:39:57] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:40:09] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.4035060
+[14:40:15] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:40:29] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.7648136
+[14:40:35] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:41:03] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:27.9311396
+[14:41:09] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:41:21] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.5377496
+[14:41:27] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:41:43] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.9038975
+[14:41:49] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:42:01] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.0781186
+[14:42:07] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:42:20] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.9218058
+[14:42:26] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:42:39] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.1379442
+[14:42:45] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:42:59] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.8451892
+[14:43:05] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:43:17] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.5223192
+[14:43:23] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:43:37] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.0700025
+[14:43:43] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:43:43] <default>   ->GetDetailQuota(2,29)  result=True;00:04:12.5167616
+[14:43:50] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:06.7032135
+[14:43:56] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:44:05] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:09.7933988
+[14:44:11] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:44:20] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:08.3279036
+[14:44:26] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:44:32] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:06.2246239
+[14:44:38] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:44:43] <default> GetDetailQuota(2,0) start...
+[14:44:48] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:09.9474437
+[14:44:54] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:45:06] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.9266716
+[14:45:12] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:45:25] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.1458244
+[14:45:31] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:45:49] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:18.3062920
+[14:45:55] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:46:09] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.7005320
+[14:46:15] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:46:28] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.4606735
+[14:46:34] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:46:47] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.2500227
+[14:46:53] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:47:06] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.1215183
+[14:47:12] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:47:24] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.2133271
+[14:47:30] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:47:44] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.5832115
+[14:47:50] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:48:02] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.1405279
+[14:48:08] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:48:22] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.3152709
+[14:48:28] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:48:28] <default>   ->GetDetailQuota(2,0)  result=True;00:03:44.6448148
+[14:48:28] <default> GetDetailQuota(2,6) start...
+[14:48:39] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:10.8931491
+[14:48:45] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:48:58] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.3935293
+[14:49:04] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:49:16] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.6150977
+[14:49:22] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:49:46] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:23.9436887
+[14:49:52] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:50:05] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.8289708
+[14:50:11] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:50:24] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.7940155
+[14:50:30] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:50:43] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:13.0851006
+[14:50:49] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:51:00] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.1995998
+[14:51:06] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:51:19] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.7212881
+[14:51:25] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:51:36] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:11.5583641
+[14:51:42] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:51:54] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.3166071
+[14:52:00] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:52:11] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:10.7511362
+[14:52:17] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:52:24] <default>   ->GetDetailQuota(2,6)  result=True;00:03:56.1614255
+[14:52:24] <default> GetDetailQuota(2,29) start...
+[14:52:30] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.7506537
+[14:52:36] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:52:47] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:10.8874237
+[14:52:53] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:53:05] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.5199532
+[14:53:11] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:53:34] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:23.0173682
+[14:53:40] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:53:55] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:14.2941145
+[14:54:01] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:54:13] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:12.2420177
+[14:54:19] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:54:34] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.0778262
+[14:54:40] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:54:55] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,保存结果=True,耗时:00:00:15.2845666
+[14:55:01] <DisplayPlatformWorker> ==DisplayPlatformWorker WatchingWork==
+[14:55:09] <LoopWorker> ===========UPLAN Server关闭，关闭所有线程===========
+[14:55:09] <DoVideoQuota> System.Threading.ThreadAbortException: 正在中止线程。
+   在 System.Threading.WaitHandle.WaitMultiple(WaitHandle[] waitHandles, Int32 millisecondsTimeout, Boolean exitContext, Boolean WaitAll)
+   在 System.Threading.WaitHandle.WaitAny(WaitHandle[] waitHandles, Int32 millisecondsTimeout, Boolean exitContext)
+   在 OracleInternal.ServiceObjects.OracleConnectionImpl.WaitForConnectionForExecution(AutoResetEvent cmdCancelEvent)
+   在 OracleInternal.ServiceObjects.OracleCommandImpl.ExecuteReader(String commandText, OracleParameterCollection paramColl, CommandType commandType, OracleConnectionImpl connectionImpl, OracleDataReaderImpl& rdrImpl, Int32 longFetchSize, Int64 clientInitialLOBFS, OracleDependencyImpl orclDependencyImpl, Int64[] scnForExecution, Int64[]& scnFromExecution, OracleParameterCollection& bindByPositionParamColl, Boolean& bBindParamPresent, Int64& internalInitialLOBFS, OracleException& exceptionForArrayBindDML, OracleConnection connection, OracleLogicalTransaction& oracleLogicalTransaction, IEnumerable`1 adrianParsedStmt, Boolean isDescribeOnly, Boolean isFromEF)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteReader(Boolean requery, Boolean fillRequest, CommandBehavior behavior)
+   在 Oracle.ManagedDataAccess.Client.OracleCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.<Reader>b__c(DbCommand t, DbCommandInterceptionContext`1 c)
+   在 System.Data.Entity.Infrastructure.Interception.InternalDispatcher`1.Dispatch[TTarget,TInterceptionContext,TResult](TTarget target, Func`3 operation, TInterceptionContext interceptionContext, Action`3 executing, Action`3 executed)
+   在 System.Data.Entity.Infrastructure.Interception.DbCommandDispatcher.Reader(DbCommand command, DbCommandInterceptionContext interceptionContext)
+   在 System.Data.Entity.Internal.InterceptableDbCommand.ExecuteDbDataReader(CommandBehavior behavior)
+   在 System.Data.Common.DbCommand.ExecuteReader(CommandBehavior behavior)
+   在 System.Data.Entity.Core.EntityClient.Internal.EntityCommandDefinition.ExecuteStoreCommands(EntityCommand entityCommand, CommandBehavior behavior)
+   在 System.Data.Entity.Core.Objects.Internal.ObjectQueryExecutionPlan.Execute[TResultType](ObjectContext context, ObjectParameterCollection parameterValues)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__6()
+   在 System.Data.Entity.Core.Objects.ObjectContext.ExecuteInTransaction[T](Func`1 func, IDbExecutionStrategy executionStrategy, Boolean startLocalTransaction, Boolean releaseConnectionOnSuccess)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<>c__DisplayClass7.<GetResults>b__5()
+   在 System.Data.Entity.Infrastructure.DefaultExecutionStrategy.Execute[TResult](Func`1 operation)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.GetResults(Nullable`1 forMergeOption)
+   在 System.Data.Entity.Core.Objects.ObjectQuery`1.<System.Collections.Generic.IEnumerable<T>.GetEnumerator>b__0()
+   在 System.Data.Entity.Internal.LazyEnumerator`1.MoveNext()
+   在 System.Collections.Generic.List`1..ctor(IEnumerable`1 collection)
+   在 System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   在 UplanServer.DisplayPlatformWorker.DoVideoQuota(String ago, List`1& list, RankData& rankData) 位置 D:\WorkDir\老秦项目\UPLAN后台工程\UplanServer\UplanServer\Classes\DisplayPlatformWorker.cs:行号 443
+[14:55:09] <DisplayPlatformWorker> DisplayPlatformWorker本次任务结束,但出现错误，耗时:00:00:08.0972023
+[14:55:09] <DisplayPlatformWorker> System.Threading.ThreadAbortException: 正在中止线程。
+   在 UplanServer.DisplayPlatformWorker.DoVideoQuota(String ago, List`1& list, RankData& rankData) 位置 D:\WorkDir\老秦项目\UPLAN后台工程\UplanServer\UplanServer\Classes\DisplayPlatformWorker.cs:行号 531
+   在 UplanServer.DisplayPlatformWorker.GetQoERankinglist(Int32 day, RankData& rankData) 位置 D:\WorkDir\老秦项目\UPLAN后台工程\UplanServer\UplanServer\Classes\DisplayPlatformWorker.cs:行号 230
+   在 UplanServer.DisplayPlatformWorker.WatchingWork() 位置 D:\WorkDir\老秦项目\UPLAN后台工程\UplanServer\UplanServer\Classes\DisplayPlatformWorker.cs:行号 127

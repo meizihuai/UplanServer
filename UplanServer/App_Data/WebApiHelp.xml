@@ -591,6 +591,95 @@
             <param name="token"></param>
             <returns></returns>
         </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetQoEMoniterBaseData(System.String)">
+            <summary>
+            获取QoE模拟数据基础数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetQoEProvince">
+            <summary>
+            获取QoE有数据的省份
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetDetailQuota(System.Int32,System.Int32)">
+            <summary>
+            获取分析平台详细指标数据
+            </summary>
+            <param name="level">数据级别，1为国，2为省</param>
+            <param name="day">数据天数，如 1  7  30  180</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetPerformanceData">
+            <summary>
+            获取分析平台性能相关指标
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAQoEDetailQuotaTable(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            获取分析平台(AQoE)网络相关指标TOP列表
+            </summary>
+            <param name="level">级别，1国，2省，3市，4区</param>
+            <param name="day">时间粒度(天) 7 30 180</param>
+            <param name="levelName">级别地区名称，如 level=3 (市级别)，levelName=广州市</param>
+            <param name="quotaName">指标名称，rsrp,sinr,rtt,bufferInit,unStall</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAutoBusQoERData(System.String,System.String,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]获取QoER基数
+            </summary>
+            <param name="imei"></param>
+            <param name="startTime"></param>
+            <param name="endTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.AddAutoBus(UplanServer.SysAutoBusInfo,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]添加自动驾驶汽车模拟器
+            </summary>
+            <param name="auto"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAutoBus(System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]查询自动驾驶模拟器列表
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.GetAutoBusQoERBaseData(System.Int32,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]查询自动驾驶模拟器对应QoER数据列表
+            </summary>
+            <param name="busId"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.UpdateAutoBusInfo(UplanServer.SysAutoBusInfo,System.String)">
+            <summary>
+            [5G自动驾驶模拟器使用]更新汽车信息
+            </summary>
+            <param name="auto"></param>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.Get5GQuotaData">
+            <summary>
+            获取5G指标数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.DisplayPlatformController.Get5GAutoBusDetail(System.Int32)">
+            <summary>
+            获取5G自动驾驶汽车详细历史信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:UplanServer.Controllers.UniQoEController">
             <summary>
             UniQoE接口
@@ -601,7 +690,7 @@
         </member>
         <member name="M:UplanServer.Controllers.UniQoEController.Login(System.String,System.String)">
             <summary>
-            手机登录，获取AID
+            [APP]手机登录，获取AID
             </summary>
             <param name="phoneId">* 手机唯一识别号，android用imsi,iPhone用uuid</param>
             <param name="system">操作系统，Android 或 iOS</param>
@@ -609,9 +698,36 @@
         </member>
         <member name="M:UplanServer.Controllers.UniQoEController.UploadQoERDataForiOS(UplanServer.QoEReportIOSInfo)">
             <summary>
-            iOS终端上传QoER数据
+            [APP]iOS终端上传QoER数据
             </summary>
             <param name="qoer">QoER 结构体</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.GetQoEMission(System.String)">
+            <summary>
+            [APP]终端获取QoE自动监测任务
+            </summary>
+            <param name="aid"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadQoEBlackPoint(UplanServer.QoEBlackPoint)">
+            <summary>
+            [APP]终端上传QoE黑点数据
+            </summary>
+            <param name="qoe"></param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadQoER(PhoneInfo)">
+            <summary>
+            [APP]终端上传QoER数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UniQoEController.UploadException(UplanServer.AppExceptionInfo)">
+            <summary>
+            [APP]上传APP运行过程中生成的日志，多为重要错误日志
+            </summary>
+            <param name="info"></param>
             <returns></returns>
         </member>
         <member name="T:UplanServer.Controllers.UplanController">
@@ -757,6 +873,38 @@
             <param name="getCount">查询数据量</param>
             <returns></returns>
         </member>
+        <member name="M:UplanServer.Controllers.UplanController.AddQoEMission(UplanServer.QoEMissionInfo,System.String)">
+            <summary>
+            新增QoE自动任务
+            </summary>
+            <param name="qoemission">"QoE任务参数</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.GetQoEMission(System.String)">
+            <summary>
+            获取QoE自动任务列表
+            </summary>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.SetQoEMissionStatus(System.Int32,System.Int32,System.String)">
+            <summary>
+            修改QoE自动任务状态
+            </summary>
+            <param name="id">QoE任务主键</param>
+            <param name="code">-1为允许执行，-2为暂停执行</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
+        <member name="M:UplanServer.Controllers.UplanController.DeleteQoEMission(System.Int32,System.String)">
+            <summary>
+            删除QoE自动任务
+            </summary>
+            <param name="id">QoE任务主键</param>
+            <param name="token">token,需要管理员权限</param>
+            <returns></returns>
+        </member>
         <member name="T:UplanServer.Controllers.WorkLogController">
             <summary>
             工作日志WorkLog接口
@@ -780,6 +928,66 @@
             </summary>
             <param name="pinfo">项目文件</param>
             <returns></returns>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.ID">
+            <summary>
+            - 主键ID
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.DateTime">
+            <summary>
+            - 入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.AID">
+            <summary>
+            * AID
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.OSType">
+            <summary>
+            * 操作系统类型，ios/android
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.AppName">
+            <summary>
+            * App名称，可为包名
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.SDKName">
+            <summary>
+            SDK名称(如无SDK，可忽略)
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.OSVersion">
+            <summary>
+            * 操作系统版本号
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.AppVersion">
+            <summary>
+            * APP版本号，VersionName
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.SDKVersion">
+            <summary>
+            SDK版本号(如无SDK，可忽略)
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.TAG">
+            <summary>
+            * 错误日志的TAG，用于过滤
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.ExpLevel">
+            <summary>
+            错误日志的等级 0-9 默认 0
+            </summary>
+        </member>
+        <member name="P:UplanServer.AppExceptionInfo.Body">
+            <summary>
+            * 错误日志的主体内容
+            </summary>
         </member>
         <member name="T:UplanServer.NormalResponse">
             <summary>
@@ -866,7 +1074,7 @@
             iOS版本 QoER数据结构
             </summary>
         </member>
-        <member name="P:UplanServer.QoEReportIOSInfo.id">
+        <member name="P:UplanServer.QoEReportIOSInfo.ID">
             <summary>
             - 主键ID
             </summary>
@@ -971,12 +1179,12 @@
             * 业务类型
             </summary>
         </member>
-        <member name="P:UplanServer.QoEReportIOSInfo.IOSVersion">
+        <member name="P:UplanServer.QoEReportIOSInfo.PhoneOS">
             <summary>
             * 系统版本
             </summary>
         </member>
-        <member name="P:UplanServer.QoEReportIOSInfo.APPVersion">
+        <member name="P:UplanServer.QoEReportIOSInfo.APKVersion">
             <summary>
             * APP版本号
             </summary>
@@ -986,9 +1194,79 @@
             * SDK环境版本号
             </summary>
         </member>
-        <member name="P:UplanServer.QoEReportIOSInfo.APPName">
+        <member name="P:UplanServer.QoEReportIOSInfo.APKName">
             <summary>
             * APP名称， 例如：UniQoE 或者 10086
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Ping_Avg_Rtt">
+            <summary>
+            * Ping时延
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEReportIOSInfo.Http_Response_Time">
+            <summary>
+            * HTTP响应时延
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.ID">
+            <summary>
+            - 数据库主键ID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.DATETIME">
+            <summary>
+            - 入库时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.AID">
+            <summary>
+            * 终端AID
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.STARTTIME">
+            <summary>
+            * 任务开始时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.ENDTIME">
+            <summary>
+            * 任务结束时间
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.INTERVAL">
+            <summary>
+            * 任务执行时间间隔，单位秒，建议设置默认0
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.STATUS">
+            <summary>
+            - 任务状态
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.ISCLOSED">
+            <summary>
+            - 任务是否关闭 -1 未执行  0  正在执行   1 执行完毕
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.TYPE">
+            <summary>
+            * 任务类型 请设置为"QoEVideo"
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionInfo.MissionBody">
+            <summary>
+            * 任务详细字段
+            </summary>
+        </member>
+        <member name="T:UplanServer.QoEMissionBody">
+            <summary>
+            QoE自动任务详细字段
+            </summary>
+        </member>
+        <member name="P:UplanServer.QoEMissionBody.VideoType">
+            <summary>
+            * 请求视频类型 全部/电影/小视频/小品...
             </summary>
         </member>
         <member name="T:UplanServer.QoEVideoDtGroup">

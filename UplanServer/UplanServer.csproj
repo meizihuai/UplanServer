@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UplanServer</RootNamespace>
     <AssemblyName>UplanServer</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -35,7 +35,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>App_Data\WebApiHelp.xml</DocumentationFile>
+    <DocumentationFile>App_Data\swagger.xml</DocumentationFile>
     <NoWarn>1591</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -58,14 +58,23 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Diagnostics.Tracing.EventSource, Version=1.1.28.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Diagnostics.Tracing.EventSource.Redist.1.1.28\lib\net40\Microsoft.Diagnostics.Tracing.EventSource.dll</HintPath>
+    </Reference>
     <Reference Include="Oracle.ManagedDataAccess, Version=4.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.18.6.0\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
     </Reference>
     <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.18.3, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
       <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.18.3.0\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="RabbitMQ.Client, Version=5.0.0.0, Culture=neutral, PublicKeyToken=89e7d7c5feba84ce, processorArchitecture=MSIL">
+      <HintPath>..\packages\RabbitMQ.Client.5.1.0\lib\net451\RabbitMQ.Client.dll</HintPath>
+    </Reference>
     <Reference Include="StackExchange.Redis.StrongName, Version=1.2.6.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\packages\StackExchange.Redis.StrongName.1.2.6\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>
+    </Reference>
+    <Reference Include="Swashbuckle.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cd1bb07a5ac7c7bc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Swashbuckle.Core.5.6.0\lib\net40\Swashbuckle.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -131,6 +140,9 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -155,6 +167,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SwaggerConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -184,16 +197,28 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Classes\AESHelper.cs" />
+    <Compile Include="Classes\AutoScoreHelper.cs" />
     <Compile Include="Classes\CoordInfo.cs" />
     <Compile Include="Classes\DisplayPlatformWorker.cs" />
     <Compile Include="Classes\ExpressionExt.cs" />
-    <Compile Include="Classes\HTTPHelper.cs" />
-    <Compile Include="Classes\LocationAddressInfo.cs" />
+    <Compile Include="Classes\HttpHelper.cs" />
+    <Compile Include="Classes\IPHelper.cs" />
     <Compile Include="Classes\LogHelper.cs" />
     <Compile Include="Classes\LoopWorker.cs" />
-    <Compile Include="Classes\Module.cs" />
+    <Compile Include="Classes\MQCustomer.cs" />
+    <Compile Include="Classes\MQProducter.cs" />
+    <Compile Include="Classes\ScoreHelper.cs" />
+    <Compile Include="Classes\Utils.cs" />
+    <Compile Include="Controllers\Data2DbController.cs" />
+    <Compile Include="Controllers\IPController.cs" />
+    <Compile Include="Models\AppSettingInfo.cs" />
+    <Compile Include="Models\LocationInfo.cs" />
+    <Compile Include="Module.cs" />
     <Compile Include="Classes\OracleHelper.cs" />
-    <Compile Include="Classes\QoEMission.cs" />
+    <Compile Include="Classes\QoEDataToDbHelper.cs" />
+    <Compile Include="Classes\QoEGroupWatcher.cs" />
+    <Compile Include="Classes\QoEMissionWatcher.cs" />
     <Compile Include="Classes\QoERMission.cs" />
     <Compile Include="Classes\RedisHelper.cs" />
     <Compile Include="Controllers\DisplayPlatformController.cs" />
@@ -203,11 +228,15 @@
     <Compile Include="Controllers\WorkLogController.cs" />
     <Compile Include="DbContent\WorkLogDbContext.cs" />
     <Compile Include="Classes\DPIndexInfo.cs" />
+    <Compile Include="EnitityClass\QoE\QoEBlackPoint.cs" />
     <Compile Include="EnitityClass\QoE\QoEVideoTable.cs" />
+    <Compile Include="EnitityClass\QoE\SysAutoBusInfo.cs" />
+    <Compile Include="EnitityClass\QoE\SysCacheInfo.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="EnitityClass\QoE\DeviceInfo.cs" />
+    <Compile Include="Models\AppExceptionInfo.cs" />
     <Compile Include="Models\LoginInfo.cs" />
     <Compile Include="Models\Neighbour.cs" />
     <Compile Include="Models\NormalResponse.cs" />
@@ -215,14 +244,21 @@
     <Compile Include="EnitityClass\WorkLog\ProjectFileInfo.cs" />
     <Compile Include="DbContent\QoEDbContext.cs" />
     <Compile Include="EnitityClass\QoE\QoEReportIOSInfo.cs" />
+    <Compile Include="EnitityClass\QoE\QoEMissionInfo.cs" />
     <Compile Include="Models\QoEVideoDtGroup.cs" />
     <Compile Include="Models\QoEVideoInfo.cs" />
     <Compile Include="EnitityClass\QoE\QoEVideoSource.cs" />
     <Compile Include="EnitityClass\QoE\UserBPInfo.cs" />
+    <Compile Include="Models\SysTJCellInfo.cs" />
     <Compile Include="Models\XYZaSpeedInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\LocationService.cs" />
+    <Compile Include="Service\OracleCacheHelper.cs" />
+    <Compile Include="Service_I\ILocationService.cs" />
+    <Compile Include="Service_I\IRedisHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\swagger.xml" />
     <Content Include="App_Data\WebApiHelp.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

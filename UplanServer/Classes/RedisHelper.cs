@@ -99,6 +99,7 @@ namespace UplanServer
             {
                 if (data == null)
                 {
+                    LogHelper.Log("Redis Set failed data is null");
                     return false;
                 }
                 var entryBytes = Serialize(data);
@@ -112,8 +113,9 @@ namespace UplanServer
                     return _db.StringSet(key, entryBytes);
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                LogHelper.Log("Redis Set Error " + e.ToString());
                 return false;
             }
             

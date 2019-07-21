@@ -13,30 +13,32 @@ namespace UplanServer
         public long ID{ get; set; }
         [Column("DATETIME")]
         public string DATETIME { get; set; }
+        [Column("AID")]
+        public string AID { get; set; }
         [Column("NET_TYPE")]
         public string NET_TYPE { get; set; }
         [Column("BUSINESS_TYPE")]
         public string BUSINESS_TYPE { get; set; }
         [Column("VIDEO_BUFFER_INIT_TIME")]
-        public double? VIDEO_BUFFER_INIT_TIME { get; set; }
+        public int? VIDEO_BUFFER_INIT_TIME { get; set; }
         [Column("VIDEO_BUFFER_TOTAL_TIME")]
-        public double? VIDEO_BUFFER_TOTAL_TIME { get; set; }
+        public int? VIDEO_BUFFER_TOTAL_TIME { get; set; }
         [Column("VIDEO_STALL_NUM")]
-        public double? VIDEO_STALL_NUM { get; set; }
+        public int? VIDEO_STALL_NUM { get; set; }
         [Column("VIDEO_STALL_TOTAL_TIME")]
-        public double? VIDEO_STALL_TOTAL_TIME { get; set; }
+        public int? VIDEO_STALL_TOTAL_TIME { get; set; }
         [Column("VIDEO_STALL_DURATION_PROPORTION")]
         public double? VIDEO_STALL_DURATION_PROPORTION { get; set; }
         [Column("VIDEO_LOAD_SCORE")]
-        public double? VIDEO_LOAD_SCORE { get; set; }
+        public int? VIDEO_LOAD_SCORE { get; set; }
         [Column("VIDEO_STALL_SCORE")]
-        public double? VIDEO_STALL_SCORE { get; set; }
+        public int? VIDEO_STALL_SCORE { get; set; }
         [Column("VIDEO_BUFFER_TOTAL_SCORE")]
-        public double? VIDEO_BUFFER_TOTAL_SCORE { get; set; }
+        public int? VIDEO_BUFFER_TOTAL_SCORE { get; set; }
         [Column("ECLATIRY")]
-        public double? ECLATIRY { get; set; }
+        public int? ECLATIRY { get; set; }
         [Column("VMOS")]
-        public double? VMOS { get; set; }
+        public float? VMOS { get; set; }
         [Column("PACKET_LOSS")]
         public double? PACKET_LOSS { get; set; }
         [Column("ELOAD")]
@@ -58,13 +60,13 @@ namespace UplanServer
         [Column("MNC")]
         public string MNC { get; set; }
         [Column("TAC")]
-        public string TAC { get; set; }
+        public int? TAC { get; set; }
         [Column("ECI")]
         public double? ECI { get; set; }
         [Column("ENODEBID")]
-        public string ENODEBID { get; set; }
+        public int? ENODEBID { get; set; }
         [Column("CELLID")]
-        public string CELLID { get; set; }
+        public int? CELLID { get; set; }
         [Column("SIGNAL_STRENGTH")]
         public double? SIGNAL_STRENGTH { get; set; }
         [Column("CELL_SIGNAL_STRENGTH")]
@@ -104,7 +106,7 @@ namespace UplanServer
         [Column("LIGHT_INTENSITY")]
         public string LIGHT_INTENSITY { get; set; }
         [Column("LIGHT_INTENSITY_VALUE")]
-        public double? LIGHT_INTENSITY_VALUE { get; set; }
+        public int? LIGHT_INTENSITY_VALUE { get; set; }
         [Column("PHONE_SCREEN_BRIGHTNESS")]
         public string PHONE_SCREEN_BRIGHTNESS { get; set; }
         [Column("PHONE_SCREEN_BRIGHTNESS_VALUE")]
@@ -120,9 +122,9 @@ namespace UplanServer
         [Column("VIDEO_BITRATE")]
         public double? VIDEO_BITRATE { get; set; }
         [Column("FPS")]
-        public double? FPS { get; set; }
+        public int? FPS { get; set; }
         [Column("VIDEO_TOTAL_TIME")]
-        public double? VIDEO_TOTAL_TIME { get; set; }
+        public int? VIDEO_TOTAL_TIME { get; set; }
         [Column("VIDEO_PLAY_TOTAL_TIME")]
         public double? VIDEO_PLAY_TOTAL_TIME { get; set; }
         [Column("VIDEO_PEAK_DOWNLOAD_SPEED")]
@@ -150,7 +152,7 @@ namespace UplanServer
         [Column("INSTAN_DOWNLOAD_SPEED")]
         public string INSTAN_DOWNLOAD_SPEED { get; set; }
         [Column("VIDEO_ALL_PEAK_RATE")]
-        public string VIDEO_ALL_PEAK_RATE { get; set; }
+        public long? VIDEO_ALL_PEAK_RATE { get; set; }
         [Column("VIDEO_AVERAGE_PEAK_RATE")]
         public double? VIDEO_AVERAGE_PEAK_RATE { get; set; }
         [Column("LONGITUDE_1")]
@@ -214,11 +216,11 @@ namespace UplanServer
         [Column("MOVE_SPEED")]
         public double? MOVE_SPEED { get; set; }
         [Column("ISPLAYCOMPLETED")]
-        public double? ISPLAYCOMPLETED { get; set; }
+        public int? ISPLAYCOMPLETED { get; set; }
         [Column("LOCALDATASAVETIME")]
         public string LOCALDATASAVETIME { get; set; }
         [Column("ISUPLOADDATATIMELY")]
-        public double? ISUPLOADDATATIMELY { get; set; }
+        public int? ISUPLOADDATATIMELY { get; set; }
         [Column("STALL_DURATION_LONG_1")]
         public double? STALL_DURATION_LONG_1 { get; set; }
         [Column("STALL_DURATION_LONG_POINT_1")]
@@ -286,7 +288,7 @@ namespace UplanServer
         [Column("VMOS_MATCH")]
         public double? VMOS_MATCH { get; set; }
         [Column("PCI")]
-        public string PCI { get; set; }
+        public int? PCI { get; set; }
         [Column("APKNAME")]
         public string APKNAME { get; set; }
         [Column("GRID")]
@@ -313,6 +315,57 @@ namespace UplanServer
         public int? ISSCREENRECORDUPLOADED { get; set; }
         [Column("NETWORK_FORMAT")]
         public string NETWORK_FORMAT { get; set; }
+        [Column("IP")]
+        public string IP { get; set; }
+        [NotMapped]
+        public string Lon_Encry { get; set; }
+        [NotMapped]
+        public string Lat_Encry { get; set; }
+        [NotMapped]
+        public PhoneInfo PI { get; set; }
+        [NotMapped]
+        public List<int> LIGHT_INTENSITY_list { get; set; }
+        [NotMapped]
+        public List<int> PHONE_SCREEN_BRIGHTNESS_list { get; set; }
+        [NotMapped]
+        public List<int> CELL_SIGNAL_STRENGTHList { get; set; }
+        [NotMapped]
+        public List<XYZaSpeedInfo> ACCELEROMETER_DATAList { get; set; }
+        [NotMapped]
+        public List<long> INSTAN_DOWNLOAD_SPEEDList { get; set; }
+        [NotMapped]
+        public List<GPSPoint> GPSPointList { get; set; }
+        [NotMapped]
+        public List<STALLInfo> STALLlist { get; set; }
+        [NotMapped]
+        public List<string> Network_Typelist { get; set; }
+
+        public class GPSPoint
+        {
+            public double LONGITUDE { get; set; }
+            public double LATITUDE { get; set; }
+        }
+        public class STALLInfo
+        {
+            public long POINT { get; set; }
+            public long TIME { get; set; }
+        }
+        /// <summary>
+        /// 数据解密，AES算法，目前主要是经纬度解密
+        /// </summary>
+        public void Decode()
+        {
+            if (!string.IsNullOrEmpty(this.Lon_Encry) && !string.IsNullOrEmpty(this.Lat_Encry))
+            {
+                string lonStr = AESHelper.Decode(this.Lon_Encry);
+                string latStr = AESHelper.Decode(this.Lat_Encry);
+                if (Utils.IsNumberic(lonStr) && Utils.IsNumberic(latStr))
+                {
+                    this.LONGITUDE_1 = double.Parse(lonStr);
+                    this.LATITUDE_1 = double.Parse(latStr);
+                }
+            }
+        }
     }
 
 }

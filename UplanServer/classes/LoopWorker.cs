@@ -17,11 +17,12 @@ namespace UplanServer
         {
             isNeedStop = false;
             threads = new List<Thread>();
-            threads.Add(new Thread(() => { QoEMission.Watching(60); }) { Name= "QoE视频测试组监控" });//QoE视频测试组监控，60秒一次
+            threads.Add(new Thread(() => { QoEGroupWatcher.Watching(60); }) { Name= "QoE视频测试组监控" });//QoE视频测试组监控，60秒一次
+            threads.Add(new Thread(() => { QoEMissionWatcher.Watching(60); }) { Name = "QoE自动任务监控" });//QoE视频测试组监控，60秒一次
             threads.Add(new Thread(() => { QoERMission.Watching(60); }) { Name = "QoER数据监控" });//QoER数据监控，60秒一次
-            threads.Add(new Thread(() => { DisplayPlatformWorker.Watching(6); }) { Name = "展示平台数据统计器" });
-            threads.Add(new Thread(() => { DisplayPlatformWorker.GetDetailQuotaChinaWork(); }) { Name = "分析页面国级别数据" });
-            threads.Add(new Thread(() => { DisplayPlatformWorker.GetDetailQuotaProvinceWork(); }) { Name = "分析页面省级别数据" });
+            //threads.Add(new Thread(() => { DisplayPlatformWorker.Watching(6); }) { Name = "展示平台数据统计器" });
+            //threads.Add(new Thread(() => { DisplayPlatformWorker.GetDetailQuotaChinaWork(); }) { Name = "分析页面国级别数据" });
+            //threads.Add(new Thread(() => { DisplayPlatformWorker.GetDetailQuotaProvinceWork(); }) { Name = "分析页面省级别数据" });
             LogHelper.Log("===========UPLAN Server启动，开启循环工作线程===========", TAG);
             foreach(Thread t in threads)
             {
