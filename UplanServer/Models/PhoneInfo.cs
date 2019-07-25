@@ -101,7 +101,7 @@ public class PhoneInfo
     [Column("WIFI_MAC")]
     public string WiFi_MAC { get; set; }
     [Column("PING_AVG_RTT")]
-    public int? Ping_Avg_Rtt { get; set; }
+    public double? PING_AVG_RTT { get; set; }
     [Column("FREQ")]
     public int? Freq { get; set; }
     [Column("CPU")]

@@ -133,7 +133,6 @@ namespace UplanServer.Controllers
             {
                 try
                 {
-
                     if (pi.IsUploadDataTimely == null) pi.IsUploadDataTimely = 1;
                     if (pi.IsUploadDataTimely == -1)
                     {
@@ -174,7 +173,6 @@ namespace UplanServer.Controllers
         public Task<NormalResponse> UploadQoEVideo(QoEVideoTable qoe)
         {
             qoe.IP = IPHelper.GetIP(HttpContext.Current.Request);
-
             return Task.Run(() =>
             {
                 try
@@ -187,10 +185,9 @@ namespace UplanServer.Controllers
                     //{
                     //    File.WriteAllText(@"d:\errBefore.txt", $"qoe.LIGHT_INTENSITY_list.Count={qoe.LIGHT_INTENSITY_list.Count}");
                     //}
-
                     if (qoe.PI == null)
                     {
-                        return new NormalResponse(false, "PI不可为空");
+                        return new NormalResponse(false, "PI不可为空","",qoe);
                     }
                     qoe.AID = qoe.PI.AID;
                     if (qoe.ISUPLOADDATATIMELY == null) qoe.ISUPLOADDATATIMELY = 1;

@@ -82,6 +82,7 @@ namespace UplanServer
         {
             if (string.IsNullOrEmpty(pi.BusinessType)) pi.BusinessType = "QOER";           
             if (string.IsNullOrEmpty(pi.ApkName)) pi.ApkName = "UniQoE";
+            if (string.IsNullOrEmpty(pi.DateTime)) pi.DateTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             pi.IsOutSide = 0;
             pi.Freq = pi.EarFcn;
             pi.EnodebId_CellId = pi.ENodeBId + "_" + pi.CellId;
@@ -99,6 +100,7 @@ namespace UplanServer
                 pi.ADJ_EARFCN1 = nb.EARFCN;
             }
             if (pi.XyZaSpeed != null) pi.XYZASpeedString = JsonConvert.SerializeObject(pi.XyZaSpeed);
+            pi.XYZASpeedString = CutJson(pi.XYZASpeedString);
             if (pi.SatelliteCount >= 4) pi.IsOutSide = 1;
             //AES解密
             pi.Decode();
@@ -177,25 +179,46 @@ namespace UplanServer
         {
             return Task.Run(async () =>
             {
-                qoe = await HandleQoEVideo(qoe);               
-                using (var db = new QoEDbContext())
+                int step = 0;
+                try
                 {
-                    db.QoEVideoTable.Add(qoe);
-                    db.SaveChanges();
-                    return new NormalResponse(true, "success");
+                    if (qoe.PI == null) return new NormalResponse(false, "PI不可为空");
+                    if (string.IsNullOrEmpty(qoe.DATETIME)) qoe.DATETIME = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
+                    step = 1;
+                    qoe = await HandleQoEVideo(qoe);
+                    step = 2;
+                    using (var db = new QoEDbContext())
+                    {
+                        db.QoEVideoTable.Add(qoe);
+                        int count = db.SaveChanges();
+                        if (count == 0)
+                        {
+                            return new NormalResponse(false, "入库失败");
+                        }
+                        else
+                        {
+                            return new NormalResponse(true, "success");
+                        }
+                    }
                 }
+                catch (Exception e)
+                {
+                    return new NormalResponse(false, "入库失败", e.ToString(), $"step={step}");
+                }
+               
             });
         }
         private static async Task<QoEVideoTable>HandleQoEVideo(QoEVideoTable qoe)
         {
-            if (string.IsNullOrEmpty(qoe.BUSINESS_TYPE)) qoe.BUSINESS_TYPE = "";
+            if (string.IsNullOrEmpty(qoe.BUSINESS_TYPE)) qoe.BUSINESS_TYPE = "";          
             PhoneInfo npi = qoe.PI;
             if (npi == null) return qoe;
             npi =await HandlePhoneInfo(npi);
+            qoe.AID = npi.AID;
             qoe.MNC = npi.MNC;
             qoe.WIFI_SSID = npi.WiFi_SSID;
             qoe.WIFI_MAC = npi.WiFi_MAC;
-            qoe.PING_AVG_RTT = npi.Ping_Avg_Rtt;
+          
             qoe.FREQ = npi.Freq;
             qoe.CPU = npi.CPU;
             //qoe.ADJ_SIGNAL = npi.Adj_Signal;
@@ -250,36 +273,63 @@ namespace UplanServer
             qoe.ADDRESS = npi.Address;
             qoe.IMEI = npi.IMEI;
             qoe.IMSI = npi.IMSI;
+            qoe.GUID = qoe.COUNTRY;
             qoe.COUNTRY = "中国";
-           if(qoe.PING_AVG_RTT==null || qoe.PING_AVG_RTT==0) qoe.PING_AVG_RTT = npi.Ping_Avg_Rtt;
+           if(qoe.PING_AVG_RTT==null || qoe.PING_AVG_RTT==0) qoe.PING_AVG_RTT = npi.PING_AVG_RTT;
             if (qoe.LIGHT_INTENSITY_list != null && qoe.LIGHT_INTENSITY_list.Count>0)
             {
                 qoe.LIGHT_INTENSITY_VALUE = qoe.LIGHT_INTENSITY_list[0];
-                qoe.LIGHT_INTENSITY = JsonConvert.SerializeObject(qoe.LIGHT_INTENSITY_list);               
+                qoe.LIGHT_INTENSITY = JsonConvert.SerializeObject(qoe.LIGHT_INTENSITY_list);
+                qoe.LIGHT_INTENSITY = CutJson(qoe.LIGHT_INTENSITY);           
             }
             if (qoe.PHONE_SCREEN_BRIGHTNESS_list != null && qoe.PHONE_SCREEN_BRIGHTNESS_list.Count>0)
             {
                 qoe.PHONE_SCREEN_BRIGHTNESS_VALUE = qoe.PHONE_SCREEN_BRIGHTNESS_list[0];
                 qoe.PHONE_SCREEN_BRIGHTNESS = JsonConvert.SerializeObject(qoe.PHONE_SCREEN_BRIGHTNESS_list);
+                qoe.PHONE_SCREEN_BRIGHTNESS = CutJson(qoe.PHONE_SCREEN_BRIGHTNESS);
             }
             if(qoe.CELL_SIGNAL_STRENGTHList!=null && qoe.CELL_SIGNAL_STRENGTHList.Count > 0)
             {
                 qoe.CELL_SIGNAL_STRENGTH = JsonConvert.SerializeObject(qoe.CELL_SIGNAL_STRENGTHList);
+                qoe.CELL_SIGNAL_STRENGTH = CutJson(qoe.CELL_SIGNAL_STRENGTH);
             }
             if(qoe.ACCELEROMETER_DATAList!=null && qoe.ACCELEROMETER_DATAList.Count > 0)
             {
                 qoe.ACCELEROMETER_DATA = JsonConvert.SerializeObject(qoe.ACCELEROMETER_DATAList);
+                qoe.ACCELEROMETER_DATA = CutJson(qoe.ACCELEROMETER_DATA);
             }
             long video_All_Peak_Speed = 0;
             if (qoe.INSTAN_DOWNLOAD_SPEEDList!=null && qoe.INSTAN_DOWNLOAD_SPEEDList.Count > 0)
             {
                 qoe.INSTAN_DOWNLOAD_SPEED = JsonConvert.SerializeObject(qoe.INSTAN_DOWNLOAD_SPEEDList);
                 qoe.INSTAN_DOWNLOAD_SPEEDList.ForEach(a => { if (a > video_All_Peak_Speed) video_All_Peak_Speed = a; });
+                qoe.INSTAN_DOWNLOAD_SPEED = CutJson(qoe.INSTAN_DOWNLOAD_SPEED);
             }
             qoe.VIDEO_ALL_PEAK_RATE = video_All_Peak_Speed;
-            qoe.VIDEO_PEAK_DOWNLOAD_SPEED = video_All_Peak_Speed * 8;
+            if (qoe.VIDEO_PEAK_DOWNLOAD_SPEED == 0)
+            {
+                qoe.VIDEO_PEAK_DOWNLOAD_SPEED = video_All_Peak_Speed;
+            }
+            qoe.VIDEO_PEAK_DOWNLOAD_SPEED = qoe.VIDEO_PEAK_DOWNLOAD_SPEED * 8;
             qoe.LONGITUDE_1 = npi.Lon;
             qoe.LATITUDE_1 = npi.Lat;
+           if(qoe.GPSPointList==null || qoe.GPSPointList.Count == 0)
+            {
+                if (!string.IsNullOrEmpty(qoe.GPSPointList_Encry))
+                {
+                    string str = AESHelper.Decode(qoe.GPSPointList_Encry);
+                    if (!string.IsNullOrEmpty(str))
+                    {
+                        try
+                        {
+                            qoe.GPSPointList = JsonConvert.DeserializeObject<List<QoEVideoTable.GPSPoint>>(str);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
+                }
+            }
             if (qoe.GPSPointList!=null && qoe.GPSPointList.Count > 0)
             {
                 //if (qoe.GPSPointList.Count >= 1)
@@ -407,6 +457,7 @@ namespace UplanServer
             if(qoe.Network_Typelist != null && qoe.Network_Typelist.Count > 0)
             {
                 qoe.NETWORK_SET = JsonConvert.SerializeObject(qoe.Network_Typelist);
+                qoe.NETWORK_SET = CutJson(qoe.NETWORK_SET);
             }
             qoe.BDLON = npi.BDlon;
             qoe.BDLAT = npi.BDlat;
@@ -420,6 +471,12 @@ namespace UplanServer
             qoe.APKNAME = npi.ApkName;
             qoe.APKVERSION = npi.ApkVersion;
             return qoe;
+        }
+        private static string CutJson(string str)
+        {
+            if (string.IsNullOrEmpty(str)) return "";
+            if (str.Length > 4000) return str.Substring(0, 4000);
+            return str;
         }
         private static string GetNetFormat(string net,int earfcn)
         {

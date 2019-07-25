@@ -15,6 +15,8 @@ namespace UplanServer
         public string DATETIME { get; set; }
         [Column("AID")]
         public string AID { get; set; }
+        [Column("GUID")]
+        public string GUID { get; set; }
         [Column("NET_TYPE")]
         public string NET_TYPE { get; set; }
         [Column("BUSINESS_TYPE")]
@@ -335,6 +337,8 @@ namespace UplanServer
         public List<long> INSTAN_DOWNLOAD_SPEEDList { get; set; }
         [NotMapped]
         public List<GPSPoint> GPSPointList { get; set; }
+        [NotMapped]
+        public string GPSPointList_Encry { get; set; }
         [NotMapped]
         public List<STALLInfo> STALLlist { get; set; }
         [NotMapped]

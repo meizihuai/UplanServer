@@ -534,7 +534,7 @@ namespace UplanServer.Controllers
                     a.GDlon,
                     a.GDlat,
                     a.GpsSpeed,
-                    a.Ping_Avg_Rtt,
+                    a.PING_AVG_RTT,
                     a.VMOS,
                     a.NetType
                 }).OrderBy(a => a.ID).ToList();
@@ -721,7 +721,7 @@ namespace UplanServer.Controllers
                     a.GDlon,
                     a.GDlat,
                     a.GpsSpeed,
-                    a.Ping_Avg_Rtt,
+                    a.PING_AVG_RTT,
                     a.VMOS,
                     a.NetType
                 }).OrderBy(a => a.ID).ToList();
