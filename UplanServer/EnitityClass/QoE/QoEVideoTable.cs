@@ -47,6 +47,8 @@ namespace UplanServer
         public double? ELOAD { get; set; }
         [Column("ESTALL")]
         public double? ESTALL { get; set; }
+        [Column("EFLUENCY")]
+        public double? EFLUENCY { get; set; }
         [Column("EVMOS")]
         public double? EVMOS { get; set; }
         [Column("ELIGHT")]
@@ -353,6 +355,10 @@ namespace UplanServer
         {
             public long POINT { get; set; }
             public long TIME { get; set; }
+        }
+        public QoEVideoTable()
+        {
+
         }
         /// <summary>
         /// 数据解密，AES算法，目前主要是经纬度解密

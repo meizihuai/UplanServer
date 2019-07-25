@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -232,7 +233,9 @@ namespace UplanServer.Controllers
         [HttpPost]
         public Task<NormalResponse> UploadException(AppExceptionInfo info)
         {
-            return Task.Run<NormalResponse>(async () =>
+           
+
+            return Task.Run(async () =>
             {
                 try
                 {
@@ -261,36 +264,58 @@ namespace UplanServer.Controllers
         /// <param name="score"></param>
         /// <returns></returns>
         [HttpPost]
-        public Task<NormalResponse> UploadQoEVideoScore(QoEVideoScore score)
+        public NormalResponse UploadQoEVideoScore(QoEVideoScore score)
         {
-            return Task.Run(()=>
-            {
-                try
-                {
-                    if (score == null) return new NormalResponse(false, "QoEVideoScore不可为空");
-                    if (string.IsNullOrEmpty(score.GUID)) return new NormalResponse(false, "GUID不可为空");
-                    using(var db=new QoEDbContext())
-                    {
-                        var rt = db.QoEVideoTable.Where(a => a.GUID == score.GUID).FirstOrDefault();
-                        if (rt == null)
-                        {
-                            return new NormalResponse(false, "该GUID没有对应QoE数据记录");
-                        }
-                        else
-                        {
-                            rt.EVMOS = score.EVMOS;
-                            rt.ELOAD = score.ELOAD;
-                            // rt. = score.EFLUENCY;
-                            db.Update(rt, a => a.EVMOS, a => a.ELOAD);
-                            return new NormalResponse(true, "更新成功");
-                        }
-                    }
-                }
-                catch (Exception e)
-                {
-                    return new NormalResponse(false, e.Message);
-                }
-            });
+            return new NormalResponse(true, "", "", db.QoEVideoTable.Where(a => a.GUID == score.GUID).FirstOrDefault());
+
+            //return Task.Run(()=>
+            //{
+            //    try
+            //    {
+            //        if (score == null) return new NormalResponse(false, "QoEVideoScore不可为空");
+            //        if (string.IsNullOrEmpty(score.GUID)) return new NormalResponse(false, "GUID不可为空");
+            //        string guid = score.GUID;
+            //        //DataTable dt = ora.SqlGetDT($"select id from QoE_Video_Table where guid='{guid}'");
+            //        //if(dt==null || dt.Rows.Count==0) return new NormalResponse(false, "该GUID没有对应QoE数据记录");
+            //        //DataRow row = dt.Rows[0];
+            //        //long id = long.Parse(row["ID"].ToString());
+            //        //string result=   ora.SqlCMD($"update QoE_Video_Table set EVMOS={score.EVMOS},ELOAD={score.ELOAD},EFLUENCY={score.EFLUENCY} where id={id}");
+            //        //if (result == "success")
+            //        //{
+            //        //    return new NormalResponse(true, "更新成功");
+            //        //}
+            //        //else
+            //        //{
+            //        //    return new NormalResponse(false, "更新失败");
+            //        //}
+        
+                  
+
+
+            //        using (var rdb = new QoEDbContext())
+            //        {
+            //            var rt = rdb.QoEVideoTable.Where(a => a.GUID == guid).FirstOrDefault();
+            //            return new NormalResponse(true, "", "", rt);
+            //            if (rt == null)
+            //            {
+            //                return new NormalResponse(false, "该GUID没有对应QoE数据记录");
+            //            }
+            //            else
+            //            {
+            //                // return new NormalResponse(false, "", "", rt);
+            //                rt.EVMOS = score.EVMOS;
+            //                rt.ELOAD = score.ELOAD;
+            //                // rt. = score.EFLUENCY;
+            //                rdb.Update(rt, a => a.EVMOS, a => a.ELOAD);
+            //                return new NormalResponse(true, "更新成功");
+            //            }
+            //        }
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        return new NormalResponse(false, e.Message);
+            //    }
+            //});
            
         }
 

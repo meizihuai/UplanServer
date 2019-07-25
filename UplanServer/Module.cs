@@ -26,6 +26,24 @@ namespace UplanServer
         public static AppSettingInfo AppSetting;
         public static void Init()
         {
+            //Console.WriteLine("6");
+            //using (var db=new QoEDbContext())
+            //{
+            //    try
+            //    {
+            //        var rt = db.QoEVideoTable.Find(168789);
+            //        Console.WriteLine(rt==null);
+            //        int k = 0;
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e.ToString());
+            //        int k = 0;
+            //    }
+                
+              
+            //}
+
             phoneModelDik.Add("xiaomi", "小米");
             phoneModelDik.Add("HONOR", "华为");
 
