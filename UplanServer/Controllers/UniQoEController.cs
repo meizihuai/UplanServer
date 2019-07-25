@@ -255,6 +255,44 @@ namespace UplanServer.Controllers
                 }
             });
         }
+        /// <summary>
+        /// [H5]根据Guid上传QoEVideo数据的打分数值
+        /// </summary>
+        /// <param name="score"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public Task<NormalResponse> UploadQoEVideoScore(QoEVideoScore score)
+        {
+            return Task.Run(()=>
+            {
+                try
+                {
+                    if (score == null) return new NormalResponse(false, "QoEVideoScore不可为空");
+                    if (string.IsNullOrEmpty(score.GUID)) return new NormalResponse(false, "GUID不可为空");
+                    using(var db=new QoEDbContext())
+                    {
+                        var rt = db.QoEVideoTable.Where(a => a.GUID == score.GUID).FirstOrDefault();
+                        if (rt == null)
+                        {
+                            return new NormalResponse(false, "该GUID没有对应QoE数据记录");
+                        }
+                        else
+                        {
+                            rt.EVMOS = score.EVMOS;
+                            rt.ELOAD = score.ELOAD;
+                            // rt. = score.EFLUENCY;
+                            db.Update(rt, a => a.EVMOS, a => a.ELOAD);
+                            return new NormalResponse(true, "更新成功");
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    return new NormalResponse(false, e.Message);
+                }
+            });
+           
+        }
 
     }
 }

@@ -214,6 +214,7 @@
     <Compile Include="Controllers\IPController.cs" />
     <Compile Include="Models\AppSettingInfo.cs" />
     <Compile Include="Models\LocationInfo.cs" />
+    <Compile Include="Models\QoEVideoScore.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Classes\OracleHelper.cs" />
     <Compile Include="Classes\QoEDataToDbHelper.cs" />
